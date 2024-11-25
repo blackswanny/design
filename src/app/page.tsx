@@ -6,7 +6,7 @@ import HomePage from "../components/home/page";
 export default function Home() {
   const router = useRouter();
   useEffect(() => {
-    router.push("https://www.behance.net/hanna_gomozova");
+    //router.push("https://www.behance.net/hanna_gomozova");
   }, [router]);
 
   return (
