@@ -1,0 +1,19 @@
+{
+  "editor.tabSize": 2,
+  "[scss]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "css.format.enable": true,
+  "scss.format.enable": true,
+  "eslint.format.enable": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+  ],
+  "eslint.options": {
+    //"overrideConfigFile": "eslint.config.js"
+  }
+}

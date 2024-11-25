@@ -1,23 +1,20 @@
-"use client"
-
-import { Button } from "@nextui-org/react";
-import { useRouter } from 'next/navigation'
+"use client";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import HomePage from "../components/home/page";
 
 export default function Home() {
-  const router = useRouter()
-  useEffect(()=> {
-    router.push('https://www.behance.net/hanna_gomozova')
-  }, []);
+  const router = useRouter();
+  useEffect(() => {
+    router.push("https://www.behance.net/hanna_gomozova");
+  }, [router]);
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-
+    <div className="font-[family-name:var(--font-neue-montreal)] flex h-full w-full flex-col">
+      <main className="flex-1 relative">
+        <HomePage />
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
- 
-      </footer>
+      <footer className="">Footer for all</footer>
     </div>
   );
 }
