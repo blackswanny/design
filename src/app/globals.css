@@ -3,19 +3,34 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #020202;
+  --foreground: #f5f1ea;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  min-height: 100%;
+  background: var(--background);
 }
 
 body {
-  color: var(--foreground);
+  min-height: 100vh;
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--foreground);
+  font-family: "PP Editorial New", "Editorial New", "Iowan Old Style",
+    "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.font-pp-editorial-new {
+  font-family: "PP Editorial New", "Editorial New", "Iowan Old Style",
+    "Palatino Linotype", "Book Antiqua", Georgia, serif;
 }
