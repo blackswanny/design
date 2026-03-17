@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "neueMontreal";
+  src: url("/fonts/PPNeueMontreal-Book.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "neueMontreal";
+  src: url("/fonts/PPNeueMontreal-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
   --background: #020202;
   --foreground: #f5f1ea;
@@ -16,8 +32,8 @@ body {
   min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: "PP Editorial New", "Editorial New", "Iowan Old Style",
-    "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-family: "neueMontreal", "PP Editorial New", "Editorial New",
+    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
   overflow-x: hidden;
 }
 
@@ -33,4 +49,9 @@ a {
 .font-pp-editorial-new {
   font-family: "PP Editorial New", "Editorial New", "Iowan Old Style",
     "Palatino Linotype", "Book Antiqua", Georgia, serif;
+}
+
+.font-neue-montreal {
+  font-family: neueMontreal, "neueMontreal Fallback", sans-serif;
+  font-feature-settings: normal;
 }
