@@ -4,6 +4,24 @@ import portraitPhoto from "../../assets/images/photo.png";
 export default function HomePage() {
   return (
     <section className="relative isolate overflow-hidden bg-background text-foreground">
+      <a
+        href="https://www.behance.net/hanna_gomozova"
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label="Open Hanna Gomozova Behance portfolio"
+        className="font-neue-montreal absolute left-6 top-6 z-30 inline-flex items-center gap-2 text-sm uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-70 md:left-10 md:top-10 lg:left-16 lg:top-10"
+      >
+        HANNA GOMOZOVA
+        <img
+          src="/arrow.svg"
+          alt=""
+          aria-hidden="true"
+          width={14}
+          height={14}
+          className="h-[14px] w-[14px]"
+        />
+      </a>
+
       <div className="mx-auto flex min-h-screen w-full flex-col items-center justify-center px-6 md:px-10 lg:px-16">
         <div className="relative flex w-full flex-col items-center pt-[2vw]">
           <h1 className="font-neue-montreal pointer-events-none absolute left-1/2 top-[-3vw] z-20 w-full -translate-x-1/2 px-2 text-center text-[8vw] leading-[0.9] tracking-[-0.06em] text-white">
