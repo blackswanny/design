@@ -8,15 +8,20 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      sm: "640px",
       md: "768px",
       lg: "1024px",
-      xl: "1280px",
-      "2xl": "1536px",
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-neue-montreal)"],
+        sans: [
+          "PP Editorial New",
+          "Editorial New",
+          "Iowan Old Style",
+          "Palatino Linotype",
+          "Book Antiqua",
+          "Georgia",
+          "serif",
+        ],
       },
       colors: {
         background: "var(--background)",
