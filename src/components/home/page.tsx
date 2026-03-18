@@ -12,7 +12,7 @@ export default function HomePage() {
         id="home"
         className="relative isolate h-[100svh] min-h-screen overflow-hidden bg-background pt-16 text-foreground"
       >
-        <div className="mx-auto flex min-h-[calc(100svh-7rem)] w-full flex-col items-center justify-center px-6 md:px-10 lg:px-16">
+        <div className="mx-auto flex min-h-[calc(100svh-4rem)] w-full flex-col items-center justify-center px-6 md:px-10 lg:px-16">
           <div className="relative flex w-full flex-col items-center pt-[2vw]">
             <h1 className="font-neue-montreal pointer-events-none absolute left-1/2 top-[-3vw] z-20 w-full -translate-x-1/2 px-2 text-center text-[8vw] leading-[0.9] tracking-[-0.06em] text-white">
               Hanna Gomozova
@@ -82,7 +82,12 @@ export default function HomePage() {
           <div className="font-neue-montreal mb-6 text-sm uppercase tracking-[0.18em] text-white/60">
             PROJECTS
           </div>
-          <div className="h-[420px] w-full rounded-md border border-white/20 bg-white/[0.03]" />
+          <div className="grid grid-cols-2 gap-6">
+            <div className="h-[280px] rounded-md border border-white/20 bg-white/[0.03]" />
+            <div className="h-[280px] rounded-md border border-white/20 bg-white/[0.03]" />
+            <div className="h-[280px] rounded-md border border-white/20 bg-white/[0.03]" />
+            <div className="h-[280px] rounded-md border border-white/20 bg-white/[0.03]" />
+          </div>
         </div>
       </section>
 
@@ -94,7 +99,12 @@ export default function HomePage() {
           <div className="font-neue-montreal mb-6 text-sm uppercase tracking-[0.18em] text-white/60">
             ABOUT
           </div>
-          <div className="h-[420px] w-full rounded-md border border-white/20 bg-white/[0.03]" />
+          <div className="h-[420px] w-full rounded-md border border-white/20 bg-white/[0.03]">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip.
+          </div>
         </div>
       </section>
 
