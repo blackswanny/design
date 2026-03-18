@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 import portraitPhoto from "../../assets/images/photo.png";
 
 export default function HomePage() {
@@ -11,13 +12,14 @@ export default function HomePage() {
         aria-label="Open Hanna Gomozova Behance portfolio"
         className="font-neue-montreal absolute left-6 top-6 z-30 inline-flex items-center gap-2 text-sm uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-70 md:left-10 md:top-10 lg:left-16 lg:top-10"
       >
-        HANNA GOMOZOVA
-        <img
+        HG
+        <Image
           src="/arrow.svg"
           alt=""
           aria-hidden="true"
           width={14}
           height={14}
+          unoptimized
           className="h-[14px] w-[14px]"
         />
       </a>
@@ -37,7 +39,7 @@ export default function HomePage() {
                   <div className="absolute right-0 top-1/2 h-px w-[25vw] origin-right -translate-y-1/2 -rotate-[25deg] bg-white/20" />
                 </div>
               </div>
-              <div className="relative aspect-[3/3] w-full overflow-hidden">
+              <div className="relative aspect-[3/3] w-full overflow-hidden rounded-md">
                 <Image
                   src={portraitPhoto}
                   alt="Portrait of Hanna Gomozova"
@@ -50,7 +52,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="mt-8 text-center font-pp-editorial-new text-[3vw] italic leading-[0.9] text-white/72">
+          <div className="font-pp-editorial-new text-white/72 mt-8 text-center text-[3vw] italic leading-[0.9]">
             <p>UX/UI designer</p>
             <p>based in San Francisco</p>
           </div>
