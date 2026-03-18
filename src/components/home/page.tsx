@@ -12,9 +12,9 @@ export default function HomePage() {
         id="home"
         className="relative isolate h-[100svh] min-h-screen overflow-hidden bg-background pt-16 text-foreground"
       >
-        <div className="mx-auto flex min-h-[calc(100svh-2rem)] w-full flex-col items-center justify-center px-6 md:px-10 lg:px-16">
+        <div className="mx-auto flex md:min-h-[calc(100svh-4vw)] min-h-[calc(80svh)] w-full flex-col items-center justify-center px-6 md:px-10 lg:px-16">
           <div className="relative flex w-full flex-col items-center pt-[2vw]">
-            <h1 className="font-neue-montreal pointer-events-none absolute left-1/2 top-[-4vw] z-20 w-full -translate-x-1/2 px-2 text-center text-[8vw] leading-[0.9] tracking-[-0.06em] text-white">
+            <h1 className="font-neue-montreal pointer-events-none absolute left-1/2 top-[-2vw] z-20 w-full -translate-x-1/2 px-2 text-center text-[8vw] leading-[0.9] tracking-[-0.06em] text-white">
               Hanna Gomozova
             </h1>
             <div className="relative flex w-full max-w-[19rem] flex-col items-center md:max-w-[25rem] lg:max-w-[30rem]">
@@ -46,7 +46,7 @@ export default function HomePage() {
                     alt="Portrait of Hanna Gomozova"
                     fill
                     priority
-                    sizes="100vw"
+                    sizes="(min-width: 1024px) 30rem, (min-width: 768px) 25rem, 19rem"
                     className="object-cover object-center"
                   />
                 </div>
