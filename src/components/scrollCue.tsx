@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -55,28 +56,26 @@ export default function ScrollCue() {
 
   return (
     <div
-      className="scroll-cue pointer-events-none"
-      data-visible={isVisible ? "true" : "false"}
+      className={`pointer-events-none fixed inset-x-0 bottom-8 z-50 flex justify-center transition-opacity duration-300 ${
+        isVisible ? "opacity-100" : "opacity-0"
+      }`}
     >
       <button
         type="button"
         aria-label="Scroll down"
-        className="scroll-cue__button pointer-events-auto"
+        className="pointer-events-auto rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
         onClick={() => {
           const prefersReducedMotion = window.matchMedia(
             "(prefers-reduced-motion: reduce)",
           ).matches;
 
           window.scrollBy({
-            top: Math.max(window.innerHeight * 0.72, 240),
+            top: window.innerHeight * 0.8,
             behavior: prefersReducedMotion ? "auto" : "smooth",
           });
         }}
       >
-        <span aria-hidden="true" className="scroll-cue__glyph">
-          <span className="scroll-cue__chevron scroll-cue__chevron--top" />
-          <span className="scroll-cue__chevron scroll-cue__chevron--bottom" />
-        </span>
+        <ChevronDownIcon className="h-6 w-6" />
       </button>
     </div>
   );

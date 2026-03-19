@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 const config: Config = {
   content: [
@@ -13,15 +14,8 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        sans: [
-          "PP Editorial New",
-          "Editorial New",
-          "Iowan Old Style",
-          "Palatino Linotype",
-          "Book Antiqua",
-          "Georgia",
-          "serif",
-        ],
+        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
+        mono: ["var(--font-geist-mono)", ...fontFamily.mono],
       },
       colors: {
         background: "var(--background)",

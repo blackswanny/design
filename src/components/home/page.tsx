@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 import portraitPhoto from "../../assets/images/photo.png";
@@ -6,43 +8,40 @@ import NavMenu from "../navMenu";
 type ContactAction = {
   href: string;
   label: string;
-  variant: "outline" | "pattern";
   external?: boolean;
   icon?: "linkedin";
 };
 
-const contactActions: ContactAction[] = [
+const emailAction: ContactAction = {
+  href: "mailto:anna.mayskay@gmail.com",
+  label: "anna.mayskay@gmail.com",
+};
+
+const socialActions: ContactAction[] = [
   {
     href: "https://www.linkedin.com/in/hanna-gomozova/",
-    label: "Linked",
-    variant: "outline",
+    label: "LinkedIn",
     external: true,
     icon: "linkedin",
   },
   {
-    href: "mailto:anna.mayskay@gmail.com",
-    label: "anna.mayskay@gmail.com",
-    variant: "",
+    href: "https://www.behance.net/hannagomozova",
+    label: "Behance",
+    external: true,
   },
   {
-    href: "tel:+19259668197",
-    label: "+1-925-966-8197",
-    variant: "outline",
+    href: "https://www.instagram.com/hannagomozova",
+    label: "Instagram",
+    external: true,
   },
 ];
-
-const emailPatternRows = Array.from({ length: 7 }, (_, index) => index);
-const emailPatternText = Array.from(
-  { length: 5 },
-  () => "anna.mayskay@gmail.com",
-).join(" ");
 
 function LinkedInIcon() {
   return (
     <svg
       aria-hidden="true"
       viewBox="0 0 24 24"
-      className="h-[1.05em] w-[1.05em] shrink-0"
+      className="ml-[-8px] h-[1.05em] w-[1.05em] shrink-0"
       fill="currentColor"
     >
       <path d="M6.94 8.5H3.56V20h3.38zm.22-5.14a2.03 2.03 0 0 0-2.1-2.02 2.03 2.03 0 0 0-2.06 2.02c0 1.13.9 2.03 2.06 2.03a2.05 2.05 0 0 0 2.1-2.03M20 12.28C20 9.27 18.11 8 15.67 8c-1.53 0-2.21.84-2.59 1.43V8.5H9.84c.04.62 0 11.5 0 11.5h3.24v-6.42c0-.34.03-.68.13-.92.27-.68.88-1.38 1.9-1.38 1.34 0 1.87 1.04 1.87 2.57V20H20z" />
@@ -50,51 +49,152 @@ function LinkedInIcon() {
   );
 }
 
+function BehanceIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-6 w-6"
+      fill="currentColor"
+    >
+      <path d="M8.25 11.25a.75.75 0 0 1 0-1.5h2.5a.75.75 0 0 1 0 1.5h-2.5zM16.5 4.5H7.5a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-9a3 3 0 0 0-3-3zM7.5 6h2.25a2.25 2.25 0 0 1 0 4.5H7.5v-4.5zm2.25 9H7.5v-3h2.25a1.5 1.5 0 0 1 0 3zm6-3.75h-3a.75.75 0 0 1 0-1.5h3a.75.75 0 0 1 0 1.5z" />
+    </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-6 w-6"
+      fill="currentColor"
+    >
+      <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8A3.6 3.6 0 0 0 20 16.4V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
+    </svg>
+  );
+}
+
+const socialIcons: { [key: string]: React.ReactNode } = {
+  LinkedIn: <LinkedInIcon />,
+  Behance: <BehanceIcon />,
+  Instagram: <InstagramIcon />,
+};
+
 function ContactPill({
   action,
 }: Readonly<{
   action: ContactAction;
 }>) {
-  const isPattern = action.variant === "pattern";
-
   return (
     <a
       href={action.href}
       target={action.external ? "_blank" : undefined}
       rel={action.external ? "noreferrer" : undefined}
-      className={`group relative flex min-h-[5.75rem] items-center justify-center overflow-hidden rounded-full border px-6 py-6 text-center transition-colors duration-200 md:min-h-[9.25rem] md:px-8 ${
-        isPattern
-          ? "border-white/80 bg-[#050505]"
-          : "border-white/80 bg-transparent hover:bg-white/[0.03]"
-      }`}
+      className="group flex items-center justify-start text-center md:justify-center"
     >
-      {isPattern ? (
-        <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-y-[-28%] left-[-20%] right-[-20%] rotate-[-10deg]">
-            {emailPatternRows.map((row) => (
-              <div
-                key={row}
-                className="font-neue-montreal-thin whitespace-nowrap text-[clamp(0.82rem,2.2vw,1.45rem)] leading-tight tracking-[-0.05em] text-white/85"
-              >
-                {emailPatternText}
-              </div>
-            ))}
-          </div>
-          <div className="bg-black/28 absolute inset-0" />
-        </div>
-      ) : null}
-
-      <span
-        className={`relative z-10 inline-flex items-center justify-center gap-2 underline decoration-[0.06em] underline-offset-[0.18em] ${
-          isPattern
-            ? "font-neue-montreal-thin text-[clamp(1rem,4vw,1.65rem)] italic tracking-[-0.04em] text-white"
-            : "font-neue-montreal text-[clamp(1rem,3.8vw,1.55rem)] tracking-[-0.03em] text-white"
-        }`}
-      >
+      <span className="inline-flex items-center justify-center gap-2 font-sans text-[clamp(1rem,3.8vw,1.55rem)] tracking-[-0.03em] text-white/70 transition-colors duration-200 group-hover:text-white">
         <span>{action.label}</span>
         {action.icon === "linkedin" ? <LinkedInIcon /> : null}
       </span>
     </a>
+  );
+}
+
+function SquareArrowUpRightIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+    >
+      <title>open-in-new</title>
+      <path
+        d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+function HeroImageDecoration() {
+  return (
+    <div aria-hidden="true" className="absolute inset-0 z-0 overflow-visible">
+      <div className="absolute left-1/2 top-1/2 h-0 w-0 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute right-0 top-1/2 h-px w-[85vw] -translate-y-1/2 bg-white/20" />
+        <div className="absolute right-0 top-1/2 h-px w-[45vw] origin-right -translate-y-1/2 rotate-[25deg] bg-white/20" />
+        <div className="absolute right-0 top-1/2 h-px w-[45vw] origin-right -translate-y-1/2 -rotate-[25deg] bg-white/20" />
+      </div>
+    </div>
+  );
+}
+
+type Project = {
+  name: string;
+  videoSrc?: string;
+  behanceLink?: string;
+};
+
+const projects: Project[] = [
+  {
+    name: "Project One",
+    videoSrc:
+      "https://player.vimeo.com/video/1024160787?autoplay=1&loop=1&muted&autopause=0&background=1&title=0&byline=0&portrait=0&muted=1",
+    behanceLink: "https://www.behance.net/",
+  },
+  {
+    name: "Project Two",
+    behanceLink: "https://www.behance.net/",
+  },
+  {
+    name: "Project Three",
+    behanceLink: "https://www.behance.net/",
+  },
+  {
+    name: "Project Four",
+    behanceLink: "https://www.behance.net/",
+  },
+  {
+    name: "Project Five",
+  },
+];
+
+function ProjectCard({
+  project,
+  isFullWidth,
+}: {
+  project: Project;
+  isFullWidth?: boolean;
+}) {
+  return (
+    <div className={`w-full ${isFullWidth ? "" : "md:w-[calc(50%-0.75rem)]"}`}>
+      <div className="group relative aspect-video w-full cursor-pointer overflow-hidden rounded-md border border-white/20 bg-white/[0.03]">
+        {project.videoSrc ? (
+          <iframe
+            src={project.videoSrc}
+            title={project.name}
+            sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms"
+            loading="lazy"
+            className="absolute left-0 top-0 h-full w-full"
+          />
+        ) : null}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 opacity-0 transition-opacity group-hover:opacity-100" />
+      </div>
+      <div className="mx-2 mt-3 flex items-start justify-between text-white">
+        <h3 className="font-sans text-base text-white/90">{project.name}</h3>
+        {project.behanceLink ? (
+          <a
+            href={project.behanceLink}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 text-sm text-white/60 transition-colors hover:text-white"
+          >
+            <span>More</span>
+            <SquareArrowUpRightIcon />
+          </a>
+        ) : null}
+      </div>
+    </div>
   );
 }
 
@@ -105,26 +205,22 @@ export default function HomePage() {
 
       <section
         id="home"
-        className="relative isolate overflow-hidden bg-background pt-14 text-foreground lg:h-[100svh] lg:min-h-screen lg:pt-16"
+        className="relative isolate mx-auto max-w-[800px] overflow-hidden bg-background px-6 pb-4 pt-28 text-foreground md:px-10 md:pt-32 lg:px-16 lg:pb-0 lg:pt-16"
       >
-        <div className="mx-auto flex w-full flex-col items-center justify-start px-6 pb-4 pt-12 md:px-10 lg:min-h-[calc(100svh-4rem)] lg:justify-center lg:px-16 lg:pb-0 lg:pt-0">
-          <div className="relative flex w-full flex-col items-center pt-0 lg:pt-[2vw]">
-            <h1 className="font-neue-montreal-thin pointer-events-none z-20 mb-3 w-full px-2 text-center text-[clamp(2.5rem,8vw,6rem)] leading-[0.9] tracking-[-0.06em] text-white md:mb-4 lg:mb-3">
+        <div className="flex w-full flex-col items-center justify-start lg:min-h-[calc(100svh-4rem)] lg:justify-center">
+          <div className="relative flex w-full flex-col items-center">
+            <h1 className="pointer-events-none z-20 mb-3 w-full px-2 text-center text-[clamp(2.5rem,8vw,6rem)] font-light leading-[0.9] tracking-[-0.06em] text-white md:mb-4 lg:mb-3">
               Hanna Gomozova
             </h1>
-            <div className="font-neue-montreal text-white/72 z-20 mb-4 w-[clamp(5.5rem,28vw,26rem)] text-center text-[clamp(0.8rem,2vw,1.25rem)] leading-snug md:mb-5 lg:mb-6">
-              <p>Product designer</p>
-              <p>based in San Francisco</p>
+            <div className="z-20 mb-8 text-center font-sans text-[clamp(1rem,2.2vw,1.25rem)] leading-snug text-white/80 md:mb-10">
+              <p>
+                <span className="text-white">Product Designer</span> based in
+                San Francisco
+              </p>
             </div>
-            <div className="relative flex w-full max-w-[16rem] flex-col items-center md:max-w-[19rem] lg:max-w-[22.5rem]">
+            <div className="relative flex w-full max-w-[clamp(16rem,50vw,22.5rem)] flex-col items-center">
               <div className="relative z-10 w-full">
-                <div className="absolute inset-0 z-0 overflow-visible">
-                  <div className="absolute left-1/2 top-1/2 h-0 w-0 -translate-x-1/2 -translate-y-1/2">
-                    <div className="absolute right-0 top-1/2 h-px w-[85vw] -translate-y-1/2 bg-white/20" />
-                    <div className="absolute right-0 top-1/2 h-px w-[45vw] origin-right -translate-y-1/2 rotate-[25deg] bg-white/20" />
-                    <div className="absolute right-0 top-1/2 h-px w-[45vw] origin-right -translate-y-1/2 -rotate-[25deg] bg-white/20" />
-                  </div>
-                </div>
+                <HeroImageDecoration />
                 <div className="relative aspect-[3/3] w-full overflow-hidden rounded-md">
                   <Image
                     src={portraitPhoto}
@@ -144,60 +240,61 @@ export default function HomePage() {
         id="about"
         className="scroll-mt-16 bg-background px-6 py-12 md:px-10 md:py-16 lg:px-16 lg:py-20"
       >
-        <div className="mx-auto w-full max-w-[1100px]">
-          <div className="mb-10 md:mb-14">
+        <div className="mx-auto w-full max-w-[800px]">
+          <header className="mb-10 md:mb-14">
             <div className="flex items-end gap-3 md:gap-5">
-              <h2 className="font-neue-montreal-thin text-white/72 mt-5 text-center text-[clamp(2.5rem,8vw,5rem)] italic leading-[0.9] tracking-[-0.06em]">
+              <h2 className="text-white/72 mt-5 text-[clamp(2.5rem,8vw,5rem)] font-light italic leading-[0.9] tracking-[-0.06em]">
                 About
               </h2>
-              <h2 className="font-neue-montreal text-[clamp(2.5rem,8vw,5rem)] leading-[0.86] tracking-[-0.06em] text-white">
+              <h2 className="font-sans text-[clamp(2.5rem,8vw,5rem)] font-medium leading-[0.86] tracking-[-0.06em] text-white">
                 me
               </h2>
             </div>
-          </div>
+          </header>
 
           <div className="ml-auto pb-12 text-white md:pb-16">
-            <div className="font-neue-montreal-thin mx-auto flex max-w-[42rem] flex-col gap-6 text-[clamp(1rem,2.5vw,1.5rem)] leading-tight tracking-[-0.01em]">
+            <div className="flex flex-col gap-6 font-sans text-[clamp(1rem,2.2vw,1.25rem)] leading-relaxed tracking-[-0.01em] text-white/80">
               <p>
-                I’m a Senior Product Designer with over 5 years of experience,
-                focused on solving complex business problems through intuitive,
-                user-centered design.
+                I am a <span className="text-white">Product Designer</span> with
+                over 5 years of experience, focused on solving complex problems
+                with intuitive, user-centered solutions.
               </p>
               <p>
-                I create scalable digital products by combining strong UX
-                thinking, data-driven decisions, and clean visual execution. My
-                work bridges user needs and business goals, helping teams build
-                products that are both functional and impactful.
+                I combine <span className="text-white">UX thinking</span> and
+                data to create clean, functional, and impactful products that
+                balance user needs with business goals.
               </p>
             </div>
           </div>
 
-          <div className="border-t border-white/20 py-8 md:grid md:grid-cols-[14rem_1fr] md:gap-6">
-            <div className="font-neue-montreal text-white/28 mb-4 text-[clamp(1.1rem,2.2vw,1.3rem)] leading-none md:mb-0">
+          <div className="flex flex-col border-t border-white/20 py-8 md:flex-row md:gap-6">
+            <div className="text-white/28 mb-4 font-sans text-[clamp(1.1rem,2.2vw,1.3rem)] font-semibold leading-none md:mb-0 md:w-[10rem] md:flex-shrink-0">
               Capabilities
             </div>
-            <div className="font-neue-montreal-thin text-white/88 max-w-[54rem] text-[clamp(1rem,2vw,1.25rem)] leading-relaxed">
-              Utilizing tools such as Figma, Adobe Photoshop, Adobe Illustrator,
-              Adobe After Effects, Principle, and Sketch, I stay updated on the
-              latest design trends and methodologies, ensuring top-quality
-              deliverables.
+            <div className="max-w-[54rem] flex-1 font-sans text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-white/80">
+              My toolkit includes{" "}
+              <span className="text-white">
+                Figma, Photoshop, Illustrator, and After Effects
+              </span>
+              . I continuously adapt to new tools and methodologies to ensure
+              high-quality results.
             </div>
           </div>
 
-          <div className="border-t border-white/20 py-8 md:grid md:grid-cols-[14rem_1fr] md:gap-6">
-            <div className="font-neue-montreal text-white/28 mb-4 text-[clamp(1.1rem,2.2vw,1.3rem)] leading-none md:mb-0">
-              Experience
+          <div className="flex flex-col border-t border-white/20 py-8 md:flex-row md:gap-6">
+            <div className="text-white/28 mb-4 font-sans text-[clamp(1.1rem,2.2vw,1.3rem)] font-semibold leading-none md:mb-0 md:w-[10rem] md:flex-shrink-0">
+              Expertise
             </div>
-            <div className="font-neue-montreal-thin text-white/88 grid gap-6 text-[clamp(1rem,2vw,1.25rem)] leading-relaxed md:grid-cols-3 md:gap-10">
+            <div className="flex flex-1 flex-col gap-6 font-sans text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-white/80 md:flex-row md:gap-10">
               <div>
-                <div>UI/UX design</div>
+                <div>UX/UI Design</div>
                 <div>Mobile Design</div>
                 <div>Interaction Design</div>
               </div>
               <div>
+                <div>User Research</div>
+                <div>Prototyping</div>
                 <div>Brand Identity</div>
-                <div>User research and usability testing</div>
-                <div>Prototyping &amp; Wireframing</div>
               </div>
               <div>
                 <div>Information Architecture</div>
@@ -211,29 +308,17 @@ export default function HomePage() {
         id="projects"
         className="scroll-mt-16 bg-background px-6 py-12 md:px-10 md:py-16 lg:px-16 lg:py-20"
       >
-        <div className="mx-auto w-full max-w-[1100px]">
-          <div className="font-neue-montreal mb-6 text-sm uppercase tracking-[0.18em] text-white/60">
+        <div className="mx-auto w-full max-w-[800px]">
+          <div className="mb-6 font-sans text-sm uppercase tracking-[0.18em] text-white/60">
             PROJECTS
           </div>
-          <div className="flex flex-col flex-wrap gap-6 md:flex-row">
-            <div className="w-full overflow-hidden rounded-md border border-white/20 bg-white/[0.03] md:w-[calc(50%-0.75rem)]">
-              <iframe
-                src="https://player.vimeo.com/video/1024160787?autoplay=1&amp;loop=1&amp;muted&amp;autopause=0&amp;background=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;muted=1"
-                title="Project Embed Content"
-                sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms"
-                loading="lazy"
-                style={{
-                  aspectRatio: "16 / 9",
-                  height: "100%",
-                  left: "0px",
-                  top: "0px",
-                  width: "100%",
-                }}
-              />
+          <div className="flex flex-col gap-6">
+            <ProjectCard project={projects[0]} isFullWidth />
+            <div className="flex flex-col flex-wrap gap-6 md:flex-row">
+              {projects.slice(1).map((project) => (
+                <ProjectCard key={project.name} project={project} />
+              ))}
             </div>
-            <div className="h-[280px] rounded-md border border-white/20 bg-white/[0.03]" />
-            <div className="h-[280px] rounded-md border border-white/20 bg-white/[0.03]" />
-            <div className="h-[280px] rounded-md border border-white/20 bg-white/[0.03]" />
           </div>
         </div>
       </section>
@@ -241,31 +326,28 @@ export default function HomePage() {
         id="contacts"
         className="scroll-mt-16 bg-background px-6 py-12 md:px-10 md:py-16 lg:px-16 lg:py-20"
       >
-        <div className="mx-auto w-full max-w-[1800px]">
-          <div className="relative h-[clamp(22rem,50vh,34rem)] w-full overflow-hidden">
-            <div className="absolute inset-0 z-0">
-              <div className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-white/20" />
-              <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-white/20" />
-
-              <div className="absolute left-1/2 top-1/2 h-0 w-0 -translate-x-1/2 -translate-y-1/2">
-                <div className="absolute left-0 top-0 h-px w-[clamp(14rem,30vw,22rem)] origin-left -rotate-45 bg-white/20" />
-                <div className="absolute left-0 top-0 h-px w-[clamp(14rem,30vw,22rem)] origin-left rotate-45 bg-white/20" />
-                <div className="absolute right-0 top-0 h-px w-[clamp(14rem,30vw,22rem)] origin-right rotate-45 bg-white/20" />
-                <div className="absolute right-0 top-0 h-px w-[clamp(14rem,30vw,22rem)] origin-right -rotate-45 bg-white/20" />
-              </div>
+        <div className="mx-auto w-full max-w-[800px]">
+          <header className="mb-10 md:mb-14">
+            <h2 className="text-white/72 font-sans text-[clamp(2.5rem,8vw,5rem)] font-light italic leading-[0.9] tracking-[-0.06em]">
+              Get in touch
+            </h2>
+          </header>
+          <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+            <ContactPill action={emailAction} />
+            <div className="flex items-center gap-4">
+              {socialActions.map((action) => (
+                <a
+                  key={action.label}
+                  href={action.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={action.label}
+                  className="text-white/50 transition-colors duration-200 hover:text-white"
+                >
+                  {socialIcons[action.label]}
+                </a>
+              ))}
             </div>
-
-            <div className="absolute left-1/2 top-1/2 z-10 flex h-[clamp(11.5rem,25vw,14rem)] w-[clamp(11.5rem,25vw,14rem)] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-background text-center">
-              <span className="font-neue-montreal text-[clamp(1.35rem,4vw,1.6rem)] text-white">
-                Contact
-              </span>
-            </div>
-          </div>
-
-          <div className="mt-6 grid gap-4 md:mt-8 md:grid-cols-3 md:gap-5 lg:mt-10 lg:gap-6">
-            {contactActions.map((action) => (
-              <ContactPill key={action.label} action={action} />
-            ))}
           </div>
         </div>
       </section>
