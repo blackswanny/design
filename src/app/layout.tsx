@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import type { Metadata } from "next";
 
 import "./globals.css";
+import ScrollCue from "../components/scrollCue";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -26,7 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <ScrollCue />
+      </body>
     </html>
   );
 }

@@ -70,3 +70,94 @@ a {
   font-feature-settings: normal;
   font-weight: 200;
 }
+
+.scroll-cue {
+  --cue-size: clamp(2rem, 2.7778vw, 2.5rem);
+  --cue-stroke: max(1.5px, 0.11vw);
+  position: fixed;
+  right: clamp(0.9rem, 2.2vw, 2rem);
+  bottom: clamp(0.9rem, 2.2vw, 2rem);
+  z-index: 60;
+  width: var(--cue-size);
+  height: var(--cue-size);
+}
+
+.scroll-cue__button {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: var(--cue-stroke) solid rgba(245, 241, 234, 0.88);
+  border-radius: 999px;
+  background: rgba(2, 2, 2, 0.42);
+  color: var(--foreground);
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.scroll-cue[data-visible="false"] .scroll-cue__button {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.45rem) scale(0.92);
+  animation: none;
+}
+
+.scroll-cue[data-visible="true"] .scroll-cue__button {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-cue__button:hover {
+  border-color: rgba(245, 241, 234, 1);
+  background: rgba(245, 241, 234, 0.08);
+}
+
+.scroll-cue__glyph {
+  position: absolute;
+  inset: 0;
+  animation: scroll-cue-float 1.8s ease-in-out infinite;
+}
+
+.scroll-cue__chevron {
+  position: absolute;
+  left: 50%;
+  width: 32%;
+  height: 32%;
+  border-right: var(--cue-stroke) solid currentColor;
+  border-bottom: var(--cue-stroke) solid currentColor;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.scroll-cue__chevron--top {
+  top: 26%;
+}
+
+.scroll-cue__chevron--bottom {
+  top: 42%;
+}
+
+@keyframes scroll-cue-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(0.16rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue__button {
+    transition: opacity 180ms ease;
+  }
+
+  .scroll-cue__glyph {
+    animation: none;
+  }
+}

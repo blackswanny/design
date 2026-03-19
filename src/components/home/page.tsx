@@ -112,22 +112,22 @@ export default function HomePage() {
       >
         <div className="mx-auto flex w-full flex-col items-center justify-start px-6 pb-4 pt-12 md:px-10 lg:min-h-[calc(100svh-4rem)] lg:justify-center lg:px-16 lg:pb-0 lg:pt-0">
           <div className="relative flex w-full flex-col items-center pt-0 lg:pt-[2vw]">
-            <h1 className="font-neue-montreal-thin pointer-events-none z-20 mb-3 w-full px-2 text-center text-[8vw] italic leading-[0.9] tracking-[-0.06em] text-white md:mb-4 lg:mb-3">
+            <h1 className="font-neue-montreal-thin pointer-events-none z-20 mb-3 w-full px-2 text-center text-[8vw] leading-[0.9] tracking-[-0.06em] text-white md:mb-4 lg:mb-3">
               Hanna Gomozova
             </h1>
+            <div
+              className="font-neue-montreal z-20 mb-4 text-center text-white/72 md:mb-5 lg:mb-6"
+              style={{
+                width: "clamp(5.5rem, 28vw, 26rem)",
+                fontSize: "clamp(0.55rem, 2vw, 2rem)",
+                lineHeight: "1.35",
+              }}
+            >
+              <p>Product designer</p>
+              <p>based in San Francisco</p>
+            </div>
             <div className="relative flex w-full max-w-[16rem] flex-col items-center md:max-w-[19rem] lg:max-w-[22.5rem]">
               <div className="relative z-10 w-full">
-                <div
-                  className="font-neue-montreal text-white/72 absolute left-full top-1/2 z-20 ml-4 -translate-y-1/2 md:ml-6 lg:ml-8"
-                  style={{
-                    width: "clamp(5.5rem, 18vw, 16rem)",
-                    fontSize: "clamp(0.55rem, 2vw, 2rem)",
-                    lineHeight: "1.35",
-                  }}
-                >
-                  <p>Product designer</p>
-                  <p>based in San Francisco</p>
-                </div>
                 <div className="absolute inset-0 z-0 overflow-visible">
                   <div className="absolute left-1/2 top-1/2 h-0 w-0 -translate-x-1/2 -translate-y-1/2">
                     <div className="absolute right-0 top-1/2 h-px w-[85vw] -translate-y-1/2 bg-white/20" />
