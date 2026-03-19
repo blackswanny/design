@@ -231,9 +231,9 @@ export default function HomePage() {
                 }}
               />
             </div>
-            <div className="aspect-video w-full rounded-md border border-white/20 bg-white/[0.03] md:w-[calc(50%-0.75rem)]" />
-            <div className="aspect-video w-full rounded-md border border-white/20 bg-white/[0.03] md:w-[calc(50%-0.75rem)]" />
-            <div className="aspect-video w-full rounded-md border border-white/20 bg-white/[0.03] md:w-[calc(50%-0.75rem)]" />
+            <div className="h-[280px] rounded-md border border-white/20 bg-white/[0.03]" />
+            <div className="h-[280px] rounded-md border border-white/20 bg-white/[0.03]" />
+            <div className="h-[280px] rounded-md border border-white/20 bg-white/[0.03]" />
           </div>
         </div>
       </section>
