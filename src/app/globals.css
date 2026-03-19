@@ -4,6 +4,14 @@
 
 @font-face {
   font-family: "neueMontreal";
+  src: url("/fonts/PPNeueMontreal-Thin.otf") format("opentype");
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "neueMontreal";
   src: url("/fonts/PPNeueMontreal-Book.otf") format("opentype");
   font-style: normal;
   font-weight: 400;
@@ -55,4 +63,10 @@ a {
 .font-neue-montreal {
   font-family: neueMontreal, "neueMontreal Fallback", sans-serif;
   font-feature-settings: normal;
+}
+
+.font-neue-montreal-thin {
+  font-family: neueMontreal, "neueMontreal Fallback", sans-serif;
+  font-feature-settings: normal;
+  font-weight: 200;
 }
