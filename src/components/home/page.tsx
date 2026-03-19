@@ -116,7 +116,7 @@ export default function HomePage() {
               Hanna Gomozova
             </h1>
             <div
-              className="font-neue-montreal z-20 mb-4 text-center text-white/72 md:mb-5 lg:mb-6"
+              className="font-neue-montreal text-white/72 z-20 mb-4 text-center md:mb-5 lg:mb-6"
               style={{
                 width: "clamp(5.5rem, 28vw, 26rem)",
                 fontSize: "clamp(0.55rem, 2vw, 2rem)",
@@ -237,7 +237,21 @@ export default function HomePage() {
                 }}
               />
             </div>
-            <div className="h-[280px] rounded-md border border-white/20 bg-white/[0.03]" />
+            <div className="h-[280px] rounded-md border border-white/20 bg-white/[0.03]">
+              <iframe
+                src="https://player.vimeo.com/video/1175265516?autoplay=1&amp;loop=1&amp;muted&amp;autopause=0&amp;background=1&amp;title=0&amp;byline=0&amp;portrait=0&amp;muted=1"
+                title="Project Embed Content"
+                sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms"
+                loading="lazy"
+                style={{
+                  height: "100%",
+                  left: "0px",
+                  //position: "absolute",
+                  top: "0px",
+                  width: "100%",
+                }}
+              />
+            </div>
             <div className="h-[280px] rounded-md border border-white/20 bg-white/[0.03]" />
             <div className="h-[280px] rounded-md border border-white/20 bg-white/[0.03]" />
           </div>
