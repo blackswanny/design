@@ -131,31 +131,41 @@ function HeroImageDecoration() {
 
 type Project = {
   name: string;
-  videoSrc?: string;
+  subname?: string;
+  imageSrc?: string;
+  nativeVideoSrc?: string;
   behanceLink?: string;
 };
 
 const projects: Project[] = [
   {
-    name: "Project One",
-    videoSrc:
-      "https://player.vimeo.com/video/1024160787?autoplay=1&loop=1&muted&autopause=0&background=1&title=0&byline=0&portrait=0&muted=1",
+    name: "Don't push the horses",
+    imageSrc: "/images/wr.png",
     behanceLink: "https://www.behance.net/",
   },
   {
-    name: "Project Two",
+    name: "MindScape",
+    subname: "Mental Health Support App",
+    nativeVideoSrc: "/videos/mindscape.mp4",
     behanceLink: "https://www.behance.net/",
   },
   {
-    name: "Project Three",
-    behanceLink: "https://www.behance.net/",
+    name: "The Groove Avenue",
+    subname: "Digital Music Experience",
+    nativeVideoSrc: "/videos/music.mp4",
+    behanceLink:
+      "https://www.behance.net/gallery/246119825/The-Groove-Avenue-Digital-Music-Experience",
   },
   {
-    name: "Project Four",
-    behanceLink: "https://www.behance.net/",
+    name: "DAFF Closet",
+    subname: "Redesign concept for online shop",
+    nativeVideoSrc: "/videos/shop.mp4",
+    behanceLink: "https://www.behance.net/gallery/211201181/DAFF",
   },
   {
-    name: "Project Five",
+    name: "Bee",
+    subname: "Book for Designers",
+    nativeVideoSrc: "/videos/bee.mp4",
   },
 ];
 
@@ -166,22 +176,52 @@ function ProjectCard({
   project: Project;
   isFullWidth?: boolean;
 }) {
+  const isClickable = Boolean(project.behanceLink);
+
   return (
     <div className={`w-full ${isFullWidth ? "" : "md:w-[calc(50%-0.75rem)]"}`}>
-      <div className="group relative aspect-video w-full cursor-pointer overflow-hidden rounded-md border border-white/20 bg-white/[0.03]">
-        {project.videoSrc ? (
-          <iframe
-            src={project.videoSrc}
-            title={project.name}
-            sandbox="allow-same-origin allow-scripts allow-pointer-lock allow-forms"
-            loading="lazy"
-            className="absolute left-0 top-0 h-full w-full"
+      <div
+        className={`group relative aspect-video w-full overflow-hidden rounded-md border border-white/20 bg-white/[0.03] ${
+          isClickable ? "cursor-pointer" : ""
+        }`}
+      >
+        {project.imageSrc ? (
+          <Image
+            src={project.imageSrc}
+            alt={`${project.name} preview`}
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="absolute left-0 top-0 h-full w-full object-cover"
+          />
+        ) : project.nativeVideoSrc ? (
+          <video
+            src={project.nativeVideoSrc}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="absolute left-0 top-0 h-full w-full object-cover"
           />
         ) : null}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 opacity-0 transition-opacity group-hover:opacity-100" />
+        {project.behanceLink ? (
+          <a
+            href={project.behanceLink}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Open ${project.name} on Behance`}
+            className="absolute inset-0 z-20"
+          />
+        ) : null}
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 via-black/0 opacity-0 transition-opacity group-hover:opacity-100" />
       </div>
       <div className="mx-2 mt-3 flex items-start justify-between text-white">
-        <h3 className="font-sans text-base text-white/90">{project.name}</h3>
+        <div className="flex flex-col items-start justify-between">
+          <h3 className="font-sans text-base text-white/90">{project.name}</h3>
+          <h3 className="font-sans text-base text-white/90">
+            {project.subname}
+          </h3>
+        </div>
         {project.behanceLink ? (
           <a
             href={project.behanceLink}
