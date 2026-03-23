@@ -147,7 +147,8 @@ const projects: Project[] = [
     name: "MindScape",
     subname: "Mental Health Support App",
     nativeVideoSrc: "/videos/mindscape.mp4",
-    behanceLink: "https://www.behance.net/",
+    behanceLink:
+      "https://www.behance.net/gallery/246126405/Mindscape-Mental-Health-App-Design",
   },
   {
     name: "The Groove Avenue",
