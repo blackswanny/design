@@ -30,7 +30,7 @@ const socialActions: ContactAction[] = [
     external: true,
   },
   {
-    href: "https://www.instagram.com/hannagomozova",
+    href: "https://www.instagram.com/hanna_uiux",
     label: "Instagram",
     external: true,
   },
@@ -139,9 +139,10 @@ type Project = {
 
 const projects: Project[] = [
   {
-    name: "Don't push the horses",
+    name: "Work Reactor",
     imageSrc: "/images/wr.png",
-    behanceLink: "https://www.behance.net/",
+    behanceLink:
+      "https://www.behance.net/gallery/246318193/Work-Reactor-Startup-Platform-(Web-Mobile)",
   },
   {
     name: "MindScape",
@@ -191,6 +192,7 @@ function ProjectCard({
             src={project.imageSrc}
             alt={`${project.name} preview`}
             fill
+            unoptimized
             sizes="(min-width: 768px) 50vw, 100vw"
             className="absolute left-0 top-0 h-full w-full object-cover"
           />
