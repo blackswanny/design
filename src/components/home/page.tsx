@@ -2,8 +2,13 @@
 
 import Image from "next/image";
 
-import portraitPhoto from "../../assets/images/photo.png";
+import beIcon from "@/assets/images/be.svg";
+import liIcon from "@/assets/images/li.svg";
+import portraitPhoto from "@/assets/images/portrait.png";
+
 import NavMenu from "../navMenu";
+
+import type { StaticImageData } from "next/image";
 
 type ContactAction = {
   href: string;
@@ -29,11 +34,6 @@ const socialActions: ContactAction[] = [
     label: "Behance",
     external: true,
   },
-  {
-    href: "https://www.instagram.com/hanna_uiux",
-    label: "Instagram",
-    external: true,
-  },
 ];
 
 function LinkedInIcon() {
@@ -44,41 +44,14 @@ function LinkedInIcon() {
       className="ml-[-8px] h-[1.05em] w-[1.05em] shrink-0"
       fill="currentColor"
     >
-      <path d="M6.94 8.5H3.56V20h3.38zm.22-5.14a2.03 2.03 0 0 0-2.1-2.02 2.03 2.03 0 0 0-2.06 2.02c0 1.13.9 2.03 2.06 2.03a2.05 2.05 0 0 0 2.1-2.03M20 12.28C20 9.27 18.11 8 15.67 8c-1.53 0-2.21.84-2.59 1.43V8.5H9.84c.04.62 0 11.5 0 11.5h3.24v-6.42c0-.34.03-.68.13-.92.27-.68.88-1.38 1.9-1.38 1.34 0 1.87 1.04 1.87 2.57V20H20z" />
+      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
     </svg>
   );
 }
 
-function BehanceIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="h-6 w-6"
-      fill="currentColor"
-    >
-      <path d="M8.25 11.25a.75.75 0 0 1 0-1.5h2.5a.75.75 0 0 1 0 1.5h-2.5zM16.5 4.5H7.5a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h9a3 3 0 0 0 3-3v-9a3 3 0 0 0-3-3zM7.5 6h2.25a2.25 2.25 0 0 1 0 4.5H7.5v-4.5zm2.25 9H7.5v-3h2.25a1.5 1.5 0 0 1 0 3zm6-3.75h-3a.75.75 0 0 1 0-1.5h3a.75.75 0 0 1 0 1.5z" />
-    </svg>
-  );
-}
-
-function InstagramIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="h-6 w-6"
-      fill="currentColor"
-    >
-      <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8A3.6 3.6 0 0 0 20 16.4V7.6A3.6 3.6 0 0 0 16.4 4H7.6m9.65 1.5a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10m0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" />
-    </svg>
-  );
-}
-
-const socialIcons: { [key: string]: React.ReactNode } = {
-  LinkedIn: <LinkedInIcon />,
-  Behance: <BehanceIcon />,
-  Instagram: <InstagramIcon />,
+const socialIcons: { [key: string]: string | StaticImageData } = {
+  LinkedIn: liIcon,
+  Behance: beIcon,
 };
 
 function ContactPill({
@@ -387,7 +360,11 @@ export default function HomePage() {
                   aria-label={action.label}
                   className="text-white/50 transition-colors duration-200 hover:text-white"
                 >
-                  {socialIcons[action.label]}
+                  <Image
+                    src={socialIcons[action.label]}
+                    alt={`${action.label} icon`}
+                    className="h-6 w-6 brightness-0 invert"
+                  />
                 </a>
               ))}
             </div>
