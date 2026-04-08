@@ -258,7 +258,7 @@ export default function HomePage() {
                 Resume
               </a>
               <a
-                href="#about"
+                href="https://www.linkedin.com/in/hanna-gomozova/"
                 className="mt-8 inline-flex min-h-[4rem] items-center justify-center rounded-full border border-[#A98BF8] px-8 text-center font-sans text-[clamp(1rem,1vw,1rem)] uppercase tracking-[0.04em] text-white transition-colors duration-200 hover:bg-white hover:text-[#A98BF8]"
               >
                 LinkedIn
