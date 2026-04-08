@@ -1,5 +1,6 @@
 "use client";
 
+import { Fraunces } from "next/font/google";
 import Image from "next/image";
 
 import beIcon from "@/assets/images/be.svg";
@@ -7,6 +8,11 @@ import liIcon from "@/assets/images/li.svg";
 import portraitPhoto from "@/assets/images/portrait.png";
 
 import NavMenu from "../navMenu";
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 import type { StaticImageData } from "next/image";
 
@@ -90,18 +96,6 @@ function SquareArrowUpRightIcon() {
   );
 }
 
-function HeroImageDecoration() {
-  return (
-    <div aria-hidden="true" className="absolute inset-0 z-0 overflow-visible">
-      <div className="absolute left-1/2 top-1/2 h-0 w-0 -translate-x-1/2 -translate-y-1/2">
-        <div className="absolute right-0 top-1/2 h-px w-[85vw] -translate-y-1/2 bg-white/20" />
-        <div className="absolute right-0 top-1/2 h-px w-[45vw] origin-right -translate-y-1/2 rotate-[25deg] bg-white/20" />
-        <div className="absolute right-0 top-1/2 h-px w-[45vw] origin-right -translate-y-1/2 -rotate-[25deg] bg-white/20" />
-      </div>
-    </div>
-  );
-}
-
 type Project = {
   name: string;
   subname?: string;
@@ -113,6 +107,7 @@ type Project = {
 const projects: Project[] = [
   {
     name: "Work Reactor",
+    subname: "Startup Networking Platform",
     imageSrc: "/images/wr.png",
     behanceLink:
       "https://www.behance.net/gallery/246318193/Work-Reactor-Startup-Platform-(Web-Mobile)",
@@ -192,9 +187,15 @@ function ProjectCard({
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/60 via-black/0 opacity-0 transition-opacity group-hover:opacity-100" />
       </div>
       <div className="mx-2 mt-3 flex items-start justify-between text-white">
-        <div className="flex flex-col items-start justify-between">
-          <h3 className="font-sans text-base text-white/90">{project.name}</h3>
-          <h3 className="font-sans text-base text-white/90">
+        <div
+          className={`${fraunces.className} flex flex-col items-start justify-between`}
+        >
+          <h3
+            className={`text-[clamp(1.3rem,4vw,1.3rem)] font-[300] leading-[1] tracking-[-0.03em] text-[#A98BF8]`}
+          >
+            {project.name}
+          </h3>
+          <h3 className="font-sans text-base text-[#898798]">
             {project.subname}
           </h3>
         </div>
@@ -221,29 +222,66 @@ export default function HomePage() {
 
       <section
         id="home"
-        className="relative isolate mx-auto max-w-[800px] overflow-hidden bg-background px-6 pb-4 pt-28 text-foreground md:px-10 md:pt-32 lg:px-16 lg:pb-0 lg:pt-16"
+        className="relative isolate mx-auto max-w-[980px] overflow-hidden bg-background pb-6 text-foreground lg:pb-0"
       >
-        <div className="flex w-full flex-col items-center justify-start lg:min-h-[calc(100svh-4rem)] lg:justify-center">
-          <div className="relative flex w-full flex-col items-center">
-            <h1 className="pointer-events-none z-20 mb-3 w-full px-2 text-center text-[clamp(2.5rem,8vw,6rem)] font-light leading-[0.9] tracking-[-0.06em] text-white md:mb-4 lg:mb-3">
-              Hanna Gomozova
-            </h1>
-            <div className="z-20 mb-8 text-center font-sans text-[clamp(1rem,2.2vw,1.25rem)] leading-snug text-white/80 md:mb-10">
+        <div className="flex min-h-[calc(100svh-4rem)] w-full flex-col justify-center gap-10 lg:flex-row lg:items-center lg:gap-[3vw]">
+          <div className="flex w-full flex-col items-center gap-y-[12px] text-center lg:w-1/2 lg:items-start lg:pr-6 lg:text-left">
+            <div className="z-20 max-w-[26rem] font-sans text-[clamp(1.05rem,2.4vw,1.35rem)] leading-snug text-white/80">
               <p>
-                <span className="text-white">Product Designer</span> based in
-                San Francisco
+                <span className="text-[#898798]">Hi there!</span>
               </p>
             </div>
-            <div className="relative flex w-full max-w-[clamp(16rem,50vw,22.5rem)] flex-col items-center">
+            <h1
+              className={`${fraunces.className} pointer-events-none z-20 mb-3 w-full text-[clamp(1.9rem,4vw,3rem)] font-[300] leading-[1] tracking-[-0.03em] text-white`}
+            >
+              <span className="block whitespace-nowrap">
+                I’m Hanna Gomozova
+              </span>
+              <span className="block whitespace-nowrap">
+                a <span className="text-[#A98BF8]">Product Designer</span>
+              </span>
+              <span className="block whitespace-nowrap">
+                focused on early-stage
+              </span>
+            </h1>
+            <div className="z-20 max-w-[26rem] font-sans text-[clamp(1.05rem,2.4vw,1.35rem)] leading-snug text-[#898798] text-white/80">
+              <p>
+                I help turn early ideas into real products, shaping user flows,
+                product direction, and experiences people actually use
+              </p>
+            </div>
+            <div className="flex gap-4">
+              <a
+                href="#about"
+                className="mt-8 inline-flex min-h-[4rem] items-center justify-center rounded-full border border-[#A98BF8] bg-[#A98BF8] px-8 text-center font-sans text-[clamp(1rem,1vw,1rem)] uppercase tracking-[0.04em] text-white transition-colors duration-200 hover:bg-white hover:text-[#A98BF8]"
+              >
+                Resume
+              </a>
+              <a
+                href="#about"
+                className="mt-8 inline-flex min-h-[4rem] items-center justify-center rounded-full border border-[#A98BF8] px-8 text-center font-sans text-[clamp(1rem,1vw,1rem)] uppercase tracking-[0.04em] text-white transition-colors duration-200 hover:bg-white hover:text-[#A98BF8]"
+              >
+                LinkedIn
+              </a>
+              <a
+                href="#about"
+                className="mt-8 inline-flex min-h-[4rem] items-center justify-center rounded-full border border-[#A98BF8] px-8 text-center font-sans text-[clamp(1rem,1vw,1rem)] uppercase tracking-[0.04em] text-white transition-colors duration-200 hover:bg-white hover:text-[#A98BF8]"
+              >
+                Behance
+              </a>
+            </div>
+          </div>
+
+          <div className="flex w-full justify-center lg:w-1/2 lg:justify-end lg:pl-6">
+            <div className="relative flex w-full max-w-[clamp(17.5rem,32vw,25.5rem)] flex-col items-center">
               <div className="relative z-10 w-full">
-                <HeroImageDecoration />
-                <div className="relative aspect-[3/3] w-full overflow-hidden rounded-md">
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-md">
                   <Image
                     src={portraitPhoto}
                     alt="Portrait of Hanna Gomozova"
                     fill
                     priority
-                    sizes="(min-width: 1024px) 22.5rem, (min-width: 768px) 19rem, 16rem"
+                    sizes="(min-width: 1024px) 32vw, (min-width: 768px) 24rem, 18rem"
                     className="object-cover object-center"
                   />
                 </div>
@@ -254,54 +292,63 @@ export default function HomePage() {
       </section>
       <section
         id="about"
-        className="scroll-mt-16 bg-background px-6 py-12 md:px-10 md:py-16 lg:px-16 lg:py-20"
+        className="scroll-mt-16 bg-background px-4 py-2 md:px-6 md:py-4 lg:px-8 lg:py-4"
       >
-        <div className="mx-auto w-full max-w-[800px]">
-          <header className="mb-10 md:mb-14">
-            <div className="flex items-end gap-3 md:gap-5">
-              <h2 className="text-white/72 mt-5 text-[clamp(2.5rem,8vw,5rem)] font-light italic leading-[0.9] tracking-[-0.06em]">
+        <div className="mx-auto w-full max-w-[980px]">
+          <header className="mb-6 md:mb-8">
+            <div className="flex items-end gap-2 md:gap-2">
+              <span
+                className={`${fraunces.className} pointer-events-none z-20 mb-3 text-[clamp(1.9rem,4vw,3rem)] font-[300] leading-[1] tracking-[-0.03em] text-white`}
+              >
                 About
-              </h2>
-              <h2 className="font-sans text-[clamp(2.5rem,8vw,5rem)] font-medium leading-[0.86] tracking-[-0.06em] text-white">
+              </span>
+              <span
+                className={`${fraunces.className} pointer-events-none z-20 mb-3 text-[clamp(1.9rem,4vw,3rem)] font-[300] leading-[1] tracking-[-0.03em] text-[#A98BF8]`}
+              >
                 me
-              </h2>
+              </span>
             </div>
           </header>
 
           <div className="ml-auto pb-12 text-white md:pb-16">
-            <div className="flex flex-col gap-6 font-sans text-[clamp(1rem,2.2vw,1.25rem)] leading-relaxed tracking-[-0.01em] text-white/80">
+            <div className="flex flex-col gap-2 font-sans text-[clamp(1rem,2.2vw,1.25rem)] leading-relaxed tracking-[-0.01em] text-[#898798] text-white/80">
               <p>
-                I am a <span className="text-white">Product Designer</span> with
-                over 5 years of experience, focused on solving complex problems
-                with intuitive, user-centered solutions.
+                I focus on bringing clarity to{" "}
+                <span className="text-white">early-stage products</span>.
               </p>
               <p>
-                I combine <span className="text-white">UX thinking</span> and
-                data to create clean, functional, and impactful products that
-                balance user needs with business goals.
+                I enjoy working through ambiguity, simplifying complex ideas,
+                and designing experiences that feel natural and
+                <span className="text-white"> easy to use</span>.
+              </p>
+              <p>
+                I care about making things{" "}
+                <span className="text-white">clear, useful, and grounded</span>{" "}
+                in real use.
               </p>
             </div>
           </div>
 
           <div className="flex flex-col border-t border-white/20 py-8 md:flex-row md:gap-6">
-            <div className="text-white/28 mb-4 font-sans text-[clamp(1.1rem,2.2vw,1.3rem)] font-semibold leading-none md:mb-0 md:w-[10rem] md:flex-shrink-0">
+            <div className="text-white/28 mb-4 font-sans text-[clamp(1.1rem,2.2vw,1.3rem)] font-semibold leading-none text-[#A98BF8] md:mb-0 md:w-[10rem] md:flex-shrink-0">
               Capabilities
             </div>
-            <div className="max-w-[54rem] flex-1 font-sans text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-white/80">
-              My toolkit includes{" "}
+            <div className="max-w-[54rem] flex-1 font-sans text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-[#898798] text-white/80">
+              I work across the full product lifecycle —{" "}
               <span className="text-white">
-                Figma, Photoshop, Illustrator, and After Effects
+                from early ideas and product definition to design, testing and
+                iteration
               </span>
-              . I continuously adapt to new tools and methodologies to ensure
-              high-quality results.
+              . I’m comfortable working closely with founders and engineers,
+              helping shape products from concept to real use.
             </div>
           </div>
 
           <div className="flex flex-col border-t border-white/20 py-8 md:flex-row md:gap-6">
-            <div className="text-white/28 mb-4 font-sans text-[clamp(1.1rem,2.2vw,1.3rem)] font-semibold leading-none md:mb-0 md:w-[10rem] md:flex-shrink-0">
+            <div className="text-white/28 mb-4 font-sans text-[clamp(1.1rem,2.2vw,1.3rem)] font-semibold leading-none text-[#A98BF8] md:mb-0 md:w-[10rem] md:flex-shrink-0">
               Expertise
             </div>
-            <div className="flex flex-1 flex-col gap-6 font-sans text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-white/80 md:flex-row md:gap-10">
+            <div className="flex flex-1 flex-col gap-6 font-sans text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-[#898798] text-white/80 md:flex-row md:gap-10">
               <div>
                 <div>UX/UI Design</div>
                 <div>Mobile Design</div>
@@ -322,11 +369,21 @@ export default function HomePage() {
       </section>
       <section
         id="projects"
-        className="scroll-mt-16 bg-background px-6 py-12 md:px-10 md:py-16 lg:px-16 lg:py-20"
+        className="scroll-mt-16 bg-background px-4 py-4 md:px-6 md:py-8 lg:px-8 lg:py-24"
       >
-        <div className="mx-auto w-full max-w-[800px]">
-          <div className="mb-6 font-sans text-sm uppercase tracking-[0.18em] text-white/60">
-            PROJECTS
+        <div className="mx-auto w-full max-w-[980px]">
+          <div
+            className={`${fraunces.className} pointer-events-none z-20 mb-6 md:mb-8 text-[clamp(1.9rem,4vw,3rem)] font-[300] leading-[1] tracking-[-0.03em] text-white`}
+          >
+            Selected <span className="text-[#A98BF8]">works</span>
+          </div>
+          <div className="ml-auto pb-14 text-white md:pb-14">
+            <div className="flex flex-col gap-2 font-sans text-[clamp(1rem,2.2vw,1.25rem)] leading-relaxed tracking-[-0.01em] text-[#898798] text-white/80">
+              <p>
+                A mix of product, UX, and visual work across different types of
+                projects.
+              </p>
+            </div>
           </div>
           <div className="flex flex-col gap-6">
             <ProjectCard project={projects[0]} isFullWidth />
@@ -340,13 +397,15 @@ export default function HomePage() {
       </section>
       <section
         id="contacts"
-        className="scroll-mt-16 bg-background px-6 py-12 md:px-10 md:py-16 lg:px-16 lg:py-20"
+        className="scroll-mt-16 bg-background px-4 py-8 md:px-6 md:py-10 lg:px-8 lg:py-12"
       >
-        <div className="mx-auto w-full max-w-[800px]">
-          <header className="mb-10 md:mb-14">
-            <h2 className="text-white/72 font-sans text-[clamp(2.5rem,8vw,5rem)] font-light italic leading-[0.9] tracking-[-0.06em]">
-              Get in touch
-            </h2>
+        <div className="mx-auto w-full max-w-[980px]">
+          <header className="mb-4 md:mb-4">
+            <div
+              className={`${fraunces.className} pointer-events-none z-20 mb-3 text-[clamp(1.9rem,4vw,3rem)] font-[300] leading-[1] tracking-[-0.03em] text-white`}
+            >
+              Get in <span className="text-[#A98BF8]">touch</span>
+            </div>
           </header>
           <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
             <ContactPill action={emailAction} />
