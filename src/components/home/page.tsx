@@ -3,8 +3,9 @@
 import { Fraunces } from "next/font/google";
 import Image from "next/image";
 
-import beIcon from "@/assets/images/be.svg";
-import liIcon from "@/assets/images/li.svg";
+import behanceIcon from "@/assets/images/behance.svg";
+import instagramIcon from "@/assets/images/instagram.svg";
+import linkedinIcon from "@/assets/images/linkedin.svg";
 import portraitPhoto from "@/assets/images/portrait.png";
 
 import NavMenu from "../navMenu";
@@ -20,7 +21,6 @@ type ContactAction = {
   href: string;
   label: string;
   external?: boolean;
-  icon?: "linkedin";
 };
 
 const emailAction: ContactAction = {
@@ -33,31 +33,23 @@ const socialActions: ContactAction[] = [
     href: "https://www.linkedin.com/in/hanna-gomozova/",
     label: "LinkedIn",
     external: true,
-    icon: "linkedin",
   },
   {
-    href: "https://www.behance.net/hannagomozova",
+    href: "https://www.behance.net/hanna_gomozova",
     label: "Behance",
+    external: true,
+  },
+  {
+    href: "https://www.instagram.com/hanna_uiux",
+    label: "Instagram",
     external: true,
   },
 ];
 
-function LinkedInIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="ml-[-8px] h-[1.05em] w-[1.05em] shrink-0"
-      fill="currentColor"
-    >
-      <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-    </svg>
-  );
-}
-
 const socialIcons: { [key: string]: string | StaticImageData } = {
-  LinkedIn: liIcon,
-  Behance: beIcon,
+  LinkedIn: linkedinIcon,
+  Behance: behanceIcon,
+  Instagram: instagramIcon,
 };
 
 function ContactPill({
@@ -74,9 +66,33 @@ function ContactPill({
     >
       <span className="inline-flex items-center justify-center gap-2 font-sans text-[clamp(1rem,3.8vw,1.55rem)] tracking-[-0.03em] text-white/70 transition-colors duration-200 group-hover:text-white">
         <span>{action.label}</span>
-        {action.icon === "linkedin" ? <LinkedInIcon /> : null}
       </span>
     </a>
+  );
+}
+
+function SocialIcon({
+  icon,
+  label,
+}: Readonly<{ icon: string | StaticImageData; label: string }>) {
+  const iconSrc = typeof icon === "string" ? icon : icon.src;
+
+  return (
+    <span
+      aria-hidden="true"
+      title={label}
+      className="block h-6 w-6 bg-[#A98BF8] transition-colors duration-200 group-hover:bg-white"
+      style={{
+        WebkitMaskImage: `url(${iconSrc})`,
+        maskImage: `url(${iconSrc})`,
+        WebkitMaskRepeat: "no-repeat",
+        maskRepeat: "no-repeat",
+        WebkitMaskPosition: "center",
+        maskPosition: "center",
+        WebkitMaskSize: "contain",
+        maskSize: "contain",
+      }}
+    />
   );
 }
 
@@ -257,14 +273,14 @@ export default function HomePage() {
               >
                 Resume
               </a>
-              <a
+              <a target="_blank"
                 href="https://www.linkedin.com/in/hanna-gomozova/"
                 className="mt-8 inline-flex min-h-[4rem] items-center justify-center rounded-full border border-[#A98BF8] px-8 text-center font-sans text-[clamp(1rem,1vw,1rem)] uppercase tracking-[0.04em] text-white transition-colors duration-200 hover:bg-white hover:text-[#A98BF8]"
               >
                 LinkedIn
               </a>
-              <a
-                href="#about"
+              <a target="_blank"
+                href="https://www.behance.net/hanna_gomozova"
                 className="mt-8 inline-flex min-h-[4rem] items-center justify-center rounded-full border border-[#A98BF8] px-8 text-center font-sans text-[clamp(1rem,1vw,1rem)] uppercase tracking-[0.04em] text-white transition-colors duration-200 hover:bg-white hover:text-[#A98BF8]"
               >
                 Behance
@@ -373,7 +389,7 @@ export default function HomePage() {
       >
         <div className="mx-auto w-full max-w-[980px]">
           <div
-            className={`${fraunces.className} pointer-events-none z-20 mb-6 md:mb-8 text-[clamp(1.9rem,4vw,3rem)] font-[300] leading-[1] tracking-[-0.03em] text-white`}
+            className={`${fraunces.className} pointer-events-none z-20 mb-6 text-[clamp(1.9rem,4vw,3rem)] font-[300] leading-[1] tracking-[-0.03em] text-white md:mb-8`}
           >
             Selected <span className="text-[#A98BF8]">works</span>
           </div>
@@ -417,12 +433,11 @@ export default function HomePage() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={action.label}
-                  className="text-white/50 transition-colors duration-200 hover:text-white"
+                  className="group transition-colors duration-200"
                 >
-                  <Image
-                    src={socialIcons[action.label]}
-                    alt={`${action.label} icon`}
-                    className="h-6 w-6 brightness-0 invert"
+                  <SocialIcon
+                    icon={socialIcons[action.label]}
+                    label={action.label}
                   />
                 </a>
               ))}
