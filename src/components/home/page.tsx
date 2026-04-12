@@ -268,7 +268,8 @@ export default function HomePage() {
             </div>
             <div className="flex gap-4">
               <a
-                href="#about"
+                href="/Hanna-Gomozova-Product-Designer.pdf"
+                download="Hanna Gomozova_Product Designer.pdf"
                 className="mt-8 inline-flex min-h-[4rem] items-center justify-center rounded-full border border-[#A98BF8] bg-[#A98BF8] px-8 text-center font-sans text-[clamp(1rem,1vw,1rem)] uppercase tracking-[0.04em] text-white transition-colors duration-200 hover:bg-white hover:text-[#A98BF8]"
               >
                 Resume
