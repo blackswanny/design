@@ -1,9 +1,10 @@
 import localFont from "next/font/local";
 
-import type { Metadata } from "next";
-
 import "./globals.css";
+import CursorFlower from "../components/cursorFlower";
 import ScrollCue from "../components/scrollCue";
+
+import type { Metadata } from "next";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body className="antialiased" suppressHydrationWarning>
         {children}
         <ScrollCue />
+        <CursorFlower />
       </body>
     </html>
   );

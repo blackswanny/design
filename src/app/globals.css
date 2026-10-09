@@ -155,6 +155,38 @@ a {
   }
 }
 
+.cursor-flower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 140px;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0;
+  transform: translate3d(-300px, -400px, 0);
+  transform-origin: 5% 4%;
+  transition: opacity 160ms ease;
+  will-change: transform;
+}
+
+.cursor-flower[data-visible="true"] {
+  opacity: 1;
+}
+
+.cursor-flower img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-flower {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scroll-cue__button {
     transition: opacity 180ms ease;
