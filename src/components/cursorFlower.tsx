@@ -15,6 +15,7 @@ export default function CursorFlower() {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const hide = () => {
       flower.dataset.visible = "false";
+      document.documentElement.classList.remove("has-flower-cursor");
     };
 
     const move = (event: PointerEvent) => {
@@ -27,8 +28,9 @@ export default function CursorFlower() {
         return;
       }
 
-      flower.style.transform = `translate3d(${event.clientX + 12}px, ${event.clientY + 16}px, 0)`;
+      flower.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
       flower.dataset.visible = "true";
+      document.documentElement.classList.add("has-flower-cursor");
     };
 
     const leave = (event: PointerEvent) => {
@@ -70,11 +72,28 @@ export default function CursorFlower() {
       data-visible="false"
       aria-hidden="true"
     >
+      <svg
+        className="cursor-flower__arrow"
+        width="24"
+        height="28"
+        viewBox="0 0 24 28"
+        fill="none"
+      >
+        <path
+          d="M2 2L21 9L14 12L11 25L2 2Z"
+          fill="#020202"
+          stroke="#f5f1ea"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
+        />
+      </svg>
       <Image
-        src="/images/cursor-poppy.svg"
+        className="cursor-flower__image"
+        src="/images/cursor-poppy-original.svg"
         alt=""
-        width={290}
-        height={340}
+        width={100}
+        height={115}
+        loading="eager"
         draggable={false}
         unoptimized
       />
