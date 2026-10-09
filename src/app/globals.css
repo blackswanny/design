@@ -186,9 +186,9 @@ a {
 
 .cursor-flower .cursor-flower__image {
   position: absolute;
-  /* Center the stem below the arrow's lower corners, leaving a small gap. */
-  top: 16.5px;
-  left: 2.5px;
+  /* Match the reference: stem beside the lower arrow tip, at the same height. */
+  top: 12.5px;
+  left: 9.5px;
   display: block;
   width: 70px;
   max-width: none;
