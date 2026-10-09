@@ -15,8 +15,10 @@ function shouldShowScrollCue() {
   const hasMoreContent = scrollHeight - viewportHeight > VISIBILITY_THRESHOLD;
   const reachedBottom =
     scrollTop + viewportHeight >= scrollHeight - VISIBILITY_THRESHOLD;
+  const hero = document.getElementById("home");
+  const heroIsVisible = hero && hero.getBoundingClientRect().bottom > 0;
 
-  return hasMoreContent && !reachedBottom;
+  return hasMoreContent && !reachedBottom && !heroIsVisible;
 }
 
 export default function ScrollCue() {
@@ -63,7 +65,7 @@ export default function ScrollCue() {
       <button
         type="button"
         aria-label="Scroll down"
-        className="pointer-events-auto rounded-full bg-white/10 p-2 text-white backdrop-blur-sm transition-colors hover:bg-white/20"
+        className="pointer-events-auto rounded-full bg-surface p-2 text-secondary ring-1 ring-inset ring-border backdrop-blur-sm transition-colors hover:text-accent hover:ring-accent"
         onClick={() => {
           const prefersReducedMotion = window.matchMedia(
             "(prefers-reduced-motion: reduce)",

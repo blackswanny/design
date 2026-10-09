@@ -1,52 +1,55 @@
-import Image from "next/image";
+import styles from "./home/headerHero.module.css";
 
 const navItems = [
-  { href: "#home", label: "HG" },
   { href: "#projects", label: "PROJECTS" },
   { href: "#about", label: "ABOUT" },
-  { href: "#contacts", label: "CONTACTS" },
+  { href: "#contacts", label: "CONTACT" },
 ];
 
 export default function NavMenu() {
   return (
-    <nav className="fixed left-[10vw] right-[10vw] top-0 z-40 border-b border-white/20 bg-background">
-      <div className="relative flex h-14 items-center px-4 md:h-16 md:px-6 lg:px-8">
+    <header className={styles.header}>
+      <nav className={styles.headerInner} aria-label="Main navigation">
         <a
-          href={navItems[0].href}
-          aria-label="Home"
-          className="flex items-center opacity-70 transition-opacity hover:opacity-100"
+          href="#home"
+          aria-label="Hanna Gomozova — Home"
+          className={styles.brand}
         >
-          <Image
-            src="/logo.svg"
-            alt="HG"
-            width={533}
-            height={196}
-            className="h-[2.6rem] w-auto md:h-[3.25rem]"
-            priority
-          />
+          <span className={styles.monogram} aria-hidden="true" />
+          <span className={styles.brandName}>
+            Hanna
+            <br />
+            Gomozova
+          </span>
         </a>
-
-        <div className="ml-auto flex items-center gap-3 text-[#898798] md:gap-8">
-          <a
-            href={navItems[1].href}
-            className="font-sans text-[0.9rem] uppercase tracking-[0.05em] transition-opacity hover:opacity-100 md:text-base md:tracking-[0.05em]"
-          >
-            {navItems[1].label}
-          </a>
-          <a
-            href={navItems[2].href}
-            className="font-sans text-[0.9rem] uppercase tracking-[0.05em] transition-opacity hover:opacity-100 md:text-base md:tracking-[0.05em]"
-          >
-            {navItems[2].label}
-          </a>
-          <a
-            href={navItems[3].href}
-            className="font-sans text-[0.9rem] uppercase tracking-[0.05em] text-[#898798] transition-opacity hover:opacity-100 md:text-base md:tracking-[0.1em]"
-          >
-            {navItems[3].label}
-          </a>
+        <div className={styles.navLinks}>
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href}>
+              {item.label}
+            </a>
+          ))}
         </div>
-      </div>
-    </nav>
+        <a
+          className={styles.resume}
+          href="/Hanna-Gomozova-Product-Designer.pdf"
+          download="Hanna Gomozova_Product Designer.pdf"
+        >
+          Resume
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M6 18L18 6M6 6H18V18"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            />
+          </svg>
+        </a>
+      </nav>
+    </header>
   );
 }
