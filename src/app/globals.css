@@ -187,10 +187,10 @@ a {
 .cursor-flower .cursor-flower__image {
   position: absolute;
   /* Match the reference: stem beside the lower arrow tip, at the same height. */
-  top: 12.5px;
-  left: 9.5px;
+  top: 10px;
+  left: 7.5px;
   display: block;
-  width: 70px;
+  width: 84px;
   max-width: none;
   height: auto;
 }
