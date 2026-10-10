@@ -1,11 +1,11 @@
 .header,
 .hero {
-  --ink: #0b0b0b;
-  --ivory: #f5f0e9;
-  --muted: #b5ada8;
-  --poppy: #d74736;
+  --canvas: var(--background);
+  --text: var(--foreground);
+  --muted: var(--secondary);
+  --poppy: var(--accent);
   --gutter: clamp(1.25rem, 6vw, 6rem);
-  color: var(--ivory);
+  color: var(--text);
   font-family: var(--font-geist-sans), "neueMontreal", Arial, sans-serif;
 }
 
@@ -13,7 +13,7 @@
   position: fixed;
   inset: 0 0 auto;
   z-index: 40;
-  background: rgba(11, 11, 11, 0.94);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(14px);
 }
 
@@ -30,7 +30,7 @@
   max-width: 1440px;
   min-height: 88px;
   margin: 0 auto;
-  border-bottom: 1px solid rgba(245, 240, 233, 0.2);
+  border-bottom: 1px solid var(--border);
 }
 
 .brand {
@@ -76,7 +76,7 @@
 
 .navLinks a:hover,
 .socialLinks a:hover {
-  color: var(--ivory);
+  color: var(--poppy);
 }
 
 .resume {
@@ -88,7 +88,7 @@
   min-width: 156px;
   min-height: 52px;
   padding: 12px 24px;
-  border: 1px solid rgba(245, 240, 233, 0.65);
+  border: 1px solid var(--border);
   border-radius: 999px;
   font-size: 14px;
   letter-spacing: 0.075em;
@@ -99,8 +99,8 @@
 }
 
 .resume:hover {
-  border-color: var(--ivory);
-  background: rgba(245, 240, 233, 0.07);
+  border-color: var(--text);
+  background: var(--surface);
 }
 
 .hero {
@@ -110,7 +110,7 @@
   margin-left: calc(50% - 50vw);
   padding: calc(88px + clamp(2.5rem, 4.75vw, 4.5rem)) 0 118px;
   overflow: hidden;
-  background: var(--ink);
+  background: var(--canvas);
 }
 
 /* Two matching halves carry one soft poppy glow across the section boundary. */
@@ -123,8 +123,8 @@
   height: 220px;
   background: radial-gradient(
     ellipse 320px 240px at 88% var(--glow-y),
-    rgba(215, 71, 54, 0.14),
-    rgba(215, 71, 54, 0.055) 35%,
+    rgba(215, 71, 54, 0.07),
+    rgba(215, 71, 54, 0.028) 35%,
     transparent 75%
   );
   pointer-events: none;
@@ -151,66 +151,27 @@
 .atmosphere {
   position: absolute;
   z-index: -1;
-  inset: 0;
+  inset: 136px 0 0 -100px;
   overflow: hidden;
   pointer-events: none;
   mask-image: linear-gradient(to bottom, black calc(100% - 120px), transparent);
-  background: radial-gradient(
-      ellipse at 90% 88%,
-      rgba(113, 77, 50, 0.13),
-      transparent 37%
+}
+
+.backgroundImage {
+  object-fit: cover;
+  object-position: right top;
+  filter: brightness(0.75) saturate(0.7) hue-rotate(8deg);
+  transform: scale(0.7);
+  transform-origin: 70% 30%;
+  mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 8%,
+      black 92%,
+      transparent
     ),
-    radial-gradient(
-      ellipse at 70% 60%,
-      rgba(215, 71, 54, 0.045),
-      transparent 42%
-    );
-}
-
-.atmosphere::after {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    var(--ink) 10%,
-    rgba(11, 11, 11, 0.7) 36%,
-    transparent 70%
-  );
-  content: "";
-}
-
-.poppy {
-  position: absolute;
-  width: 580px;
-  max-width: none;
-  height: auto;
-  opacity: 0.32;
-  filter: blur(20px);
-}
-
-.poppyUpper {
-  top: -170px;
-  right: -90px;
-  opacity: 0.42;
-  filter: blur(16px);
-  transform: rotate(-25deg);
-}
-
-.poppyMiddle {
-  top: 280px;
-  left: calc(50% - 250px);
-  width: 480px;
-  opacity: 0.22;
-  transform: rotate(-45deg);
-}
-
-.poppyLower {
-  right: -160px;
-  bottom: -120px;
-  width: 620px;
-  opacity: 0.24;
-  filter: blur(26px);
-  transform: rotate(14deg);
+    linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+  mask-composite: intersect;
 }
 
 .heroInner {
@@ -224,6 +185,8 @@
 }
 
 .copy {
+  position: relative;
+  z-index: 2;
   min-width: 0;
   padding-left: 14px;
 }
@@ -241,7 +204,7 @@
 .eyebrowLine {
   width: 56px;
   height: 1px;
-  background: rgba(181, 173, 168, 0.6);
+  background: var(--border);
 }
 
 .specialty {
@@ -296,7 +259,7 @@
   border: 1px solid var(--poppy);
   border-radius: 999px;
   background: var(--poppy);
-  color: var(--ivory);
+  color: #ffffff;
   font-size: 16px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -317,7 +280,7 @@
   gap: 36px;
   min-height: 40px;
   padding-left: 32px;
-  border-left: 1px solid rgba(181, 173, 168, 0.3);
+  border-left: 1px solid var(--border);
 }
 
 .socialLinks a {
@@ -325,7 +288,7 @@
   align-items: center;
   gap: 10px;
   padding: 6px 0;
-  border-bottom: 1px solid rgba(181, 173, 168, 0.5);
+  border-bottom: 1px solid var(--border);
   font-size: 14px;
   letter-spacing: 0.035em;
   text-transform: uppercase;
@@ -337,20 +300,25 @@
 
 .portraitFrame {
   position: relative;
+  isolation: isolate;
   width: 100%;
   max-width: 540px;
   aspect-ratio: 5 / 7;
   margin: 0 0 0 auto;
-  overflow: hidden;
-  border: 1px solid rgba(245, 240, 233, 0.08);
-  border-radius: 10px;
-  background: #302f2d;
+  overflow: visible;
 }
 
 .portrait {
-  object-fit: cover;
-  object-position: center 45%;
-  transform: scale(1.1);
+  object-fit: contain;
+  object-position: center;
+  transform: translateY(14px) scale(0.8125);
+  transform-origin: center;
+  mask-image: linear-gradient(
+    to bottom,
+    black 78%,
+    rgba(0, 0, 0, 0.8) 88%,
+    transparent
+  );
 }
 
 .heroScroll {
@@ -372,7 +340,7 @@
   width: 1px;
   height: 32px;
   margin-bottom: 2px;
-  background: rgba(181, 173, 168, 0.65);
+  background: var(--border);
 }
 
 .header a:focus-visible,
@@ -461,9 +429,19 @@
     margin: 0 auto;
   }
 
-  .poppyMiddle {
-    top: 40%;
-    left: -140px;
+  .portrait {
+    transform: translateY(8px) scale(0.715);
+  }
+
+  .atmosphere {
+    inset: 45% 0 0;
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 80px,
+      black calc(100% - 120px),
+      transparent
+    );
   }
 }
 
@@ -568,20 +546,8 @@
     font-size: 12px;
   }
 
-  .poppy {
-    width: 420px;
-    opacity: 0.18;
-    filter: blur(24px);
-  }
-
-  .poppyUpper {
-    top: 150px;
-    right: -290px;
-  }
-
-  .poppyLower {
-    right: -240px;
-    bottom: -50px;
+  .backgroundImage {
+    object-position: 85% top;
   }
 }
 

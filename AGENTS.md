@@ -12,6 +12,14 @@
 - If checks fail or a conflict, authentication error, branch protection, or other blocker prevents safe completion, report the blocker instead of claiming success.
 - In the final response, state that changes remain local, or report the commit and push result if publication was explicitly requested.
 
+## Live local preview
+
+- Keep a development server running while working on this project so the user can see the latest local changes through hot reload.
+- Use `npm run dev -- --port 3000` and `http://localhost:3000/` when the port is available. Reuse an existing development server for this project rather than starting duplicates.
+- Start long-running development servers without a command timeout. Do not terminate unrelated processes to free a port.
+- When the user asks to view changes, show the live browser page rather than only a static screenshot.
+- Local preview does not authorize committing, pushing, or deploying changes.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 ## This is NOT the Next.js you know

@@ -1,7 +1,5 @@
 import Image from "next/image";
 
-import portraitPhoto from "@/assets/images/portrait.png";
-
 import styles from "./headerHero.module.css";
 
 function ArrowUpRight() {
@@ -23,28 +21,12 @@ export default function Hero() {
     <section id="home" className={styles.hero} aria-labelledby="hero-heading">
       <div className={styles.atmosphere} aria-hidden="true">
         <Image
-          src="/images/cursor-poppy-original.svg"
+          src="/images/hero-poppy-background-white.png"
           alt=""
-          width={100}
-          height={115}
-          unoptimized
-          className={`${styles.poppy} ${styles.poppyUpper}`}
-        />
-        <Image
-          src="/images/cursor-poppy-original.svg"
-          alt=""
-          width={100}
-          height={115}
-          unoptimized
-          className={`${styles.poppy} ${styles.poppyMiddle}`}
-        />
-        <Image
-          src="/images/cursor-poppy-original.svg"
-          alt=""
-          width={100}
-          height={115}
-          unoptimized
-          className={`${styles.poppy} ${styles.poppyLower}`}
+          fill
+          loading="eager"
+          sizes="100vw"
+          className={styles.backgroundImage}
         />
       </div>
 
@@ -89,11 +71,11 @@ export default function Hero() {
 
         <div className={styles.portraitFrame}>
           <Image
-            src={portraitPhoto}
+            src="/images/portrait-cutout-refined.png"
             alt="Portrait of Hanna Gomozova"
             fill
             loading="eager"
-            sizes="(min-width: 1600px) 540px, (min-width: 1024px) 36vw, (min-width: 600px) 440px, 88vw"
+            sizes="(min-width: 1600px) 440px, (min-width: 1024px) 30vw, (min-width: 600px) 315px, 64vw"
             className={styles.portrait}
           />
         </div>

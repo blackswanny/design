@@ -195,7 +195,7 @@ function ProjectCard({
             className="absolute inset-0 z-20"
           />
         ) : null}
-        <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0B0B0B]/60 via-[#0B0B0B]/0 opacity-0 transition-opacity group-hover:opacity-100" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-white/30 via-white/0 opacity-0 transition-opacity group-hover:opacity-100" />
       </div>
       <div className="mx-2 mt-3 flex items-start justify-between text-foreground">
         <div className="font-editorial flex flex-col items-start justify-between">
