@@ -93,6 +93,18 @@
   background: #000000;
 }
 
+.cleanEdge::after {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: #000000;
+  pointer-events: none;
+  content: "";
+}
+
 .player {
   position: absolute;
   inset: 0;

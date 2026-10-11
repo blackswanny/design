@@ -57,7 +57,7 @@ export default function MindscapePage() {
             ) : (
               <div
                 key={module.src}
-                className={styles.video}
+                className={`${styles.video} ${module.cropTop ? styles.cleanEdge : ""}`}
                 style={{
                   aspectRatio: `${module.width} / ${module.height - (module.cropTop ?? 0)}`,
                 }}
