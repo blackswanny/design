@@ -63,5 +63,10 @@ export const caseModules: readonly CaseModule[] = [
   imagePanel(17, 1486),
   imagePanel(18, 2203),
   imagePanel(19, 2090),
-  imagePanel(20, 1038),
+  {
+    type: "image",
+    src: "/images/projects/mindscape/20-cropped.png",
+    height: 850,
+    alt: "MindScape project closing graphic",
+  },
 ];

@@ -68,6 +68,7 @@
 
 .canvas {
   overflow: hidden;
+  border: 1px solid var(--border);
   background: #000000;
 }
 
