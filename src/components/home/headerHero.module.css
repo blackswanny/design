@@ -1,5 +1,22 @@
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/fonts/InstrumentSerif-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/fonts/InstrumentSerif-Italic.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
 .header,
-.hero {
+.hero,
+.ticker {
   --canvas: var(--background);
   --text: var(--foreground);
   --muted: var(--secondary);
@@ -44,11 +61,7 @@
   display: block;
   width: 56px;
   height: 56px;
-  background: var(--poppy);
-  mask-image: url("/logo.svg");
-  mask-size: 210px auto;
-  mask-position: left -9px;
-  mask-repeat: no-repeat;
+  object-fit: contain;
 }
 
 .brandName {
@@ -75,7 +88,8 @@
 }
 
 .navLinks a:hover,
-.socialLinks a:hover {
+.socialLinks a:hover,
+.navLinks a[aria-current="page"] {
   color: var(--poppy);
 }
 
@@ -106,35 +120,11 @@
 .hero {
   position: relative;
   isolation: isolate;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  padding: calc(88px + clamp(2.5rem, 4.75vw, 4.5rem)) 0 118px;
+  width: calc(100% + (2 * var(--site-gutter)));
+  margin-left: calc(-1 * var(--site-gutter));
+  padding: 308px 0 118px;
   overflow: hidden;
   background: var(--canvas);
-}
-
-/* Two matching halves carry one soft poppy glow across the section boundary. */
-.hero::before,
-.aboutTransition::before {
-  position: absolute;
-  z-index: -1;
-  left: 50%;
-  width: 100vw;
-  height: 220px;
-  background: radial-gradient(
-    ellipse 320px 240px at 88% var(--glow-y),
-    rgba(215, 71, 54, 0.07),
-    rgba(215, 71, 54, 0.028) 35%,
-    transparent 75%
-  );
-  pointer-events: none;
-  transform: translateX(-50%);
-  content: "";
-}
-
-.hero::before {
-  --glow-y: 100%;
-  bottom: 0;
 }
 
 .aboutTransition {
@@ -143,40 +133,52 @@
   background-image: none;
 }
 
-.aboutTransition::before {
-  --glow-y: 0%;
-  top: 0;
+.aboutPage {
+  padding-top: 152px;
+  padding-bottom: 48px;
 }
 
-.atmosphere {
-  position: absolute;
-  z-index: -1;
-  inset: 136px 0 0 -100px;
-  overflow: hidden;
-  pointer-events: none;
-  mask-image: linear-gradient(to bottom, black calc(100% - 120px), transparent);
+.ticker {
+  width: calc(100% + (2 * var(--site-gutter)));
+  margin-left: calc(-1 * var(--site-gutter));
+  margin-bottom: 32px;
 }
 
-.backgroundImage {
-  object-fit: cover;
-  object-position: right top;
-  filter: brightness(0.75) saturate(0.7) hue-rotate(8deg);
-  transform: scale(0.7);
-  transform-origin: 70% 30%;
+.tickerViewport {
+  width: calc(100% - (2 * var(--gutter)));
+  max-width: 1440px;
+  margin: 0 auto;
+  overflow-x: auto;
+  scrollbar-width: none;
   mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 8%,
-      black 92%,
-      transparent
-    ),
-    linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
-  mask-composite: intersect;
+    to right,
+    transparent,
+    black 24px,
+    black calc(100% - 24px),
+    transparent
+  );
+}
+
+.tickerViewport::-webkit-scrollbar {
+  display: none;
+}
+
+.tickerViewport:focus-visible {
+  mask-image: none;
+  outline: 2px solid var(--poppy);
+  outline-offset: 4px;
+}
+
+.ticker .tickerImage {
+  display: block;
+  width: 2733px;
+  max-width: none;
+  height: 42px;
 }
 
 .heroInner {
   display: grid;
-  grid-template-columns: minmax(0, 1.34fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: clamp(2.5rem, 5.8vw, 5.5rem);
   width: calc(100% - (2 * var(--gutter)));
@@ -187,62 +189,69 @@
 .copy {
   position: relative;
   z-index: 2;
+  container-type: inline-size;
   min-width: 0;
-  padding-left: 14px;
+  padding-left: 0;
 }
 
-.eyebrow {
+.intro,
+.description {
+  @apply font-sans;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  font-weight: 400;
+}
+
+.intro {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin: 0 0 28px;
-  font-size: clamp(11px, 1.04vw, 15px);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.eyebrowLine {
-  width: 56px;
-  height: 1px;
-  background: var(--border);
-}
-
-.specialty {
+  justify-content: center;
+  gap: 16px;
   color: var(--muted);
-  font-size: 0.9em;
-  letter-spacing: 0.035em;
+  line-height: 1;
+}
+
+.headline,
+.sectionHeading {
+  font-family: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  font-weight: 400;
 }
 
 .headline {
-  margin: 0;
-  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia,
-    serif;
-  font-size: clamp(3rem, 5.25vw, 5.2rem);
-  font-weight: 400;
-  line-height: 1.04;
-  letter-spacing: -0.052em;
+  max-width: 1200px;
+  margin: 30px auto 0;
+  color: var(--text);
+  font-size: min(80px, calc(100cqw / 9.3));
+  line-height: 1;
+  letter-spacing: normal;
+  text-align: center;
 }
 
 .headline > span {
   display: block;
+  white-space: nowrap;
 }
 
-.accent {
-  color: var(--poppy);
+.headline em {
+  font-style: italic;
 }
 
 .description {
   max-width: 530px;
-  margin: 30px 0 0;
+  margin: 30px auto 0;
   color: var(--muted);
-  font-size: clamp(18px, 1.67vw, 24px);
   font-weight: 400;
   line-height: 1.45;
+  text-align: center;
+}
+
+.descriptionEmphasis {
+  font-weight: 700;
 }
 
 .actions {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 32px;
   margin-top: 46px;
@@ -300,25 +309,19 @@
 
 .portraitFrame {
   position: relative;
-  isolation: isolate;
-  width: 100%;
-  max-width: 540px;
-  aspect-ratio: 5 / 7;
-  margin: 0 0 0 auto;
-  overflow: visible;
+  display: block;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #e25b4c;
 }
 
 .portrait {
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
-  transform: translateY(14px) scale(0.8125);
-  transform-origin: center;
-  mask-image: linear-gradient(
-    to bottom,
-    black 78%,
-    rgba(0, 0, 0, 0.8) 88%,
-    transparent
-  );
+  filter: brightness(1.1);
 }
 
 .heroScroll {
@@ -399,49 +402,21 @@
   }
 
   .hero {
-    padding-top: 136px;
+    padding-top: 360px;
+  }
+
+  .aboutPage {
+    padding-top: 144px;
   }
 
   .heroInner {
     grid-template-columns: 1fr;
     gap: 48px;
-    max-width: 660px;
+    max-width: 960px;
   }
 
   .copy {
     padding-left: 0;
-  }
-
-  .eyebrow {
-    font-size: 12px;
-  }
-
-  .headline {
-    font-size: clamp(3rem, 7.8vw, 4.75rem);
-  }
-
-  .description {
-    font-size: 20px;
-  }
-
-  .portraitFrame {
-    max-width: 440px;
-    margin: 0 auto;
-  }
-
-  .portrait {
-    transform: translateY(8px) scale(0.715);
-  }
-
-  .atmosphere {
-    inset: 45% 0 0;
-    mask-image: linear-gradient(
-      to bottom,
-      transparent,
-      black 80px,
-      black calc(100% - 120px),
-      transparent
-    );
   }
 }
 
@@ -464,8 +439,6 @@
   .monogram {
     width: 42px;
     height: 42px;
-    mask-size: 158px auto;
-    mask-position: left -7px;
   }
 
   .brandName {
@@ -491,35 +464,35 @@
   }
 
   .hero {
-    padding-top: 148px;
+    padding-top: 350px;
     padding-bottom: 112px;
+  }
+
+  .aboutPage {
+    padding-top: 130px;
   }
 
   .heroInner {
     gap: 38px;
   }
 
-  .eyebrow {
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 24px;
-    font-size: 10px;
-    letter-spacing: 0.08em;
+  .intro {
+    gap: 12px;
   }
 
-  .eyebrowLine {
-    width: 24px;
+  .portraitFrame {
+    width: 44px;
+    height: 44px;
   }
 
   .headline {
-    font-size: clamp(2.35rem, 8.5vw, 3.75rem);
-    line-height: 1.08;
-    letter-spacing: -0.045em;
+    margin-top: 24px;
+    line-height: 1;
+    letter-spacing: normal;
   }
 
   .description {
     margin-top: 24px;
-    font-size: 18px;
     line-height: 1.5;
   }
 
@@ -544,10 +517,6 @@
 
   .socialLinks a {
     font-size: 12px;
-  }
-
-  .backgroundImage {
-    object-position: 85% top;
   }
 }
 

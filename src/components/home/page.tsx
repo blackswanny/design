@@ -59,7 +59,7 @@ function ContactPill({
       rel={action.external ? "noreferrer" : undefined}
       className="group flex items-center justify-start text-center md:justify-center"
     >
-      <span className="inline-flex items-center justify-center gap-2 font-sans text-[clamp(1rem,3.8vw,1.55rem)] tracking-[-0.03em] text-secondary transition-colors duration-200 group-hover:text-accent">
+      <span className="inline-flex items-center justify-center gap-2 font-sans text-[clamp(1rem,3.8vw,1.25rem)] tracking-[-0.03em] text-secondary transition-colors duration-200 group-hover:text-accent">
         <span>{action.label}</span>
       </span>
     </a>
@@ -228,87 +228,31 @@ export default function HomePage() {
       <NavMenu />
 
       <Hero />
-      <section
-        id="about"
-        className={`${styles.aboutTransition} homepage-section scroll-mt-16 bg-background px-4 py-2 md:px-6 md:py-4 lg:px-8 lg:py-4`}
-      >
-        <div className="mx-auto w-full max-w-[980px]">
-          <header className="mb-6 md:mb-8">
-            <div className="flex items-end gap-2 md:gap-2">
-              <span className="font-editorial pointer-events-none z-20 mb-3 text-[clamp(1.9rem,4vw,3rem)] font-[300] leading-[1] tracking-[-0.03em] text-foreground">
-                About
-              </span>
-              <span className="font-editorial pointer-events-none z-20 mb-3 text-[clamp(1.9rem,4vw,3rem)] font-[300] leading-[1] tracking-[-0.03em] text-accent">
-                me
-              </span>
-            </div>
-          </header>
-
-          <div className="ml-auto pb-12 text-foreground md:pb-16">
-            <div className="flex flex-col gap-2 font-sans text-[clamp(1rem,2.2vw,1.25rem)] leading-relaxed tracking-[-0.01em] text-secondary">
-              <p>
-                I focus on bringing clarity to{" "}
-                <span className="text-foreground">early-stage products</span>.
-              </p>
-              <p>
-                I enjoy working through ambiguity, simplifying complex ideas,
-                and designing experiences that feel natural and
-                <span className="text-foreground"> easy to use</span>.
-              </p>
-              <p>
-                I care about making things{" "}
-                <span className="text-foreground">
-                  clear, useful, and grounded
-                </span>{" "}
-                in real use.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-col border-t border-border py-8 md:flex-row md:gap-6">
-            <div className="mb-4 font-sans text-[clamp(1.1rem,2.2vw,1.3rem)] font-semibold leading-none text-foreground md:mb-0 md:w-[10rem] md:flex-shrink-0">
-              Capabilities
-            </div>
-            <div className="max-w-[54rem] flex-1 font-sans text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-secondary">
-              I work across the full product lifecycle —{" "}
-              <span className="text-foreground">
-                from early ideas and product definition to design, testing and
-                iteration
-              </span>
-              . I’m comfortable working closely with founders and engineers,
-              helping shape products from concept to real use.
-            </div>
-          </div>
-
-          <div className="flex flex-col border-t border-border py-8 md:flex-row md:gap-6">
-            <div className="mb-4 font-sans text-[clamp(1.1rem,2.2vw,1.3rem)] font-semibold leading-none text-foreground md:mb-0 md:w-[10rem] md:flex-shrink-0">
-              Expertise
-            </div>
-            <div className="flex flex-1 flex-col gap-6 font-sans text-[clamp(1rem,2vw,1.25rem)] leading-relaxed text-secondary md:flex-row md:gap-10">
-              <div>
-                <div>UX/UI Design</div>
-                <div>Mobile Design</div>
-                <div>Interaction Design</div>
-              </div>
-              <div>
-                <div>User Research</div>
-                <div>Prototyping</div>
-                <div>Brand Identity</div>
-              </div>
-              <div>
-                <div>Information Architecture</div>
-                <div>Interface Animation</div>
-              </div>
-            </div>
-          </div>
+      <div className={styles.ticker}>
+        <div
+          className={styles.tickerViewport}
+          role="region"
+          aria-label="Design skills and tools"
+          tabIndex={0}
+        >
+          <Image
+            src="/images/skills-ticker.svg"
+            alt="Product design specializations and tools"
+            width={2733}
+            height={42}
+            unoptimized
+            className={styles.tickerImage}
+          />
         </div>
-      </section>
+      </div>
       <section
         id="projects"
         className="homepage-section scroll-mt-16 bg-background px-4 py-4 md:px-6 md:py-8 lg:px-8 lg:py-24"
       >
         <div className="mx-auto w-full max-w-[980px]">
-          <div className="font-editorial pointer-events-none z-20 mb-6 text-[clamp(1.9rem,4vw,3rem)] font-[300] leading-[1] tracking-[-0.03em] text-foreground md:mb-8">
+          <div
+            className={`${styles.sectionHeading} pointer-events-none z-20 mb-6 text-[clamp(1.9rem,4vw,3rem)] leading-[1] tracking-[-0.03em] text-foreground md:mb-8`}
+          >
             Selected <span className="text-accent">works</span>
           </div>
           <div className="ml-auto pb-14 text-foreground md:pb-14">
@@ -335,7 +279,9 @@ export default function HomePage() {
       >
         <div className="mx-auto w-full max-w-[980px]">
           <header className="mb-4 md:mb-4">
-            <div className="font-editorial pointer-events-none z-20 mb-3 text-[clamp(1.9rem,4vw,3rem)] font-[300] leading-[1] tracking-[-0.03em] text-foreground">
+            <div
+              className={`${styles.sectionHeading} pointer-events-none z-20 mb-3 text-[clamp(1.9rem,4vw,3rem)] leading-[1] tracking-[-0.03em] text-foreground`}
+            >
               Get in <span className="text-accent">touch</span>
             </div>
           </header>

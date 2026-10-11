@@ -19,31 +19,35 @@ function ArrowUpRight() {
 export default function Hero() {
   return (
     <section id="home" className={styles.hero} aria-labelledby="hero-heading">
-      <div className={styles.atmosphere} aria-hidden="true">
-        <Image
-          src="/images/hero-poppy-background-white.png"
-          alt=""
-          fill
-          loading="eager"
-          sizes="100vw"
-          className={styles.backgroundImage}
-        />
-      </div>
-
       <div className={styles.heroInner}>
         <div className={styles.copy}>
-          <p className={styles.eyebrow}>
-            <span>Product Designer</span>
-            <span className={styles.eyebrowLine} aria-hidden="true" />
-            <span className={styles.specialty}>Early-stage products</span>
-          </p>
+          <div className={styles.intro}>
+            <span>Hello</span>
+            <span className={styles.portraitFrame}>
+              <Image
+                src="/images/hero-avatar-lossless.png"
+                alt="Portrait of Hanna Gomozova"
+                fill
+                loading="eager"
+                unoptimized
+                sizes="(max-width: 759px) 44px, 56px"
+                className={styles.portrait}
+              />
+            </span>
+            <span>I’m Hanna</span>
+          </div>
           <h1 id="hero-heading" className={styles.headline}>
-            <span>I design early-stage</span> <span>products with</span>{" "}
-            <span className={styles.accent}>clarity and intention.</span>
+            <span>I design products</span>{" "}
+            <span>
+              that <em>feel</em> right before
+            </span>{" "}
+            <span>you know why.</span>
           </h1>
           <p className={styles.description}>
-            I help turn early ideas into real products, shaping user flows,
-            product direction, and experiences people actually use.
+            From the first idea to a{" "}
+            <span className={styles.descriptionEmphasis}>working product</span>{" "}
+            — connecting user needs, product direction, and intuitive
+            experiences.
           </p>
           <div className={styles.actions}>
             <a href="#projects" className={styles.primary}>
@@ -68,23 +72,12 @@ export default function Hero() {
             </div>
           </div>
         </div>
-
-        <div className={styles.portraitFrame}>
-          <Image
-            src="/images/portrait-cutout-refined.png"
-            alt="Portrait of Hanna Gomozova"
-            fill
-            loading="eager"
-            sizes="(min-width: 1600px) 440px, (min-width: 1024px) 30vw, (min-width: 600px) 315px, 64vw"
-            className={styles.portrait}
-          />
-        </div>
       </div>
 
       <a
-        href="#about"
+        href="#projects"
         className={styles.heroScroll}
-        aria-label="Scroll to About"
+        aria-label="Scroll to selected work"
       >
         <span aria-hidden="true" className={styles.scrollLine} />
         <span>Scroll</span>

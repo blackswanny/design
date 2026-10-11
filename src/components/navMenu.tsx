@@ -1,32 +1,49 @@
+import Image from "next/image";
+import Link from "next/link";
+
 import styles from "./home/headerHero.module.css";
 
 const navItems = [
-  { href: "#projects", label: "PROJECTS" },
-  { href: "#about", label: "ABOUT" },
-  { href: "#contacts", label: "CONTACT" },
+  { href: "/#projects", label: "PROJECTS" },
+  { href: "/about", label: "ABOUT" },
+  { href: "/#contacts", label: "CONTACT" },
 ];
 
-export default function NavMenu() {
+export default function NavMenu({
+  activePath,
+}: Readonly<{ activePath?: string }> = {}) {
   return (
     <header className={styles.header}>
       <nav className={styles.headerInner} aria-label="Main navigation">
-        <a
-          href="#home"
+        <Link
+          href="/#home"
           aria-label="Hanna Gomozova — Home"
           className={styles.brand}
         >
-          <span className={styles.monogram} aria-hidden="true" />
+          <Image
+            src="/images/header-logo.svg"
+            alt=""
+            width={1135}
+            height={1104}
+            loading="eager"
+            unoptimized
+            className={styles.monogram}
+          />
           <span className={styles.brandName}>
             Hanna
             <br />
             Gomozova
           </span>
-        </a>
+        </Link>
         <div className={styles.navLinks}>
           {navItems.map((item) => (
-            <a key={item.href} href={item.href}>
+            <Link
+              key={item.href}
+              href={item.href}
+              aria-current={activePath === item.href ? "page" : undefined}
+            >
               {item.label}
-            </a>
+            </Link>
           ))}
         </div>
         <a
