@@ -193,12 +193,9 @@ export default function HomePage() {
             </div>
           </div>
           <div className="flex flex-col gap-6">
-            <ProjectCard project={projects[0]} isFullWidth />
-            <div className="flex flex-col flex-wrap gap-6 md:flex-row">
-              {projects.slice(1).map((project) => (
-                <ProjectCard key={project.name} project={project} />
-              ))}
-            </div>
+            {projects.map((project) => (
+              <ProjectCard key={project.name} project={project} isFullWidth />
+            ))}
           </div>
         </div>
       </section>
