@@ -93,6 +93,16 @@
   background: #000000;
 }
 
+.video::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border-right: clamp(2px, 0.5vw, 8px) solid #000000;
+  border-left: clamp(2px, 0.5vw, 8px) solid #000000;
+  pointer-events: none;
+  content: "";
+}
+
 .cleanEdge::after {
   position: absolute;
   z-index: 1;
