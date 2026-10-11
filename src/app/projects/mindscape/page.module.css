@@ -1,0 +1,131 @@
+:global(html):has(.page) {
+  --background: #000000;
+  --foreground: #f5f0e9;
+  --surface: #161414;
+  --secondary: #a1a1aa;
+  --border: #323232;
+  background: var(--background);
+  color-scheme: dark;
+}
+
+:global(body):has(.page) {
+  background: var(--background);
+}
+
+.page {
+  --case-gutter: clamp(1.25rem, 6vw, 6rem);
+  --header-background: rgba(0, 0, 0, 0.94);
+  width: calc(100% + (2 * var(--site-gutter)));
+  margin-left: calc(-1 * var(--site-gutter));
+  padding-top: 140px;
+}
+
+.caseStudy,
+.page > footer {
+  width: calc(100% - (2 * var(--case-gutter)));
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.projectHeader {
+  padding-bottom: 36px;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--secondary);
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-size: 14px;
+  transition: color 180ms ease;
+}
+
+.backLink:hover {
+  color: var(--accent);
+}
+
+.backLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+}
+
+.title {
+  margin: 24px 0 16px;
+  color: var(--foreground);
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.1;
+}
+
+.description {
+  max-width: 740px;
+  margin: 0;
+  color: var(--secondary);
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  line-height: 1.6;
+}
+
+.canvas {
+  overflow: hidden;
+  background: #000000;
+}
+
+.panel {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.panelLink {
+  display: block;
+}
+
+.panelLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.video {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000000;
+}
+
+.player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.projectEnd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 40px 0;
+}
+
+@media (max-width: 759px) {
+  .page {
+    padding-top: 138px;
+  }
+
+  .projectHeader {
+    padding-bottom: 24px;
+  }
+
+  .projectEnd {
+    padding: 28px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backLink {
+    transition: none;
+  }
+}
