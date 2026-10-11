@@ -1,11 +1,11 @@
 :global(html):has(.page) {
-  --background: #000000;
-  --foreground: #f5f0e9;
-  --surface: #161414;
-  --secondary: #a1a1aa;
-  --border: #323232;
+  --background: #f6f5f1;
+  --foreground: #171717;
+  --surface: #eeede8;
+  --secondary: #71717a;
+  --border: #dedbd3;
   background: var(--background);
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 :global(body):has(.page) {
@@ -14,7 +14,7 @@
 
 .page {
   --case-gutter: clamp(1.25rem, 6vw, 6rem);
-  --header-background: rgba(0, 0, 0, 0.94);
+  --header-background: rgba(246, 245, 241, 0.94);
   width: calc(100% + (2 * var(--site-gutter)));
   margin-left: calc(-1 * var(--site-gutter));
   padding-top: 140px;
@@ -68,8 +68,17 @@
 
 .canvas {
   overflow: hidden;
-  border: 1px solid var(--border);
-  background: #000000;
+  margin-top: 1%;
+  padding-top: 1.7%;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  background: linear-gradient(
+    to bottom,
+    #000000 0,
+    #000000 calc(100% - 50px),
+    transparent calc(100% - 50px)
+  );
+  background-clip: padding-box;
 }
 
 .panel {
