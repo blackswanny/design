@@ -67,17 +67,15 @@
 }
 
 .canvas {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   overflow: hidden;
   margin-top: 1%;
   padding-top: 1.7%;
   border: 1px solid transparent;
   border-radius: 50px;
-  background: linear-gradient(
-    to bottom,
-    #000000 0,
-    #000000 calc(100% - 50px),
-    transparent calc(100% - 50px)
-  );
+  background: var(--background);
   background-clip: padding-box;
 }
 
@@ -89,6 +87,11 @@
 
 .panelLink {
   display: block;
+  background: #000000;
+}
+
+.panelLink:last-child {
+  background: var(--background);
 }
 
 .panelLink:focus-visible {

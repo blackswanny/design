@@ -1,0 +1,114 @@
+/* Figma frame 1615:9260: 1140 × 699. Scale all elements with the frame. */
+.cover {
+  position: relative;
+  container-type: inline-size;
+  width: 100%;
+  aspect-ratio: 1140 / 699;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 50px;
+  background: #fdfdfd;
+  color: #000000;
+}
+
+.heading {
+  position: absolute;
+  top: 30.04%;
+  left: 2.81%;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-size: 5.965cqw;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.2cqw;
+}
+
+.heading > span {
+  display: block;
+  white-space: nowrap;
+}
+
+.heading em {
+  color: #7050f6;
+  font-style: normal;
+}
+
+.logo {
+  position: absolute;
+  top: 18.88%;
+  left: 15.75%;
+  width: 5.61%;
+  height: auto;
+}
+
+.portrait {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 0.7cqw;
+}
+
+.photo {
+  object-fit: cover;
+}
+
+.yellow {
+  top: 7.87%;
+  left: 40.7%;
+  width: 8%;
+  aspect-ratio: 1;
+}
+
+.pink {
+  top: 12.73%;
+  left: 51.55%;
+  width: 7.8%;
+  aspect-ratio: 1;
+}
+
+.blue {
+  top: 29.61%;
+  left: 47.37%;
+  width: 9.3%;
+  aspect-ratio: 1;
+}
+
+.smiling {
+  top: 66.38%;
+  left: 31.2%;
+  width: 8.77%;
+  aspect-ratio: 1;
+}
+
+.meditating {
+  top: 58.8%;
+  left: 45.35%;
+  width: 13.33%;
+  aspect-ratio: 1;
+}
+
+.glasses {
+  top: 77.25%;
+  left: 25.26%;
+  width: 7.8%;
+  aspect-ratio: 1;
+}
+
+.videoFrame {
+  position: absolute;
+  top: 14.16%;
+  left: 64.12%;
+  width: 33.07%;
+  height: 74.11%;
+  overflow: hidden;
+  border-radius: 1.4cqw;
+  background: #e8e9e5;
+}
+
+.video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}

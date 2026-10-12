@@ -1,5 +1,7 @@
 type CaseModule =
   | { type: "image"; src: string; height: number; alt: string }
+  | { type: "cover"; src: string }
+  | { type: "overview"; src: string }
   | {
       type: "video";
       src: string;
@@ -28,17 +30,13 @@ function imagePanel(
   };
 }
 
-// Preserve the original Behance module order, including both Vimeo animations.
+// Editable Figma sections replace the first two panels; remaining modules keep their order.
 export const caseModules: readonly CaseModule[] = [
   {
-    type: "video",
-    src: "https://player.vimeo.com/video/1175366730?autoplay=1&loop=1&muted=1&autopause=0&background=1&title=0&byline=0&portrait=0",
-    width: 2584,
-    height: 1592,
-    cropTop: 220,
-    title: "MindScape — project introduction animation",
+    type: "cover",
+    src: "/videos/projects/mindscape-therapy.mp4",
   },
-  imagePanel(1, 1011, "MindScape overview, scope and project statistics"),
+  { type: "overview", src: "/images/projects/mindscape/01.png" },
   imagePanel(2, 1795),
   imagePanel(3, 1101),
   imagePanel(4, 1789),

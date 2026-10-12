@@ -6,6 +6,8 @@ import sharedStyles from "@/components/home/headerHero.module.css";
 import NavMenu from "@/components/navMenu";
 
 import { behanceUrl, caseModules, projectDescription } from "./caseStudy";
+import MindscapeCover from "./cover";
+import MindscapeOverview from "./overview";
 import styles from "./page.module.css";
 
 import type { Metadata } from "next";
@@ -35,7 +37,11 @@ export default function MindscapePage() {
 
         <div className={styles.canvas}>
           {caseModules.map((module, index) =>
-            module.type === "image" ? (
+            module.type === "cover" ? (
+              <MindscapeCover key={module.src} videoSrc={module.src} />
+            ) : module.type === "overview" ? (
+              <MindscapeOverview key={module.src} />
+            ) : module.type === "image" ? (
               <a
                 key={module.src}
                 href={module.src}

@@ -210,6 +210,52 @@
   line-height: 1;
 }
 
+.portraitAnchor {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.heroFlourish {
+  --flower-size: clamp(32px, 6.3vw, 76px);
+  position: absolute;
+  z-index: -1;
+  top: -46.9px;
+  left: 50%;
+  width: min(840px, 113cqw);
+  height: 231px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.heroLine {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.heroLine[data-ready="false"] {
+  visibility: hidden;
+}
+
+.heroPoppy {
+  position: absolute;
+  z-index: 1;
+  top: 63.636%;
+  left: 91.667%;
+  width: var(--flower-size);
+  height: auto;
+  aspect-ratio: 880 / 1033;
+  transform-origin: 47.727% 45.498%;
+  transform: translate(-47.727%, -45.498%) rotate(-30deg);
+}
+
 .headline,
 .sectionHeading {
   font-family: "Instrument Serif", "Iowan Old Style", Georgia, serif;
@@ -233,6 +279,24 @@
 
 .headline em {
   font-style: italic;
+}
+
+.productInitial {
+  position: relative;
+  z-index: 0;
+}
+
+/* Cover only the Instrument Serif p counter, beneath the unchanged glyph.
+   em sizing follows the headline; the fill follows the Hero background. */
+.letterCounter {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 1em;
+  height: 1.3em;
+  fill: var(--canvas);
+  pointer-events: none;
 }
 
 .description {
@@ -483,6 +547,11 @@
   .portraitFrame {
     width: 44px;
     height: 44px;
+  }
+
+  .heroFlourish {
+    top: -32.76px;
+    height: 161.33px;
   }
 
   .headline {
