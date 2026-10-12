@@ -148,7 +148,7 @@
   width: calc(100% - (2 * var(--gutter)));
   max-width: 1440px;
   margin: 0 auto;
-  overflow-x: auto;
+  overflow: hidden;
   scrollbar-width: none;
   mask-image: linear-gradient(
     to right,
@@ -169,8 +169,31 @@
   outline-offset: 4px;
 }
 
+.tickerTrack {
+  display: flex;
+  width: max-content;
+  animation: tickerScroll 60s linear infinite;
+  will-change: transform;
+}
+
+.tickerViewport:hover .tickerTrack,
+.tickerViewport:focus-within .tickerTrack {
+  animation-play-state: paused;
+}
+
+@keyframes tickerScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .ticker .tickerImage {
   display: block;
+  flex-shrink: 0;
   width: 2733px;
   max-width: none;
   height: 42px;
@@ -590,6 +613,19 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .tickerViewport {
+    overflow-x: auto;
+  }
+
+  .tickerTrack {
+    animation: none;
+    will-change: auto;
+  }
+
+  .ticker .tickerDuplicate {
+    display: none;
+  }
+
   .header a,
   .hero a {
     transition: none;

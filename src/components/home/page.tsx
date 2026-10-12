@@ -164,14 +164,27 @@ export default function HomePage() {
           aria-label="Design skills and tools"
           tabIndex={0}
         >
-          <Image
-            src="/images/skills-ticker.svg"
-            alt="Product design specializations and tools"
-            width={2733}
-            height={42}
-            unoptimized
-            className={styles.tickerImage}
-          />
+          <div className={styles.tickerTrack}>
+            <Image
+              src="/images/skills-ticker.svg"
+              alt="Product design specializations and tools"
+              width={2733}
+              height={42}
+              loading="eager"
+              unoptimized
+              className={styles.tickerImage}
+            />
+            <Image
+              src="/images/skills-ticker.svg"
+              alt=""
+              aria-hidden="true"
+              width={2733}
+              height={42}
+              loading="eager"
+              unoptimized
+              className={`${styles.tickerImage} ${styles.tickerDuplicate}`}
+            />
+          </div>
         </div>
       </div>
       <section
