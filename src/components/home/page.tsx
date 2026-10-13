@@ -173,6 +173,31 @@ export default function HomePage() {
       <NavMenu />
 
       <Hero />
+      <section
+        id="projects"
+        className="homepage-section scroll-mt-16 bg-background px-4 py-4 md:px-6 md:py-8 lg:px-8 lg:py-24"
+      >
+        <div className="mx-auto w-full max-w-[980px]">
+          <div
+            className={`${styles.sectionHeading} pointer-events-none z-20 mb-6 text-[clamp(1.9rem,4vw,3rem)] leading-[1] tracking-[-0.03em] text-foreground md:mb-8`}
+          >
+            Selected <span className="text-accent">works</span>
+          </div>
+          <div className="ml-auto pb-14 text-foreground md:pb-14">
+            <div className="flex flex-col gap-2 font-sans text-[clamp(1rem,2.2vw,1.25rem)] leading-relaxed tracking-[-0.01em] text-secondary">
+              <p>
+                A mix of product, UX, and visual work across different types of
+                projects.
+              </p>
+            </div>
+          </div>
+          <div className="flex flex-col gap-6">
+            {projects.map((project) => (
+              <ProjectCard key={project.name} project={project} isFullWidth />
+            ))}
+          </div>
+        </div>
+      </section>
       <div className={styles.ticker}>
         <div
           className={styles.tickerViewport}
@@ -206,31 +231,6 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <section
-        id="projects"
-        className="homepage-section scroll-mt-16 bg-background px-4 py-4 md:px-6 md:py-8 lg:px-8 lg:py-24"
-      >
-        <div className="mx-auto w-full max-w-[980px]">
-          <div
-            className={`${styles.sectionHeading} pointer-events-none z-20 mb-6 text-[clamp(1.9rem,4vw,3rem)] leading-[1] tracking-[-0.03em] text-foreground md:mb-8`}
-          >
-            Selected <span className="text-accent">works</span>
-          </div>
-          <div className="ml-auto pb-14 text-foreground md:pb-14">
-            <div className="flex flex-col gap-2 font-sans text-[clamp(1rem,2.2vw,1.25rem)] leading-relaxed tracking-[-0.01em] text-secondary">
-              <p>
-                A mix of product, UX, and visual work across different types of
-                projects.
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-col gap-6">
-            {projects.map((project) => (
-              <ProjectCard key={project.name} project={project} isFullWidth />
-            ))}
-          </div>
-        </div>
-      </section>
       <ContactSection />
     </>
   );
