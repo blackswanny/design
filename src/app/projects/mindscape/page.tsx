@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import ContactSection from "@/components/contactSection";
-import sharedStyles from "@/components/home/headerHero.module.css";
 import NavMenu from "@/components/navMenu";
 
 import { behanceUrl, caseModules, projectDescription } from "./caseStudy";
@@ -22,25 +21,12 @@ export default function MindscapePage() {
     <main className={`${styles.page} min-h-screen bg-background`}>
       <NavMenu />
       <article className={styles.caseStudy} aria-labelledby="mindscape-title">
-        <header className={styles.projectHeader}>
-          <Link href="/#projects" className={styles.backLink}>
-            <span aria-hidden="true">←</span> Back to selected work
-          </Link>
-          <h1
-            id="mindscape-title"
-            className={`${sharedStyles.sectionHeading} ${styles.title}`}
-          >
-            MindScape
-          </h1>
-          <p className={styles.description}>{projectDescription}</p>
-        </header>
+        <MindscapeOverview />
 
         <div className={styles.canvas}>
           {caseModules.map((module, index) =>
             module.type === "cover" ? (
               <MindscapeCover key={module.src} videoSrc={module.src} />
-            ) : module.type === "overview" ? (
-              <MindscapeOverview key={module.src} />
             ) : module.type === "image" ? (
               <a
                 key={module.src}

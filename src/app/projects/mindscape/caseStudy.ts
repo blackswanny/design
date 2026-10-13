@@ -1,7 +1,6 @@
 type CaseModule =
   | { type: "image"; src: string; height: number; alt: string }
   | { type: "cover"; src: string }
-  | { type: "overview"; src: string }
   | {
       type: "video";
       src: string;
@@ -30,13 +29,12 @@ function imagePanel(
   };
 }
 
-// Editable Figma sections replace the first two panels; remaining modules keep their order.
+// The project intro sits above the canvas; presentation modules keep their order.
 export const caseModules: readonly CaseModule[] = [
   {
     type: "cover",
     src: "/videos/projects/mindscape-therapy.mp4",
   },
-  { type: "overview", src: "/images/projects/mindscape/01.png" },
   imagePanel(2, 1795),
   imagePanel(3, 1101),
   imagePanel(4, 1789),

@@ -17,7 +17,7 @@
   --header-background: rgba(253, 253, 253, 0.94);
   width: calc(100% + (2 * var(--site-gutter)));
   margin-left: calc(-1 * var(--site-gutter));
-  padding-top: 140px;
+  padding-top: 200px;
 }
 
 .caseStudy,
@@ -25,10 +25,6 @@
   width: calc(100% - (2 * var(--case-gutter)));
   max-width: 1400px;
   margin: 0 auto;
-}
-
-.projectHeader {
-  padding-bottom: 36px;
 }
 
 .backLink {
@@ -48,22 +44,6 @@
 .backLink:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 5px;
-}
-
-.title {
-  margin: 24px 0 16px;
-  color: var(--foreground);
-  font-size: clamp(2.25rem, 5vw, 3.5rem);
-  line-height: 1.1;
-}
-
-.description {
-  max-width: 740px;
-  margin: 0;
-  color: var(--secondary);
-  font-family: var(--font-geist-sans), Arial, sans-serif;
-  font-size: clamp(1rem, 2.2vw, 1.25rem);
-  line-height: 1.6;
 }
 
 .canvas {
@@ -146,14 +126,6 @@
 }
 
 @media (max-width: 759px) {
-  .page {
-    padding-top: 138px;
-  }
-
-  .projectHeader {
-    padding-bottom: 24px;
-  }
-
   .projectEnd {
     padding: 28px 0;
   }
