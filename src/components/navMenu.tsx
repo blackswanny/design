@@ -4,7 +4,7 @@ import Link from "next/link";
 import styles from "./home/headerHero.module.css";
 
 const navItems = [
-  { href: "/#projects", label: "PROJECTS" },
+  { href: "/#projects", label: "WORKS" },
   { href: "/about", label: "ABOUT" },
   { href: "/#contacts", label: "CONTACT" },
 ];
@@ -36,7 +36,7 @@ export default function NavMenu({
           </span>
         </Link>
         <div className={styles.navLinks}>
-          {navItems.map((item) => (
+          {navItems.slice(0, 2).map((item) => (
             <Link
               key={item.href}
               href={item.href}
@@ -45,27 +45,33 @@ export default function NavMenu({
               {item.label}
             </Link>
           ))}
-        </div>
-        <a
-          className={styles.resume}
-          href="/Hanna-Gomozova-Product-Designer.pdf"
-          download="Hanna Gomozova_Product Designer.pdf"
-        >
-          Resume
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            aria-hidden="true"
+          <a
+            href="/Hanna-Gomozova-Product-Designer.pdf"
+            download="Hanna Gomozova_Product Designer.pdf"
           >
-            <path
-              d="M6 18L18 6M6 6H18V18"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            />
-          </svg>
-        </a>
+            RESUME
+          </a>
+          <Link
+            href={navItems[2].href}
+            className={`${styles.primary} ${styles.contactButton}`}
+            aria-current={activePath === navItems[2].href ? "page" : undefined}
+          >
+            {navItems[2].label}
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M6 18L18 6M6 6H18V18"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              />
+            </svg>
+          </Link>
+        </div>
       </nav>
     </header>
   );

@@ -82,7 +82,7 @@ export default function Hero() {
           </p>
           <div className={styles.actions}>
             <a href="#projects" className={styles.primary}>
-              View Selected Work
+              Selected works
               <ArrowUpRight />
             </a>
             <div className={styles.socialLinks}>
@@ -104,24 +104,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      <a
-        href="#projects"
-        className={styles.heroScroll}
-        aria-label="Scroll to selected work"
-      >
-        <span aria-hidden="true" className={styles.scrollLine} />
-        <span>Scroll</span>
-        <svg
-          width="12"
-          height="8"
-          viewBox="0 0 12 8"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path d="M1 1L6 6L11 1" stroke="currentColor" />
-        </svg>
-      </a>
     </section>
   );
 }

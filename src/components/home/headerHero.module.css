@@ -34,18 +34,20 @@
   backdrop-filter: blur(14px);
 }
 
-/* Keep existing section anchors clear of the taller fixed header. */
+/* Keep section anchors clear of the 80px fixed header. */
 :global(html):has(.header) {
-  scroll-padding-top: 24px;
+  scroll-padding-top: 16px;
 }
 
 .headerInner {
+  position: relative;
   display: flex;
   align-items: center;
   gap: clamp(1.5rem, 4.4vw, 4rem);
   width: calc(100% - (2 * var(--gutter)));
   max-width: 1440px;
-  min-height: 88px;
+  height: 80px;
+  min-height: 80px;
   margin: 0 auto;
   border-bottom: 1px solid var(--border);
 }
@@ -59,15 +61,25 @@
 
 .monogram {
   display: block;
-  width: 56px;
-  height: 56px;
+  width: 45px;
+  height: 45px;
   object-fit: contain;
 }
 
-.brandName {
-  font-size: 20px;
-  line-height: 1.05;
+.brandName,
+.navLinks,
+.primary,
+.socialLinks a,
+.actionText,
+:global(html:has(#home)) .contactAction {
+  font-family: var(--font-geist-sans), "neueMontreal", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
   letter-spacing: 0.035em;
+}
+
+.brandName {
+  line-height: 1.05;
   text-transform: uppercase;
 }
 
@@ -77,8 +89,6 @@
   gap: clamp(1.5rem, 3.4vw, 3.25rem);
   margin-left: auto;
   color: var(--muted);
-  font-size: 15px;
-  letter-spacing: 0.11em;
 }
 
 .navLinks a,
@@ -93,36 +103,17 @@
   color: var(--poppy);
 }
 
-.resume {
-  display: inline-flex;
-  flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  min-width: 156px;
-  min-height: 52px;
-  padding: 12px 24px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  font-size: 14px;
-  letter-spacing: 0.075em;
-  text-transform: uppercase;
-  transition:
-    background-color 180ms ease,
-    border-color 180ms ease;
-}
-
-.resume:hover {
-  border-color: var(--text);
-  background: var(--surface);
-}
-
 .hero {
+  --hero-edge-space: clamp(28px, 4dvh, 48px);
   position: relative;
   isolation: isolate;
+  display: grid;
+  place-items: center;
   width: calc(100% + (2 * var(--site-gutter)));
+  min-height: 100svh;
+  min-height: 100dvh;
   margin-left: calc(-1 * var(--site-gutter));
-  padding: 308px 0 118px;
+  padding: calc(80px + var(--hero-edge-space)) 0 var(--hero-edge-space);
   overflow: hidden;
   background: var(--canvas);
 }
@@ -191,12 +182,37 @@
   }
 }
 
-.ticker .tickerImage {
+.tickerGroup {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 72px;
+  height: 42px;
+  margin: 0;
+  padding: 0 36px;
+  list-style: none;
+}
+
+.tickerItem {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 20px;
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.tickerSeparator {
   display: block;
   flex-shrink: 0;
-  width: 2733px;
-  max-width: none;
-  height: 42px;
+  width: 6px;
+  height: 6px;
+  fill: #f35a47;
 }
 
 .heroInner {
@@ -213,6 +229,9 @@
   position: relative;
   z-index: 2;
   container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
   min-width: 0;
   padding-left: 0;
 }
@@ -286,8 +305,9 @@
 }
 
 .headline {
+  width: 100%;
   max-width: 1200px;
-  margin: 30px auto 0;
+  margin: 0 auto;
   color: var(--text);
   font-size: min(80px, calc(100cqw / 9.3));
   line-height: 1;
@@ -323,8 +343,9 @@
 }
 
 .description {
+  width: 100%;
   max-width: 530px;
-  margin: 30px auto 0;
+  margin: 0 auto;
   color: var(--muted);
   font-weight: 400;
   line-height: 1.45;
@@ -337,27 +358,27 @@
 
 .actions {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-wrap: wrap;
   gap: 32px;
-  margin-top: 46px;
 }
 
 .primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  min-width: 286px;
-  min-height: 70px;
-  padding: 20px 32px;
+  gap: 8px;
+  height: 40px;
+  min-width: 0;
+  min-height: 40px;
+  /* Compensate for the arrow's empty viewBox inset so the visible label
+     and arrow have balanced margins, including in the fixed-width CTA. */
+  padding: 0 25px 0 28px;
   border: 1px solid var(--poppy);
   border-radius: 999px;
   background: var(--poppy);
   color: #ffffff;
-  font-size: 16px;
-  letter-spacing: 0.06em;
   text-transform: uppercase;
   transition:
     background-color 180ms ease,
@@ -367,6 +388,22 @@
 .primary:hover {
   border-color: #e65847;
   background: #e65847;
+}
+
+.navLinks .contactButton {
+  flex-shrink: 0;
+  gap: 6px;
+  width: 150px;
+  height: 40px;
+  min-width: 0;
+  min-height: 40px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.navLinks .contactButton:hover,
+.navLinks .contactButton[aria-current="page"] {
+  color: #ffffff;
 }
 
 .socialLinks {
@@ -382,11 +419,9 @@
 .socialLinks a {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   padding: 6px 0;
   border-bottom: 1px solid var(--border);
-  font-size: 14px;
-  letter-spacing: 0.035em;
   text-transform: uppercase;
 }
 
@@ -411,28 +446,6 @@
   filter: brightness(1.1);
 }
 
-.heroScroll {
-  position: absolute;
-  bottom: 38px;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 9px;
-  color: var(--muted);
-  font-size: 11px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  transform: translateX(-50%);
-}
-
-.scrollLine {
-  width: 1px;
-  height: 32px;
-  margin-bottom: 2px;
-  background: var(--border);
-}
-
 .header a:focus-visible,
 .hero a:focus-visible {
   outline: 2px solid var(--poppy);
@@ -444,52 +457,24 @@
     gap: 24px;
   }
 
-  .primary {
-    min-width: 0;
-    min-height: 60px;
-    padding: 18px 24px;
-    font-size: 12px;
-  }
-
   .socialLinks {
     gap: 22px;
     padding-left: 24px;
   }
 
   .socialLinks a {
-    gap: 6px;
-    font-size: 12px;
+    gap: 3px;
   }
 }
 
 @media (max-width: 1023px) {
-  :global(html):has(.header) {
-    scroll-padding-top: 16px;
-  }
-
   .headerInner {
     gap: 24px;
     min-height: 80px;
   }
 
-  .brandName {
-    font-size: 17px;
-  }
-
   .navLinks {
     gap: 24px;
-    font-size: 12px;
-  }
-
-  .resume {
-    min-width: 120px;
-    min-height: 44px;
-    padding: 10px 18px;
-    font-size: 12px;
-  }
-
-  .hero {
-    padding-top: 360px;
   }
 
   .aboutPage {
@@ -508,15 +493,13 @@
 }
 
 @media (max-width: 759px) {
-  :global(html):has(.header) {
-    scroll-padding-top: 34px;
-  }
-
   .headerInner {
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 12px 20px;
-    padding: 12px 0 14px;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 42px 22.5px;
+    align-content: center;
+    gap: 4px 20px;
+    padding: 0;
   }
 
   .brand {
@@ -528,31 +511,25 @@
     height: 42px;
   }
 
-  .brandName {
-    font-size: 16px;
-  }
-
   .navLinks {
     grid-column: 1 / -1;
     grid-row: 2;
     justify-content: center;
-    gap: 32px;
+    gap: clamp(8px, 3vw, 24px);
     margin: 0;
-    font-size: 11px;
   }
 
-  .resume {
-    grid-column: 2;
-    grid-row: 1;
-    min-width: 108px;
-    min-height: 40px;
-    padding: 8px 14px;
-    font-size: 11px;
+  .navLinks .contactButton {
+    position: absolute;
+    top: 26.25px;
+    right: 0;
+    gap: 4px;
+    transform: translateY(-50%);
   }
 
-  .hero {
-    padding-top: 350px;
-    padding-bottom: 112px;
+  .primary {
+    padding-right: 26px;
+    padding-left: 29px;
   }
 
   .aboutPage {
@@ -578,26 +555,16 @@
   }
 
   .headline {
-    margin-top: 24px;
     line-height: 1;
     letter-spacing: normal;
   }
 
   .description {
-    margin-top: 24px;
     line-height: 1.5;
   }
 
   .actions {
     gap: 24px;
-    margin-top: 30px;
-  }
-
-  .primary {
-    min-width: 0;
-    min-height: 58px;
-    padding: 16px 26px;
-    font-size: 12px;
   }
 
   .socialLinks {
@@ -606,9 +573,11 @@
     padding-left: 0;
     border-left: 0;
   }
+}
 
-  .socialLinks a {
-    font-size: 12px;
+@media (max-width: 359px) {
+  .headerInner {
+    width: calc(100% - 2rem);
   }
 }
 

@@ -49,7 +49,9 @@ function ContactPill({ action }: Readonly<{ action: ContactAction }>) {
       rel={action.external ? "noreferrer" : undefined}
       className="group flex items-center justify-start text-center md:justify-center"
     >
-      <span className="inline-flex items-center justify-center gap-2 font-sans text-[clamp(1rem,3.8vw,1.25rem)] tracking-[-0.03em] text-secondary transition-colors duration-200 group-hover:text-accent">
+      <span
+        className={`${styles.contactAction} inline-flex items-center justify-center gap-2 font-sans text-[clamp(1rem,3.8vw,1.25rem)] tracking-[-0.03em] text-secondary transition-colors duration-200 group-hover:text-accent`}
+      >
         <span>{action.label}</span>
       </span>
     </a>
