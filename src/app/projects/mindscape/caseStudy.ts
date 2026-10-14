@@ -1,6 +1,16 @@
 type CaseModule =
-  | { type: "image"; src: string; height: number; alt: string }
+  | {
+      type: "image";
+      src: string;
+      width?: number;
+      height: number;
+      alt: string;
+      background?: "page";
+      roundedTop?: boolean;
+      continuousStart?: boolean;
+    }
   | { type: "cover"; src: string }
+  | { type: "summary"; id: string }
   | {
       type: "video";
       src: string;
@@ -29,14 +39,29 @@ function imagePanel(
   };
 }
 
-// The project intro sits above the canvas; presentation modules keep their order.
+export const phoneShowcase = {
+  src: "/images/projects/mindscape/phone-mockups-purple-v2.png",
+  width: 6220,
+  height: 3260,
+  alt: "MindScape — psychologist search, specialist profile and reviews",
+} as const;
+
+// The phone showcase sits below the title; the remaining modules follow the intro.
 export const caseModules: readonly CaseModule[] = [
+  { type: "summary", id: "mindscape-summary" },
   {
     type: "cover",
     src: "/videos/projects/mindscape-therapy.mp4",
   },
-  imagePanel(2, 1795),
-  imagePanel(3, 1101),
+  {
+    type: "image",
+    src: "/images/projects/mindscape/design-process-timeline.png",
+    width: 5760,
+    height: 2868,
+    alt: "MindScape design process timeline — analysis, prototyping, design and testing",
+    roundedTop: true,
+    continuousStart: true,
+  },
   imagePanel(4, 1789),
   imagePanel(5, 2773),
   imagePanel(6, 2271),

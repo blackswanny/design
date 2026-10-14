@@ -1,13 +1,13 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import ContactSection from "@/components/contactSection";
 import NavMenu from "@/components/navMenu";
 
-import { behanceUrl, caseModules, projectDescription } from "./caseStudy";
+import { caseModules, phoneShowcase, projectDescription } from "./caseStudy";
 import MindscapeCover from "./cover";
-import MindscapeOverview from "./overview";
+import MindscapeOverview, { MindscapeIntro } from "./overview";
 import styles from "./page.module.css";
+import MindscapeSummary from "./summary";
 
 import type { Metadata } from "next";
 
@@ -22,10 +22,30 @@ export default function MindscapePage() {
       <NavMenu />
       <article className={styles.caseStudy} aria-labelledby="mindscape-title">
         <MindscapeOverview />
+        <MindscapeIntro />
+        <a
+          href={phoneShowcase.src}
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`Open ${phoneShowcase.alt} in full size`}
+          className={styles.heroPanel}
+        >
+          <Image
+            src={phoneShowcase.src}
+            alt={phoneShowcase.alt}
+            width={phoneShowcase.width}
+            height={phoneShowcase.height}
+            quality={95}
+            sizes="(min-width: 1750px) 1400px, 80vw"
+            className={styles.panel}
+          />
+        </a>
 
         <div className={styles.canvas}>
           {caseModules.map((module, index) =>
-            module.type === "cover" ? (
+            module.type === "summary" ? (
+              <MindscapeSummary key={module.id} />
+            ) : module.type === "cover" ? (
               <MindscapeCover key={module.src} videoSrc={module.src} />
             ) : module.type === "image" ? (
               <a
@@ -34,12 +54,15 @@ export default function MindscapePage() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label={`Open ${module.alt} in full size`}
-                className={styles.panelLink}
+                data-continuous-start={
+                  module.continuousStart ? true : undefined
+                }
+                className={`${styles.panelLink} ${module.background === "page" ? styles.pagePanel : ""} ${module.roundedTop ? styles.roundedTopPanel : ""}`}
               >
                 <Image
                   src={module.src}
                   alt={module.alt}
-                  width={2800}
+                  width={module.width ?? 2800}
                   height={module.height}
                   quality={95}
                   sizes="(min-width: 1750px) 1400px, 80vw"
@@ -70,20 +93,6 @@ export default function MindscapePage() {
               </div>
             ),
           )}
-        </div>
-
-        <div className={styles.projectEnd}>
-          <Link href="/#projects" className={styles.backLink}>
-            <span aria-hidden="true">←</span> Back to selected work
-          </Link>
-          <a
-            href={behanceUrl}
-            target="_blank"
-            rel="noreferrer"
-            className={styles.backLink}
-          >
-            Original case on Behance <span aria-hidden="true">↗</span>
-          </a>
         </div>
       </article>
       <footer>

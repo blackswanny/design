@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import sharedStyles from "@/components/home/headerHero.module.css";
 
+import IntroLayout from "./introLayout";
 import styles from "./overview.module.css";
 
 const projectDetails = [
@@ -10,10 +11,10 @@ const projectDetails = [
   {
     label: "Design Focus",
     values: [
+      "Information Architecture",
       "User Flows",
-      "Specialist Discovery",
-      "Booking Experience",
-      "Accessible UX",
+      "Interaction Design",
+      "Design System",
     ],
   },
 ] as const;
@@ -39,8 +40,14 @@ export default function MindscapeOverview() {
           finding support feel <em>easier.</em>
         </span>
       </h1>
+    </header>
+  );
+}
 
-      <div className={styles.details}>
+export function MindscapeIntro() {
+  return (
+    <div className={styles.overview}>
+      <IntroLayout className={styles.details}>
         <section aria-labelledby="mindscape-intro-title">
           <h2 id="mindscape-intro-title" className={styles.label}>
             Intro
@@ -83,7 +90,7 @@ export default function MindscapeOverview() {
             </div>
           ))}
         </dl>
-      </div>
-    </header>
+      </IntroLayout>
+    </div>
   );
 }
