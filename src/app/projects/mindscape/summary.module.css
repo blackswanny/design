@@ -48,8 +48,8 @@
 
 .icon {
   display: block;
-  width: 32px;
-  height: 32px;
+  width: 24.64px;
+  height: 24.64px;
   background: currentColor;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
