@@ -1,7 +1,6 @@
 import localFont from "next/font/local";
 
 import "./globals.css";
-import CursorFlower from "../components/cursorFlower";
 import ScrollCue from "../components/scrollCue";
 
 import type { Metadata } from "next";
@@ -31,7 +30,6 @@ export default function RootLayout({
       <body className="antialiased" suppressHydrationWarning>
         {children}
         <ScrollCue />
-        <CursorFlower />
       </body>
     </html>
   );

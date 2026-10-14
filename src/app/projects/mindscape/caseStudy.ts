@@ -46,9 +46,10 @@ export const phoneShowcase = {
   alt: "MindScape — psychologist search, specialist profile and reviews",
 } as const;
 
-// The phone showcase sits below the title; the remaining modules follow the intro.
+// Summary and phone showcase follow the intro, before the remaining presentation.
 export const caseModules: readonly CaseModule[] = [
   { type: "summary", id: "mindscape-summary" },
+  { type: "image", ...phoneShowcase, background: "page" },
   {
     type: "cover",
     src: "/videos/projects/mindscape-therapy.mp4",

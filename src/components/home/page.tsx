@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import ContactSection from "../contactSection";
+import CursorFlower from "../cursorFlower";
 import NavMenu from "../navMenu";
 import styles from "./headerHero.module.css";
 import Hero from "./hero";
@@ -232,6 +233,7 @@ export default function HomePage() {
         </div>
       </div>
       <ContactSection />
+      <CursorFlower />
     </>
   );
 }

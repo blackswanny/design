@@ -3,7 +3,7 @@ import Image from "next/image";
 import ContactSection from "@/components/contactSection";
 import NavMenu from "@/components/navMenu";
 
-import { caseModules, phoneShowcase, projectDescription } from "./caseStudy";
+import { caseModules, projectDescription } from "./caseStudy";
 import MindscapeCover from "./cover";
 import MindscapeOverview, { MindscapeIntro } from "./overview";
 import styles from "./page.module.css";
@@ -23,24 +23,6 @@ export default function MindscapePage() {
       <article className={styles.caseStudy} aria-labelledby="mindscape-title">
         <MindscapeOverview />
         <MindscapeIntro />
-        <a
-          href={phoneShowcase.src}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={`Open ${phoneShowcase.alt} in full size`}
-          className={styles.heroPanel}
-        >
-          <Image
-            src={phoneShowcase.src}
-            alt={phoneShowcase.alt}
-            width={phoneShowcase.width}
-            height={phoneShowcase.height}
-            quality={95}
-            sizes="(min-width: 1750px) 1400px, 80vw"
-            className={styles.panel}
-          />
-        </a>
-
         <div className={styles.canvas}>
           {caseModules.map((module, index) =>
             module.type === "summary" ? (
