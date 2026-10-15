@@ -1,5 +1,7 @@
 .contacts {
   --contact-gutter: var(--site-content-gutter);
+  --contact-heading-gap: clamp(80px, 12vw, 100px);
+  --contact-flower-size: clamp(56px, 7.3vw, 88px);
   position: relative;
   left: 50%;
   isolation: isolate;
@@ -23,7 +25,7 @@
 
 .stage {
   position: relative;
-  margin-top: clamp(80px, 12vw, 100px);
+  margin-top: var(--contact-heading-gap);
   text-align: center;
 }
 
@@ -52,7 +54,7 @@
   z-index: 1;
   top: -20px;
   left: 22%;
-  width: clamp(56px, 7.3vw, 88px);
+  width: var(--contact-flower-size);
   height: auto;
   aspect-ratio: 2000 / 1938;
   filter: saturate(1.25);

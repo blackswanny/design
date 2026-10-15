@@ -124,10 +124,16 @@
   background-image: none;
 }
 
+.projects,
+.ticker + :global(#contacts) {
+  --ticker-section-gap: clamp(48px, 6vw, 96px);
+}
+
 .projects {
   width: calc(100% + (2 * var(--site-gutter)));
   margin-left: calc(-1 * var(--site-gutter));
   padding-top: clamp(32px, 4.5vw, 64px);
+  padding-bottom: var(--ticker-section-gap);
   padding-right: var(--site-content-gutter);
   padding-left: var(--site-content-gutter);
 }
@@ -162,6 +168,11 @@
 
 .ticker + :global(#contacts) {
   --contact-divider-width: 0px;
+  /* Match the space above the ticker to the flower's top edge, not the title. */
+  --contact-top-space: calc(
+    var(--ticker-section-gap) + 20px + var(--contact-flower-size) * 0.4845 -
+      var(--contact-heading-gap)
+  );
 }
 
 .tickerViewport {

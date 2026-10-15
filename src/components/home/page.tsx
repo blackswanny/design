@@ -179,7 +179,7 @@ export default function HomePage() {
       <Hero />
       <section
         id="projects"
-        className={`${styles.projects} homepage-section scroll-mt-16 bg-background pb-4 md:pb-8 lg:pb-24`}
+        className={`${styles.projects} homepage-section scroll-mt-16 bg-background`}
       >
         <div className={styles.projectsInner}>
           <div
