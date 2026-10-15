@@ -91,6 +91,10 @@ export default function ContactSection() {
             </a>
           ))}
         </nav>
+        <div className={styles.credits}>
+          <p>© 2026 Hanna Gomozova</p>
+          <p>Built with love</p>
+        </div>
       </div>
     </section>
   );

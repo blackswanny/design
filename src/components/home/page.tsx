@@ -179,9 +179,9 @@ export default function HomePage() {
       <Hero />
       <section
         id="projects"
-        className={`${styles.projects} homepage-section scroll-mt-16 bg-background px-4 pb-4 md:px-6 md:pb-8 lg:px-8 lg:pb-24`}
+        className={`${styles.projects} homepage-section scroll-mt-16 bg-background pb-4 md:pb-8 lg:pb-24`}
       >
-        <div className="mx-auto w-full max-w-[980px]">
+        <div className={styles.projectsInner}>
           <div
             className={`${styles.sectionHeading} pointer-events-none z-20 mb-6 text-[clamp(1.9rem,4vw,3rem)] leading-[1] tracking-[-0.03em] text-foreground md:mb-8`}
           >
@@ -203,35 +203,37 @@ export default function HomePage() {
         </div>
       </section>
       <div className={styles.ticker}>
-        <div
-          className={styles.tickerViewport}
-          role="region"
-          aria-label="Design skills and tools"
-          tabIndex={0}
-        >
-          <div className={styles.tickerTrack}>
-            {[0, 1].map((copy) => (
-              <ul
-                key={copy}
-                className={`${styles.tickerGroup} ${copy === 1 ? styles.tickerDuplicate : ""}`}
-                aria-hidden={copy === 1 ? true : undefined}
-              >
-                {skills.map((skill) => (
-                  <li key={skill} className={styles.tickerItem}>
-                    <span>{skill}</span>
-                    <svg
-                      className={styles.tickerSeparator}
-                      width="6"
-                      height="6"
-                      viewBox="0 0 8 8"
-                      aria-hidden="true"
-                    >
-                      <path d="M4 0C4.5 2.25 5.75 3.5 8 4C5.75 4.5 4.5 5.75 4 8C3.5 5.75 2.25 4.5 0 4C2.25 3.5 3.5 2.25 4 0Z" />
-                    </svg>
-                  </li>
-                ))}
-              </ul>
-            ))}
+        <div className={styles.tickerFrame}>
+          <div
+            className={styles.tickerViewport}
+            role="region"
+            aria-label="Design skills and tools"
+            tabIndex={0}
+          >
+            <div className={styles.tickerTrack}>
+              {[0, 1].map((copy) => (
+                <ul
+                  key={copy}
+                  className={`${styles.tickerGroup} ${copy === 1 ? styles.tickerDuplicate : ""}`}
+                  aria-hidden={copy === 1 ? true : undefined}
+                >
+                  {skills.map((skill) => (
+                    <li key={skill} className={styles.tickerItem}>
+                      <span>{skill}</span>
+                      <svg
+                        className={styles.tickerSeparator}
+                        width="6"
+                        height="6"
+                        viewBox="0 0 8 8"
+                        aria-hidden="true"
+                      >
+                        <path d="M4 0C4.5 2.25 5.75 3.5 8 4C5.75 4.5 4.5 5.75 4 8C3.5 5.75 2.25 4.5 0 4C2.25 3.5 3.5 2.25 4 0Z" />
+                      </svg>
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
           </div>
         </div>
       </div>

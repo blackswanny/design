@@ -35,8 +35,16 @@
   --accent: #d74736;
   --border: #dedede;
   --site-gutter: 10vw;
+  --site-content-gutter: clamp(20px, 6vw, 96px);
+  --site-content-max: 1440px;
   --action-icon-gap: 6px;
   color-scheme: light;
+}
+
+@media (max-width: 359px) {
+  :root {
+    --site-content-gutter: 12px;
+  }
 }
 
 html {

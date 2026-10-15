@@ -1,5 +1,5 @@
 .contacts {
-  --contact-gutter: clamp(1.25rem, 6vw, 6rem);
+  --contact-gutter: var(--site-content-gutter);
   position: relative;
   left: 50%;
   isolation: isolate;
@@ -15,7 +15,7 @@
 
 .inner {
   width: calc(100% - (2 * var(--contact-gutter)));
-  max-width: 1440px;
+  max-width: var(--site-content-max);
   margin: 0 auto;
   padding-bottom: 32px;
   border-top: var(--contact-divider-width, 1px) solid var(--border);
@@ -166,6 +166,21 @@
 
 .email:hover {
   color: var(--foreground);
+}
+
+.credits {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-top: clamp(32px, 4vw, 48px);
+  color: #a1a1aa;
+  font-family: var(--font-geist-sans), "neueMontreal", Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: normal;
 }
 
 .contacts a:focus-visible,

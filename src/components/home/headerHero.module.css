@@ -17,12 +17,11 @@
 .header,
 .hero,
 .ticker {
-  --ticker-label-gap: 46px;
   --canvas: var(--background);
   --text: var(--foreground);
   --muted: var(--secondary);
   --poppy: var(--accent);
-  --gutter: clamp(1.25rem, 6vw, 6rem);
+  --gutter: var(--site-content-gutter);
   color: var(--text);
   font-family: var(--font-geist-sans), "neueMontreal", Arial, sans-serif;
 }
@@ -46,7 +45,7 @@
   align-items: center;
   gap: clamp(1.5rem, 4.4vw, 4rem);
   width: calc(100% - (2 * var(--gutter)));
-  max-width: 1440px;
+  max-width: var(--site-content-max);
   height: 80px;
   min-height: 80px;
   margin: 0 auto;
@@ -57,7 +56,7 @@
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .monogram {
@@ -87,7 +86,7 @@
 .navLinks {
   display: flex;
   align-items: center;
-  gap: clamp(1.5rem, 3.4vw, 3.25rem);
+  gap: clamp(24px, 3.4vw, 48px);
   margin-left: auto;
   color: var(--muted);
 }
@@ -126,7 +125,17 @@
 }
 
 .projects {
+  width: calc(100% + (2 * var(--site-gutter)));
+  margin-left: calc(-1 * var(--site-gutter));
   padding-top: clamp(32px, 4.5vw, 64px);
+  padding-right: var(--site-content-gutter);
+  padding-left: var(--site-content-gutter);
+}
+
+.projectsInner {
+  width: 100%;
+  max-width: var(--site-content-max);
+  margin: 0 auto;
 }
 
 .aboutPage {
@@ -135,29 +144,19 @@
 }
 
 .ticker {
+  --ticker-label-gap: 48px;
   width: calc(100% + (2 * var(--site-gutter)));
   margin-left: calc(-1 * var(--site-gutter));
   margin-bottom: 0;
 }
 
-.ticker::before,
-.ticker::after {
-  display: block;
+.tickerFrame {
   width: calc(100% - (2 * var(--gutter)));
-  max-width: 1440px;
-  height: 1px;
-  margin-right: auto;
-  margin-left: auto;
-  background: var(--border);
-  content: "";
-}
-
-.ticker::before {
-  margin-bottom: 10px;
-}
-
-.ticker::after {
-  margin-top: 10px;
+  max-width: var(--site-content-max);
+  margin: 0 auto;
+  padding: 10px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .ticker + :global(#contacts) {
@@ -165,9 +164,7 @@
 }
 
 .tickerViewport {
-  width: calc(100% - (2 * var(--gutter)));
-  max-width: 1440px;
-  margin: 0 auto;
+  width: 100%;
   overflow: hidden;
   scrollbar-width: none;
   mask-image: linear-gradient(
@@ -255,7 +252,7 @@
   align-items: center;
   gap: clamp(2.5rem, 5.8vw, 5.5rem);
   width: calc(100% - (2 * var(--gutter)));
-  max-width: 1440px;
+  max-width: var(--site-content-max);
   margin: 0 auto;
 }
 
@@ -443,7 +440,7 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 36px;
+  gap: 32px;
   min-height: 40px;
   padding-left: 32px;
   border-left: 1px solid var(--border);
@@ -496,7 +493,7 @@
   }
 
   .socialLinks {
-    gap: 22px;
+    gap: 24px;
     padding-left: 24px;
   }
 }
@@ -542,7 +539,8 @@
   }
 
   .brand {
-    gap: 6px;
+    justify-self: start;
+    gap: 8px;
   }
 
   .monogram {
@@ -606,16 +604,10 @@
   }
 
   .socialLinks {
-    gap: 28px;
+    gap: 24px;
     min-height: auto;
     padding-left: 0;
     border-left: 0;
-  }
-}
-
-@media (max-width: 359px) {
-  .headerInner {
-    width: calc(100% - 2rem);
   }
 }
 
