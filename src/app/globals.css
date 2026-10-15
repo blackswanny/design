@@ -27,13 +27,15 @@
 }
 
 :root {
-  --background: #ffffff;
+  --background: #faf8f6;
+  --header-background: rgba(250, 248, 246, 0.94);
   --foreground: #171717;
   --surface: #f6f6f6;
   --secondary: #71717a;
   --accent: #d74736;
   --border: #dedede;
   --site-gutter: 10vw;
+  --action-icon-gap: 6px;
   color-scheme: light;
 }
 

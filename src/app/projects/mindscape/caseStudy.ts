@@ -9,7 +9,6 @@ type CaseModule =
       roundedTop?: boolean;
       continuousStart?: boolean;
     }
-  | { type: "cover"; src: string }
   | { type: "summary"; id: string }
   | {
       type: "video";
@@ -39,21 +38,9 @@ function imagePanel(
   };
 }
 
-export const phoneShowcase = {
-  src: "/images/projects/mindscape/phone-mockups-purple-v2.png",
-  width: 6220,
-  height: 3260,
-  alt: "MindScape — psychologist search, specialist profile and reviews",
-} as const;
-
-// Summary and phone showcase follow the intro, before the remaining presentation.
+// Project summary follows the intro, before the remaining presentation.
 export const caseModules: readonly CaseModule[] = [
   { type: "summary", id: "mindscape-summary" },
-  { type: "image", ...phoneShowcase, background: "page" },
-  {
-    type: "cover",
-    src: "/videos/projects/mindscape-therapy.mp4",
-  },
   {
     type: "image",
     src: "/images/projects/mindscape/design-process-timeline.png",

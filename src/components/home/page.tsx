@@ -157,7 +157,7 @@ function ProjectCard({
             aria-label={
               isInternal ? `Read ${project.name} case study` : undefined
             }
-            className={`${styles.actionText} inline-flex items-center gap-0.5 text-secondary transition-colors hover:text-accent`}
+            className={`${styles.actionText} inline-flex items-center text-secondary transition-colors hover:text-accent`}
           >
             <span>More</span>
             <SquareArrowUpRightIcon />

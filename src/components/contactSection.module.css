@@ -1,0 +1,148 @@
+.contacts {
+  --contact-gutter: clamp(1.25rem, 6vw, 6rem);
+  position: relative;
+  left: 50%;
+  isolation: isolate;
+  width: 100vw;
+  margin-left: -50vw;
+  padding-top: 24px;
+  overflow: hidden;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), "neueMontreal", Arial, sans-serif;
+  scroll-margin-top: 64px;
+}
+
+.inner {
+  width: calc(100% - (2 * var(--contact-gutter)));
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-bottom: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.stage {
+  position: relative;
+  margin-top: clamp(80px, 12vw, 100px);
+  text-align: center;
+}
+
+.flourish {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 180px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.line {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform: translateY(-9px);
+}
+
+.poppy {
+  position: absolute;
+  z-index: 1;
+  top: -20px;
+  left: 22%;
+  width: clamp(56px, 7.3vw, 88px);
+  height: auto;
+  aspect-ratio: 2000 / 1938;
+  filter: saturate(1.25);
+  transform: translate(-50%, -50%);
+}
+
+.stage .title {
+  margin: 0;
+  color: var(--foreground);
+  font-size: clamp(3rem, 10vw, 5rem);
+  line-height: 1;
+  letter-spacing: normal;
+}
+
+.title em {
+  font-style: italic;
+}
+
+.description {
+  @apply font-sans;
+  max-width: 480px;
+  margin: 20px auto 0;
+  color: var(--secondary);
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: normal;
+}
+
+.email {
+  display: inline-block;
+  margin-top: 24px;
+  color: var(--secondary);
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  font-weight: 400;
+  letter-spacing: normal;
+  overflow-wrap: anywhere;
+  transition: color 180ms ease;
+}
+
+.socials {
+  --social-gap: clamp(16px, 3vw, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--social-gap);
+  min-height: 40px;
+  margin-top: 48px;
+}
+
+.socials a {
+  position: relative;
+}
+
+.socials a + a::before {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--social-gap) / -2);
+  width: 1px;
+  height: 100%;
+  background: var(--border);
+  transform: translateY(-50%);
+  pointer-events: none;
+  content: "";
+}
+
+.email:hover {
+  color: var(--accent);
+}
+
+.contacts a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 5px;
+}
+
+@media (max-width: 759px) {
+  .description {
+    line-height: 1.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .email {
+    transition: none;
+  }
+}
+
+@media (max-width: 379px) {
+  .socials a + a::before {
+    display: none;
+  }
+}

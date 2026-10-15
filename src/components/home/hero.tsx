@@ -1,21 +1,8 @@
 import Image from "next/image";
 
+import ArrowUpRight from "../arrowUpRight";
 import styles from "./headerHero.module.css";
 import HeroLine from "./heroLine";
-
-function ArrowUpRight() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      aria-hidden="true"
-    >
-      <path d="M6 18L18 6M6 6H18V18" stroke="currentColor" strokeWidth="1.5" />
-    </svg>
-  );
-}
 
 export default function Hero() {
   return (
@@ -88,6 +75,7 @@ export default function Hero() {
             <div className={styles.socialLinks}>
               <a
                 href="https://www.linkedin.com/in/hanna-gomozova/"
+                className={styles.socialLink}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -95,6 +83,7 @@ export default function Hero() {
               </a>
               <a
                 href="https://www.behance.net/hanna_gomozova"
+                className={styles.socialLink}
                 target="_blank"
                 rel="noreferrer"
               >

@@ -4,7 +4,6 @@ import ContactSection from "@/components/contactSection";
 import NavMenu from "@/components/navMenu";
 
 import { caseModules, projectDescription } from "./caseStudy";
-import MindscapeCover from "./cover";
 import MindscapeOverview, { MindscapeIntro } from "./overview";
 import styles from "./page.module.css";
 import MindscapeSummary from "./summary";
@@ -27,8 +26,6 @@ export default function MindscapePage() {
           {caseModules.map((module, index) =>
             module.type === "summary" ? (
               <MindscapeSummary key={module.id} />
-            ) : module.type === "cover" ? (
-              <MindscapeCover key={module.src} videoSrc={module.src} />
             ) : module.type === "image" ? (
               <a
                 key={module.src}

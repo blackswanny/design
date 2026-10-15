@@ -1,5 +1,4 @@
 :global(html):has(.page) {
-  --background: #fdfdfd;
   --foreground: #171717;
   --surface: #f6f6f6;
   --secondary: #71717a;
@@ -15,7 +14,6 @@
 .page {
   --case-gutter: clamp(1.25rem, 6vw, 6rem);
   --case-section-gap: clamp(58px, calc(12vw - 14px), 94px);
-  --header-background: rgba(253, 253, 253, 0.94);
   width: calc(100% + (2 * var(--site-gutter)));
   margin-left: calc(-1 * var(--site-gutter));
   padding-top: 200px;
