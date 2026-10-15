@@ -2,17 +2,13 @@ import Image from "next/image";
 
 import ArrowUpRight from "./arrowUpRight";
 import styles from "./contactSection.module.css";
+import CopyEmail from "./copyEmail";
 import sharedStyles from "./home/headerHero.module.css";
 
 type ContactAction = {
   href: string;
   label: string;
   external?: boolean;
-};
-
-const emailAction: ContactAction = {
-  href: "mailto:anna.mayskay@gmail.com",
-  label: "anna.mayskay@gmail.com",
 };
 
 const socialActions: ContactAction[] = [
@@ -79,9 +75,7 @@ export default function ContactSection() {
             Open to thoughtful product work, early-stage ideas, and design
             collaborations.
           </p>
-          <a href={emailAction.href} className={styles.email}>
-            {emailAction.label}
-          </a>
+          <CopyEmail email="anna.mayskay@gmail.com" />
         </div>
         <nav className={styles.socials} aria-label="Social profiles">
           {socialActions.map((action) => (

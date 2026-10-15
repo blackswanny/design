@@ -9,6 +9,9 @@ import NavMenu from "../navMenu";
 import styles from "./headerHero.module.css";
 import Hero from "./hero";
 
+// Temporarily hidden; keep the original cursor available to re-enable.
+const SHOW_FLOWER_CURSOR = false;
+
 function SquareArrowUpRightIcon() {
   return (
     <svg
@@ -233,7 +236,7 @@ export default function HomePage() {
         </div>
       </div>
       <ContactSection />
-      <CursorFlower />
+      {SHOW_FLOWER_CURSOR && <CursorFlower />}
     </>
   );
 }

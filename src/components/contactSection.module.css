@@ -68,6 +68,7 @@
 }
 
 .title em {
+  color: var(--accent);
   font-style: italic;
 }
 
@@ -82,15 +83,58 @@
   letter-spacing: normal;
 }
 
-.email {
-  display: inline-block;
+.emailBlock {
+  position: relative;
   margin-top: 24px;
-  color: var(--secondary);
-  font-size: clamp(1rem, 2.2vw, 1.25rem);
+}
+
+.email {
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--foreground);
+  font-size: clamp(1.875rem, 8.3vw, 7.5rem);
   font-weight: 400;
+  line-height: 1.1;
   letter-spacing: normal;
-  overflow-wrap: anywhere;
+  white-space: nowrap;
+  cursor: pointer;
   transition: color 180ms ease;
+}
+
+.email em {
+  font-style: italic;
+}
+
+.emailBlock .copyHint {
+  --poppy: var(--accent);
+  position: fixed;
+  z-index: 60;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  transition: none;
+}
+
+.emailBlock .copyHint[data-visible="true"] {
+  visibility: visible;
+  opacity: 1;
+}
+
+.copyStatus {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  color: var(--secondary);
+  font-size: 15px;
+  line-height: 1.5;
+  pointer-events: none;
 }
 
 .socials {
@@ -121,10 +165,11 @@
 }
 
 .email:hover {
-  color: var(--accent);
+  color: var(--foreground);
 }
 
-.contacts a:focus-visible {
+.contacts a:focus-visible,
+.email:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 5px;
 }
@@ -143,6 +188,12 @@
 
 @media (max-width: 379px) {
   .socials a + a::before {
+    display: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .emailBlock .copyHint {
     display: none;
   }
 }
