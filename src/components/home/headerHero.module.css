@@ -17,6 +17,7 @@
 .header,
 .hero,
 .ticker {
+  --ticker-label-gap: 46px;
   --canvas: var(--background);
   --text: var(--foreground);
   --muted: var(--secondary);
@@ -136,7 +137,31 @@
 .ticker {
   width: calc(100% + (2 * var(--site-gutter)));
   margin-left: calc(-1 * var(--site-gutter));
-  margin-bottom: 32px;
+  margin-bottom: 0;
+}
+
+.ticker::before,
+.ticker::after {
+  display: block;
+  width: calc(100% - (2 * var(--gutter)));
+  max-width: 1440px;
+  height: 1px;
+  margin-right: auto;
+  margin-left: auto;
+  background: var(--border);
+  content: "";
+}
+
+.ticker::before {
+  margin-bottom: 10px;
+}
+
+.ticker::after {
+  margin-top: 10px;
+}
+
+.ticker + :global(#contacts) {
+  --contact-divider-width: 0px;
 }
 
 .tickerViewport {
@@ -190,10 +215,10 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  gap: 72px;
-  height: 42px;
+  gap: var(--ticker-label-gap);
+  height: auto;
   margin: 0;
-  padding: 0 36px;
+  padding: 0 calc(var(--ticker-label-gap) / 2);
   list-style: none;
 }
 
@@ -201,7 +226,7 @@
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  gap: 20px;
+  gap: var(--ticker-label-gap);
   color: var(--muted);
   font-size: 11.5px;
   font-weight: 400;
@@ -217,6 +242,11 @@
   width: 6px;
   height: 6px;
   fill: #f35a47;
+}
+
+.tickerItem span {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
 }
 
 .heroInner {
