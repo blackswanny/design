@@ -157,8 +157,7 @@
 }
 
 .tickerFrame {
-  width: calc(100% - (2 * var(--gutter)));
-  max-width: var(--site-content-max);
+  width: 100%;
   margin: 0 auto;
   padding: 10px 0;
   border-top: 1px solid var(--border);
