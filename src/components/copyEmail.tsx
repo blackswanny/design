@@ -3,9 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 
 import styles from "./contactSection.module.css";
+import { celebrateEmailCopy } from "./emailCelebration";
 import sharedStyles from "./home/headerHero.module.css";
 
-import type { PointerEvent } from "react";
+import type { MouseEvent, PointerEvent } from "react";
 
 function copyWithSelection(email: string) {
   const field = document.createElement("textarea");
@@ -52,10 +53,12 @@ export default function CopyEmail({ email }: Readonly<{ email: string }>) {
   const [message, setMessage] = useState("");
   const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hintRef = useRef<HTMLDivElement>(null);
+  const celebrations = useRef(new Set<() => void>());
   const [name, domain] = email.split("@");
   const copied = message === "Email copied!";
 
   useEffect(() => {
+    const activeCelebrations = celebrations.current;
     const hide = () => {
       if (hintRef.current) hintRef.current.dataset.visible = "false";
     };
@@ -65,6 +68,8 @@ export default function CopyEmail({ email }: Readonly<{ email: string }>) {
 
     return () => {
       if (resetTimer.current) clearTimeout(resetTimer.current);
+      activeCelebrations.forEach((cancel) => cancel());
+      activeCelebrations.clear();
       window.removeEventListener("blur", hide);
       window.removeEventListener("scroll", hide, true);
     };
@@ -94,7 +99,11 @@ export default function CopyEmail({ email }: Readonly<{ email: string }>) {
     hint.dataset.visible = "true";
   };
 
-  const copy = async () => {
+  const copy = async (event: MouseEvent<HTMLButtonElement>) => {
+    const button = event.currentTarget;
+    const bounds = button.getBoundingClientRect();
+    const x = event.detail > 0 ? event.clientX : bounds.left + bounds.width / 2;
+    const y = event.detail > 0 ? event.clientY : bounds.top + bounds.height / 2;
     if (resetTimer.current) clearTimeout(resetTimer.current);
 
     try {
@@ -103,12 +112,24 @@ export default function CopyEmail({ email }: Readonly<{ email: string }>) {
       } catch {
         copyWithSelection(email);
       }
+      if (!button.isConnected) return;
       setMessage("Email copied!");
     } catch {
+      if (!button.isConnected) return;
       setMessage("Couldn’t copy — please try again.");
+      resetTimer.current = setTimeout(() => setMessage(""), 2500);
+      return;
     }
 
     resetTimer.current = setTimeout(() => setMessage(""), 2500);
+
+    const celebration = celebrateEmailCopy(x, y);
+    if (celebration) {
+      celebrations.current.add(celebration.cancel);
+      void celebration.finished.then(() =>
+        celebrations.current.delete(celebration.cancel),
+      );
+    }
   };
 
   return (
