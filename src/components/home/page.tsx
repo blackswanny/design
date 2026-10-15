@@ -179,7 +179,7 @@ export default function HomePage() {
       <Hero />
       <section
         id="projects"
-        className="homepage-section scroll-mt-16 bg-background px-4 py-4 md:px-6 md:py-8 lg:px-8 lg:py-24"
+        className={`${styles.projects} homepage-section scroll-mt-16 bg-background px-4 pb-4 md:px-6 md:pb-8 lg:px-8 lg:pb-24`}
       >
         <div className="mx-auto w-full max-w-[980px]">
           <div

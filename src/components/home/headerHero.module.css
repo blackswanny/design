@@ -110,8 +110,8 @@
   display: grid;
   place-items: center;
   width: calc(100% + (2 * var(--site-gutter)));
-  min-height: 100svh;
-  min-height: 100dvh;
+  min-height: min(98svh, 1000px);
+  min-height: min(98dvh, 1000px);
   margin-left: calc(-1 * var(--site-gutter));
   padding: calc(80px + var(--hero-edge-space)) 0 var(--hero-edge-space);
   overflow: hidden;
@@ -122,6 +122,10 @@
   position: relative;
   isolation: isolate;
   background-image: none;
+}
+
+.projects {
+  padding-top: clamp(32px, 4.5vw, 64px);
 }
 
 .aboutPage {
@@ -493,6 +497,11 @@
 }
 
 @media (max-width: 759px) {
+  .hero {
+    min-height: min(90svh, 1000px);
+    min-height: min(90dvh, 1000px);
+  }
+
   .headerInner {
     display: grid;
     grid-template-columns: minmax(0, 1fr);

@@ -26,6 +26,11 @@
   margin: 0 auto;
 }
 
+.page > footer {
+  --contact-divider-width: 0px;
+  --contact-top-space: clamp(64px, 6.5vw, 96px);
+}
+
 .canvas {
   display: flex;
   flex-direction: column;
