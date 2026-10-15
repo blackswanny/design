@@ -16,14 +16,14 @@ export function celebrateEmailCopy(x: number, y: number) {
   burst.style.setProperty("--burst-y", `${y}px`);
   document.body.appendChild(burst);
 
-  const particleCount = 28;
+  const particleCount = 48;
   const animations = Array.from({ length: particleCount }, (_, index) => {
     const particle = document.createElement("span");
     particle.className = styles.particle;
     burst.appendChild(particle);
 
     const angle = (index / particleCount) * Math.PI * 2 - Math.PI / 2;
-    const distance = 50 + (index % 5) * 13;
+    const distance = 2 * (50 + (index % 5) * 13);
     const dx = Math.cos(angle) * distance;
     const dy = Math.sin(angle) * distance;
     const rotation = index % 2 === 0 ? 220 : -220;
@@ -37,7 +37,7 @@ export function celebrateEmailCopy(x: number, y: number) {
           offset: 0.6,
         },
         {
-          transform: `translate(${dx}px, ${dy + 36}px) rotate(${rotation}deg) scale(0.3)`,
+          transform: `translate(${dx}px, ${dy + 72}px) rotate(${rotation}deg) scale(0.3)`,
           opacity: 0,
         },
       ],
