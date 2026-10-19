@@ -56,6 +56,7 @@ export default function ProjectHighlights() {
     const cue = cueRef.current;
     const viewport = viewportRef.current;
     const heroCopy = document.querySelector<HTMLElement>("[data-hero-copy]");
+    const projects = document.getElementById("projects");
     if (!section || !cue || !viewport || !heroCopy) return;
 
     let active = true;
@@ -66,6 +67,8 @@ export default function ProjectHighlights() {
       const top =
         (above + below - cueHeight) / 2 - section.getBoundingClientRect().top;
       cue.style.top = `${top}px`;
+      const gap = Math.max(0, (below - above - cueHeight) / 2);
+      projects?.style.setProperty("--highlights-next-gap", `${gap}px`);
     };
 
     updatePosition();
@@ -82,6 +85,7 @@ export default function ProjectHighlights() {
       active = false;
       observer.disconnect();
       window.removeEventListener("resize", updatePosition);
+      projects?.style.removeProperty("--highlights-next-gap");
     };
   }, []);
 

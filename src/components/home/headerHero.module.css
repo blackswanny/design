@@ -132,7 +132,7 @@
 .projects {
   width: calc(100% + (2 * var(--site-gutter)));
   margin-left: calc(-1 * var(--site-gutter));
-  padding-top: clamp(32px, 4.5vw, 64px);
+  padding-top: var(--highlights-next-gap, clamp(32px, 4.5vw, 64px));
   padding-bottom: var(--ticker-section-gap);
   padding-right: var(--site-content-gutter);
   padding-left: var(--site-content-gutter);

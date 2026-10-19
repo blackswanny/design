@@ -110,7 +110,7 @@
   width: clamp(
     240px,
     calc((100vw - 2 * var(--site-content-gutter) - 72px) / 4),
-    342px
+    264px
   );
   height: auto;
   pointer-events: none;
