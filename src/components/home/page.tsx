@@ -184,18 +184,16 @@ export default function HomePage() {
         className={`${styles.projects} homepage-section scroll-mt-16 bg-background`}
       >
         <div className={styles.projectsInner}>
-          <div
-            className={`${styles.sectionHeading} pointer-events-none z-20 mb-6 text-[clamp(1.9rem,4vw,3rem)] leading-[1] tracking-[-0.03em] text-foreground md:mb-8`}
+          <h2
+            className={`${styles.sectionHeading} ${styles.worksHeading} mb-4`}
           >
             Selected <span className="text-accent">works</span>
-          </div>
+          </h2>
           <div className="ml-auto pb-14 text-foreground md:pb-14">
-            <div className="flex flex-col gap-2 font-sans text-[clamp(1rem,2.2vw,1.25rem)] leading-relaxed tracking-[-0.01em] text-secondary">
-              <p>
-                A mix of product, UX, and visual work across different types of
-                projects.
-              </p>
-            </div>
+            <p className={styles.worksDescription}>
+              A mix of product, UX, and visual work across different types of
+              projects.
+            </p>
           </div>
           <div className="flex flex-col gap-6">
             {projects.map((project) => (

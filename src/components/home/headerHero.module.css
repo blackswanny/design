@@ -139,6 +139,7 @@
 }
 
 .projectsInner {
+  container-type: inline-size;
   width: 100%;
   max-width: var(--site-content-max);
   margin: 0 auto;
@@ -279,7 +280,8 @@
 }
 
 .intro,
-.description {
+.description,
+.worksDescription {
   @apply font-sans;
   font-size: clamp(1rem, 2.2vw, 1.25rem);
   font-weight: 400;
@@ -346,14 +348,24 @@
   font-weight: 400;
 }
 
+.headline,
+.worksHeading {
+  font-size: min(80px, calc(100cqw / 9.3));
+  line-height: 1;
+  letter-spacing: normal;
+}
+
 .headline {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   color: var(--text);
-  font-size: min(80px, calc(100cqw / 9.3));
-  line-height: 1;
-  letter-spacing: normal;
+  text-align: center;
+}
+
+.worksHeading {
+  margin-top: 0;
+  color: var(--foreground);
   text-align: center;
 }
 
@@ -391,6 +403,16 @@
   color: var(--muted);
   font-weight: 400;
   line-height: 1.45;
+  text-align: center;
+}
+
+.worksDescription {
+  width: 100%;
+  max-width: 530px;
+  margin: 0 auto;
+  color: var(--secondary);
+  line-height: 1.45;
+  letter-spacing: normal;
   text-align: center;
 }
 
@@ -617,7 +639,8 @@
     letter-spacing: normal;
   }
 
-  .description {
+  .description,
+  .worksDescription {
     line-height: 1.5;
   }
 
