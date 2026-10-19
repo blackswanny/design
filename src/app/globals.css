@@ -38,6 +38,7 @@
   --site-content-gutter: clamp(20px, 6vw, 96px);
   --site-content-max: 1440px;
   --action-icon-gap: 6px;
+  --social-action-gap: clamp(16px, 3vw, 40px);
   color-scheme: light;
 }
 

@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section id="home" className={styles.hero} aria-labelledby="hero-heading">
       <div className={styles.heroInner}>
-        <div className={styles.copy}>
+        <div className={styles.copy} data-hero-copy>
           <div className={styles.intro}>
             <span>Hello</span>
             <span className={styles.portraitAnchor}>

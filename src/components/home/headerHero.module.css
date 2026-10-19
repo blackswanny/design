@@ -399,11 +399,12 @@
 }
 
 .actions {
+  --hero-action-gap: var(--social-action-gap);
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 32px;
+  gap: var(--hero-action-gap);
 }
 
 .primary {
@@ -448,16 +449,37 @@
 }
 
 .socialLinks {
+  position: relative;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 32px;
+  gap: var(--hero-action-gap);
   min-height: 40px;
-  padding-left: 32px;
-  border-left: 1px solid var(--border);
+  padding-left: 0;
+}
+
+.socialLinks::before,
+.socialLinks .socialLink + .socialLink::before {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--hero-action-gap) / -2);
+  width: 1px;
+  background: var(--border);
+  transform: translateY(-50%);
+  pointer-events: none;
+  content: "";
+}
+
+.socialLinks::before {
+  height: 34.5px;
+}
+
+.socialLinks .socialLink + .socialLink::before {
+  height: 100%;
 }
 
 .socialLink {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: var(--action-icon-gap);
@@ -496,17 +518,6 @@
 .hero a:focus-visible {
   outline: 2px solid var(--poppy);
   outline-offset: 6px;
-}
-
-@media (max-width: 1199px) and (min-width: 1024px) {
-  .actions {
-    gap: 24px;
-  }
-
-  .socialLinks {
-    gap: 24px;
-    padding-left: 24px;
-  }
 }
 
 @media (max-width: 1023px) {
@@ -610,15 +621,16 @@
     line-height: 1.5;
   }
 
-  .actions {
-    gap: 24px;
-  }
-
   .socialLinks {
-    gap: 24px;
     min-height: auto;
     padding-left: 0;
     border-left: 0;
+  }
+}
+
+@container (max-width: 436px) {
+  .socialLinks::before {
+    display: none;
   }
 }
 

@@ -8,6 +8,7 @@ import CursorFlower from "../cursorFlower";
 import NavMenu from "../navMenu";
 import styles from "./headerHero.module.css";
 import Hero from "./hero";
+import ProjectHighlights from "./projectHighlights";
 
 // Temporarily hidden; keep the original cursor available to re-enable.
 const SHOW_FLOWER_CURSOR = false;
@@ -177,6 +178,7 @@ export default function HomePage() {
       <NavMenu />
 
       <Hero />
+      <ProjectHighlights />
       <section
         id="projects"
         className={`${styles.projects} homepage-section scroll-mt-16 bg-background`}
