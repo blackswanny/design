@@ -1,4 +1,5 @@
 .highlights {
+  --card-spacing: 33.6px;
   position: relative;
   width: calc(100% + (2 * var(--site-gutter)));
   margin-left: calc(-1 * var(--site-gutter));
@@ -67,9 +68,11 @@
 }
 
 .viewport {
+  --shadow-space: 12px;
   width: calc(100% - (2 * var(--site-content-gutter)));
   max-width: var(--site-content-max);
-  margin: 0 auto;
+  margin: calc(-1 * var(--shadow-space)) auto 0;
+  padding: var(--shadow-space) 0;
   overflow: hidden;
   scrollbar-width: none;
   cursor: grab;
@@ -100,8 +103,8 @@
 .group {
   display: flex;
   flex-shrink: 0;
-  gap: 24px;
-  padding-right: 24px;
+  gap: var(--card-spacing);
+  padding-right: var(--card-spacing);
 }
 
 .card {
@@ -114,6 +117,10 @@
   );
   height: auto;
   pointer-events: none;
+}
+
+.card[data-shadow="true"] {
+  filter: drop-shadow(0 2px 4px rgba(23, 23, 23, 0.04));
 }
 
 @media (min-width: 1024px) {

@@ -20,26 +20,32 @@ type DragState = {
 const highlights = [
   {
     src: "/images/home/highlights/01-mindscape-product.png",
+    whiteBackground: true,
     alt: "01 — Product Design: MindScape. A mental wellness app that makes finding the right therapist easier. Mobile App, UX/UI, Research.",
   },
   {
     src: "/images/home/highlights/02-end-to-end-design.png",
+    whiteBackground: false,
     alt: "02 — End-to-End Design: From insight to interface. Shaping products from early research and strategy to intuitive UX and polished visual design. Research & Strategy, UX & Product, Visual Design.",
   },
   {
     src: "/images/home/highlights/03-workreactor-space.png",
+    whiteBackground: true,
     alt: "03 — WorkReactor: A space to move ideas forward. A social network and workspace connecting people, projects, teams, and opportunities. Product Design, Social Platform, Collaboration.",
   },
   {
     src: "/images/home/highlights/04-user-centered-process.png",
+    whiteBackground: false,
     alt: "04 — User-Centered Process: Curiosity before pixels. Understanding people, questioning assumptions, and exploring ideas before designing solutions. Discover, Define, Explore, Iterate.",
   },
   {
     src: "/images/home/highlights/05-setdo-advisory.png",
+    whiteBackground: true,
     alt: "05 — Product Advisory: SET.DO. An AI-powered planner that turns intentions into action. Product Thinking, UX Advisory, AI Planning.",
   },
   {
     src: "/images/home/highlights/06-creative-direction.png",
+    whiteBackground: false,
     alt: "06 — Creative Direction: Visual stories that move. Beyond product design, I love exploring bold ideas, visual storytelling, and creative direction. Art Direction, Visual Storytelling, Creative Exploration.",
   },
 ] as const;
@@ -62,13 +68,25 @@ export default function ProjectHighlights() {
     let active = true;
     const updatePosition = () => {
       const above = heroCopy.getBoundingClientRect().bottom;
-      const below = viewport.getBoundingClientRect().top;
+      const cardBounds = trackRef.current
+        ?.querySelector("img")
+        ?.getBoundingClientRect();
+      const below = cardBounds?.top ?? viewport.getBoundingClientRect().top;
       const cueHeight = cue.getBoundingClientRect().height;
       const top =
         (above + below - cueHeight) / 2 - section.getBoundingClientRect().top;
       cue.style.top = `${top}px`;
       const gap = Math.max(0, (below - above - cueHeight) / 2);
-      projects?.style.setProperty("--highlights-next-gap", `${gap}px`);
+      const shadowSpace = cardBounds
+        ? Math.max(
+            0,
+            section.getBoundingClientRect().bottom - cardBounds.bottom,
+          )
+        : 0;
+      projects?.style.setProperty(
+        "--highlights-next-gap",
+        `${Math.max(0, gap - shadowSpace)}px`,
+      );
     };
 
     updatePosition();
@@ -246,6 +264,7 @@ export default function ProjectHighlights() {
                   unoptimized
                   draggable={false}
                   className={styles.card}
+                  data-shadow={card.whiteBackground}
                 />
               ))}
             </div>

@@ -7,7 +7,7 @@
   flex-shrink: 0;
   overflow: hidden;
   border-radius: 50px;
-  background: #fdfdfd;
+  background: var(--background);
   color: #000000;
 }
 

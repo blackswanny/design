@@ -27,8 +27,8 @@
 }
 
 :root {
-  --background: #faf8f6;
-  --header-background: rgba(250, 248, 246, 0.94);
+  --background: #fbfaf8;
+  --header-background: rgba(251, 250, 248, 0.94);
   --foreground: #171717;
   --surface: #f6f6f6;
   --secondary: #71717a;
