@@ -1,9 +1,9 @@
 :global(html):has(.site) {
-  --background: #121212;
-  --header-background: rgba(18, 18, 18, 0.94);
+  --background: #161616;
+  --header-background: rgba(22, 22, 22, 0.94);
   --foreground: #fff;
   --surface: #252525;
-  --secondary: #929292;
+  --secondary: #a8a8a8;
   --accent: #e54438;
   --border: #353535;
   --site-gutter: 0px;
@@ -14,10 +14,10 @@
   display: none;
 }
 .site {
-  --canvas: #121212;
+  --canvas: #161616;
   --panel: #040404;
   --text: #fff;
-  --muted: #929292;
+  --muted: #a8a8a8;
   --red: #e54438;
   --gutter: 60px;
   --hero-scale: 1;
@@ -79,7 +79,7 @@
    siteHeader.tsx) into a small wordmark and a frosted navigation pill. */
 .header {
   --p: var(--header-progress, 0);
-  --glass: rgb(18 18 18 / calc(0.72 * var(--p)));
+  --glass: rgb(22 22 22 / calc(0.72 * var(--p)));
   --glass-blur: blur(calc(25px * var(--p)));
   position: fixed;
   top: 0;
@@ -181,7 +181,7 @@
   object-fit: cover;
 }
 .site .introText {
-  color: #aaa;
+  color: var(--muted);
 }
 .introLine {
   display: block;
@@ -198,7 +198,7 @@
   width: calc(100% - 2 * var(--gutter));
   min-height: 0;
   margin-left: var(--gutter);
-  padding-top: calc(89px * var(--hero-scale));
+  padding-top: calc(103px * var(--hero-scale));
   color: var(--muted);
   font-size: calc(96px * var(--hero-scale));
   font-weight: 600;
@@ -209,7 +209,7 @@
   display: block;
   white-space: nowrap;
 }
-.heroTitle > span:first-child,
+.heroTitle > span:first-child strong,
 .heroTitle > span:last-child {
   color: var(--text);
 }
@@ -294,7 +294,7 @@
   border: 1px solid #ffffff38;
   border-radius: 999px;
   background: var(--canvas);
-  color: #bbb;
+  color: var(--muted);
   font: inherit;
   font-size: 12px;
   cursor: pointer;
@@ -471,7 +471,7 @@
   margin-top: 80px;
   padding-top: 28px;
   border-top: 1px solid #363636;
-  color: #aaa;
+  color: var(--muted);
   font-size: 14px;
 }
 .socials {
@@ -568,7 +568,7 @@
     display: flex;
     gap: 0.5em;
     margin-top: 21px;
-    color: var(--muted);
+    color: var(--text);
   }
   .introSocials a:hover {
     color: var(--red);

@@ -184,7 +184,7 @@ export function createRibbonRenderer(
       0,
       gl.RGBA,
       gl.UNSIGNED_BYTE,
-      new Uint8Array([18, 18, 18, 255]),
+      new Uint8Array([22, 22, 22, 255]),
     );
     gl.uniform1i(uniforms.projectAtlas, 0);
 
