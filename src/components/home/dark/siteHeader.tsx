@@ -46,6 +46,23 @@ export default function SiteHeader() {
       >
         hanna<span className={styles.wordmarkDot}>.</span>
       </a>
+      <div className={styles.headerSocials}>
+        <a
+          href="https://www.linkedin.com/in/hanna-gomozova/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>
+        <span aria-hidden="true">/</span>
+        <a
+          href="https://www.behance.net/hanna_gomozova"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Behance
+        </a>
+      </div>
       <nav className={styles.nav} aria-label="Main navigation">
         <a href="#projects">Works</a>
         <Link href="/about">About</Link>

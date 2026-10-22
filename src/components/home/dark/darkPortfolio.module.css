@@ -4,7 +4,7 @@
   --foreground: #fff;
   --surface: #252525;
   --secondary: #929292;
-  --accent: #e2351f;
+  --accent: #e54438;
   --border: #353535;
   --site-gutter: 0px;
   color-scheme: dark;
@@ -18,7 +18,7 @@
   --panel: #040404;
   --text: #fff;
   --muted: #929292;
-  --red: #e2351f;
+  --red: #e54438;
   --gutter: 60px;
   --hero-scale: 1;
   --carousel-scale: 1;
@@ -97,6 +97,26 @@
 .header > * {
   pointer-events: auto;
 }
+/* Profile links line up with the intro block and slide away on scroll. */
+.headerSocials {
+  position: absolute;
+  top: 31px;
+  left: calc(
+    100% - var(--gutter) - clamp(220px, 22vw, 330px) - 437px * var(--hero-scale)
+  );
+  display: flex;
+  gap: 0.5em;
+  color: var(--muted);
+  font-size: calc(18px * var(--hero-scale));
+  line-height: 0.99;
+  transform: translateY(calc(-85px * var(--p)));
+}
+.headerSocials a:hover {
+  color: var(--red);
+}
+.header[data-condensed="true"] .headerSocials {
+  visibility: hidden;
+}
 .headerSpacer {
   flex: none;
   height: calc(73.8px * var(--hero-scale));
@@ -148,6 +168,8 @@
   align-items: center;
   gap: 12px;
   margin-bottom: calc(21px * var(--hero-scale));
+  color: var(--text);
+  font-weight: 600;
 }
 .profilePhoto {
   display: block;
@@ -164,8 +186,8 @@
 .introLine {
   display: block;
 }
-.introText strong {
-  color: var(--text);
+.introSocials {
+  display: none;
 }
 .site .heroTitle {
   position: relative;
@@ -176,7 +198,7 @@
   width: calc(100% - 2 * var(--gutter));
   min-height: 0;
   margin-left: var(--gutter);
-  padding-top: calc(57px * var(--hero-scale));
+  padding-top: calc(89px * var(--hero-scale));
   color: var(--muted);
   font-size: calc(96px * var(--hero-scale));
   font-weight: 600;
@@ -187,17 +209,18 @@
   display: block;
   white-space: nowrap;
 }
-.heroTitle strong {
+.heroTitle > span:first-child,
+.heroTitle > span:last-child {
   color: var(--text);
+}
+.heroAccent {
+  color: var(--red);
 }
 .heroTitle em {
   font-size: calc(120px * var(--hero-scale));
   line-height: 0;
   letter-spacing: -0.015em;
   vertical-align: baseline;
-  text-decoration: underline dotted;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 9px;
 }
 .ribbonShell {
   position: relative;
@@ -492,6 +515,9 @@
   .intro {
     margin-right: 0;
   }
+  .headerSocials {
+    left: calc(100% - var(--gutter) - 437px * var(--hero-scale));
+  }
   .sectionIntro {
     display: block;
   }
@@ -534,6 +560,18 @@
   }
   .headerSpacer {
     height: 77px;
+  }
+  .headerSocials {
+    display: none;
+  }
+  .site .introSocials {
+    display: flex;
+    gap: 0.5em;
+    margin-top: 21px;
+    color: var(--muted);
+  }
+  .introSocials a:hover {
+    color: var(--red);
   }
   .wordmark {
     display: inline-block;
@@ -601,8 +639,6 @@
   .heroTitle em {
     font-size: 1.22727em;
     line-height: 1.1;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 5px;
   }
   .projects {
     padding: 44px 20px 52px;

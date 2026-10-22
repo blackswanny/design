@@ -73,16 +73,34 @@ export default function DarkHomePage() {
                 loading="eager"
                 unoptimized
               />
-              <span>Hi there, I’m Hanna</span>
+              <span>Hi, I’m Hanna</span>
             </div>
             <p className={styles.introText}>
               <span className={styles.introLine}>
-                From the first idea to a <strong>working product</strong> —
+                From early ideas to intuitive digital products —
               </span>{" "}
               <span className={styles.introLine}>
-                connecting user needs, product direction, and
+                combining research, product thinking, and
               </span>{" "}
-              <span className={styles.introLine}>intuitive experiences.</span>
+              <span className={styles.introLine}>visual design.</span>
+            </p>
+            {/* Phones only: the header's profile links move here. */}
+            <p className={styles.introSocials}>
+              <a
+                href="https://www.linkedin.com/in/hanna-gomozova/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn
+              </a>
+              <span aria-hidden="true">/</span>
+              <a
+                href="https://www.behance.net/hanna_gomozova"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Behance
+              </a>
             </p>
           </div>
         </div>
@@ -92,7 +110,11 @@ export default function DarkHomePage() {
             I design <strong>products</strong>
           </span>
           <span>
-            that <em>feel</em> right before
+            that{" "}
+            <span className={styles.heroAccent}>
+              <em>feel right</em>
+            </span>{" "}
+            before
           </span>
           <span>
             you know <strong>why.</strong>
