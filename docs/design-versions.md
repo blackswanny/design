@@ -4,7 +4,7 @@
 
 The approved dark design is the homepage at `/`. Implementation lives in
 `src/components/home/dark/`; the entry point is
-`src/components/home/page.tsx`. It preserves the approved `#E71806` accent,
+`src/components/home/page.tsx`. It preserves the `#E2351F` accent (softened from `#E71806`),
 `-0.015em` display tracking, original portrait, five projects and nine-view
 optical ribbon. The ribbon uses original portfolio images/video stills,
 keyboard navigation, drag/inertia, reduced motion and an image-only fallback.
