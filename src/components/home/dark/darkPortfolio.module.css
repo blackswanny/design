@@ -148,7 +148,7 @@
   width: calc(100% - 2 * var(--gutter));
   min-height: 0;
   margin-left: var(--gutter);
-  padding-top: calc(33px * var(--hero-scale));
+  padding-top: calc(57px * var(--hero-scale));
   color: var(--muted);
   font-size: calc(96px * var(--hero-scale));
   font-weight: 600;
