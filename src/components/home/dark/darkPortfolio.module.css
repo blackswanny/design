@@ -8,7 +8,7 @@
   --border: #353535;
   --site-gutter: 0px;
   color-scheme: dark;
-  scroll-padding-top: 24px;
+  scroll-padding-top: 88px;
 }
 :global(html):has(.site) :global([aria-label="Scroll down"]) {
   display: none;
@@ -74,15 +74,40 @@
   min-height: 0;
   padding-inline: var(--gutter);
 }
+/* Fixed header: at the top of the page it sits exactly where the hero
+   header used to be; scrolling condenses it (--header-progress 0 → 1, set by
+   siteHeader.tsx) into a small wordmark and a frosted navigation pill. */
 .header {
+  --p: var(--header-progress, 0);
+  --glass: rgb(18 18 18 / calc(0.72 * var(--p)));
+  --glass-blur: blur(calc(25px * var(--p)));
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 50;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 32px;
+  padding: calc(24px * (1 - var(--p)) + 10px * var(--p))
+    calc(var(--gutter) * (1 - var(--p)) + 20px * var(--p)) 0;
+  pointer-events: none;
+}
+.header > * {
+  pointer-events: auto;
+}
+.headerSpacer {
+  flex: none;
+  height: calc(73.8px * var(--hero-scale));
 }
 .wordmark {
   flex: none;
-  font-size: calc(82px * var(--hero-scale));
+  padding: calc(10px * var(--p)) calc(18px * var(--p));
+  border-radius: 12px;
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  font-size: calc(82px * var(--hero-scale) * (1 - var(--p)) + 30px * var(--p));
   font-weight: 600;
   line-height: 0.9;
   letter-spacing: -0.015em;
@@ -93,9 +118,12 @@
 }
 .nav {
   display: flex;
-  gap: calc(50px * var(--hero-scale));
-  padding-top: 7px;
-  font-size: calc(18px * var(--hero-scale));
+  gap: calc(50px * var(--hero-scale) * (1 - var(--p)) + 30px * var(--p));
+  padding: calc(7px * (1 - var(--p)) + 17px * var(--p)) calc(24px * var(--p));
+  border-radius: 12px;
+  background: var(--glass);
+  backdrop-filter: var(--glass-blur);
+  font-size: calc(18px * var(--hero-scale) * (1 - var(--p)) + 14px * var(--p));
   line-height: 0.99;
 }
 .nav a:hover {
@@ -269,7 +297,7 @@
   border-radius: 50px;
   background: #fff;
   color: var(--text);
-  scroll-margin-top: 24px;
+  scroll-margin-top: 88px;
 }
 .sectionIntro {
   display: flex;
@@ -495,18 +523,38 @@
     min-height: 0;
     gap: 43px;
   }
+  /* On phones the header condenses into one frosted bar: the nav row rises
+     from below the wordmark to its right-hand side. */
   .header {
     display: block;
+    padding: calc(24px * (1 - var(--p)) + 12px * var(--p)) 20px
+      calc(12px * var(--p));
+    background: var(--glass);
+    backdrop-filter: var(--glass-blur);
+  }
+  .headerSpacer {
+    height: 77px;
   }
   .wordmark {
-    font-size: 44px;
+    display: inline-block;
+    padding: 0;
+    background: none;
+    backdrop-filter: none;
+    font-size: calc(44px * (1 - var(--p)) + 24px * var(--p));
   }
   .nav {
+    position: absolute;
+    top: calc(88px * (1 - var(--p)) + 17px * var(--p));
+    right: 20px;
     justify-content: space-between;
     gap: 0;
-    margin-top: 24px;
+    width: calc(
+      (100% - 40px) * (1 - var(--p)) + min(230px, 100% - 130px) * var(--p)
+    );
     padding: 0;
-    font-size: 13px;
+    background: none;
+    backdrop-filter: none;
+    font-size: calc(13px * (1 - var(--p)) + 12px * var(--p));
   }
   .intro {
     width: 291px;

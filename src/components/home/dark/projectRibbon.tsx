@@ -112,7 +112,11 @@ export default function ProjectRibbon() {
         count: ribbonImages.length,
       };
       stride = geometry.cardWidth + geometry.gap;
-      hero.style.setProperty("--hero-scale", String(heroScale));
+      // Set on the page root so the fixed site header scales with the hero.
+      (hero.parentElement ?? hero).style.setProperty(
+        "--hero-scale",
+        String(heroScale),
+      );
       hero.style.setProperty("--carousel-scale", String(bandScale));
       viewport.dataset.enhanced = "true";
       viewport.dataset.count = String(geometry.count);

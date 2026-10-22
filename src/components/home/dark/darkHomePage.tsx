@@ -5,6 +5,7 @@ import styles from "./darkPortfolio.module.css";
 import { portfolioDisplay, portfolioSans } from "./fonts";
 import ProjectRibbon from "./projectRibbon";
 import { portfolioProjects } from "./projects";
+import SiteHeader from "./siteHeader";
 import CopyEmail from "../../copyEmail";
 
 import type { ReactNode } from "react";
@@ -52,6 +53,7 @@ export default function DarkHomePage() {
       className={`${styles.site} ${portfolioSans.variable} ${portfolioDisplay.variable}`}
       data-portfolio-version="dark"
     >
+      <SiteHeader />
       <section
         id="home"
         className={styles.hero}
@@ -59,28 +61,7 @@ export default function DarkHomePage() {
         aria-labelledby="hero-title"
       >
         <div className={styles.heroTop}>
-          <header className={styles.header}>
-            <a
-              className={styles.wordmark}
-              href="#home"
-              aria-label="Hanna Gomozova — home"
-            >
-              hanna<span className={styles.wordmarkDot}>.</span>
-            </a>
-            <nav className={styles.nav} aria-label="Main navigation">
-              <a href="#projects">Works</a>
-              <Link href="/about">About</Link>
-              <a
-                href="/Hanna-Gomozova-Product-Designer.pdf"
-                download="Hanna Gomozova_Product Designer.pdf"
-              >
-                Resume
-              </a>
-              <a href="#contacts">
-                Contact <span aria-hidden="true">↗</span>
-              </a>
-            </nav>
-          </header>
+          <div className={styles.headerSpacer} aria-hidden="true" />
           <div className={styles.intro}>
             <div className={styles.introGreeting}>
               <Image
