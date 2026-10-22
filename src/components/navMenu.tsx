@@ -11,12 +11,13 @@ const navItems = [
 
 export default function NavMenu({
   activePath,
-}: Readonly<{ activePath?: string }> = {}) {
+  homePath = "/",
+}: Readonly<{ activePath?: string; homePath?: string }> = {}) {
   return (
     <header className={styles.header}>
       <nav className={styles.headerInner} aria-label="Main navigation">
         <Link
-          href="/#home"
+          href={`${homePath}#home`}
           aria-label="Hanna Gomozova — Home"
           className={styles.brand}
         >
@@ -39,7 +40,11 @@ export default function NavMenu({
           {navItems.slice(0, 2).map((item) => (
             <Link
               key={item.href}
-              href={item.href}
+              href={
+                item.href.startsWith("/#")
+                  ? `${homePath}${item.href.slice(1)}`
+                  : item.href
+              }
               aria-current={activePath === item.href ? "page" : undefined}
             >
               {item.label}
@@ -52,7 +57,7 @@ export default function NavMenu({
             RESUME
           </a>
           <Link
-            href={navItems[2].href}
+            href={`${homePath}#contacts`}
             className={`${styles.primary} ${styles.contactButton}`}
             aria-current={activePath === navItems[2].href ? "page" : undefined}
           >

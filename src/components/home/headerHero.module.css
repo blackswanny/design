@@ -39,6 +39,13 @@
   scroll-padding-top: 16px;
 }
 
+:global(html):has(.hero) {
+  --home-section-space: clamp(64px, 12.5vw, 180px);
+  --home-content-space: clamp(32px, 5vw, 72px);
+  --home-project-space: clamp(32px, 4.86vw, 70px);
+  --home-intro-space: clamp(96px, 8.33vw, 120px);
+}
+
 .headerInner {
   position: relative;
   display: flex;
@@ -49,7 +56,6 @@
   height: 80px;
   min-height: 80px;
   margin: 0 auto;
-  border-bottom: 1px solid var(--border);
 }
 
 .brand {
@@ -86,9 +92,9 @@
 .navLinks {
   display: flex;
   align-items: center;
-  gap: clamp(24px, 3.4vw, 48px);
+  gap: 8px;
   margin-left: auto;
-  color: var(--muted);
+  color: var(--text);
 }
 
 .navLinks a,
@@ -97,23 +103,42 @@
   transition: color 180ms ease;
 }
 
+.navLinks a:not(.contactButton) {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--background);
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
 .navLinks a:hover,
 .socialLink:hover,
 .navLinks a[aria-current="page"] {
   color: var(--accent);
 }
 
+.navLinks a:not(.contactButton):hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+
 .hero {
-  --hero-edge-space: clamp(28px, 4dvh, 48px);
   position: relative;
   isolation: isolate;
   display: grid;
   place-items: center;
   width: calc(100% + (2 * var(--site-gutter)));
-  min-height: min(98svh, 1000px);
-  min-height: min(98dvh, 1000px);
   margin-left: calc(-1 * var(--site-gutter));
-  padding: calc(80px + var(--hero-edge-space)) 0 var(--hero-edge-space);
+  padding: calc(80px + var(--home-intro-space)) 0 0;
   overflow: hidden;
   background: var(--canvas);
 }
@@ -126,16 +151,18 @@
 
 .projects,
 .ticker + :global(#contacts) {
-  --ticker-section-gap: clamp(48px, 6vw, 96px);
+  --ticker-section-gap: var(--home-section-space);
 }
 
 .projects {
   width: calc(100% + (2 * var(--site-gutter)));
   margin-left: calc(-1 * var(--site-gutter));
-  padding-top: var(--highlights-next-gap, clamp(32px, 4.5vw, 64px));
+  padding-top: calc(var(--home-section-space) - 12px);
   padding-bottom: var(--ticker-section-gap);
   padding-right: var(--site-content-gutter);
   padding-left: var(--site-content-gutter);
+  border-radius: 32px;
+  background: #000000;
 }
 
 .projectsInner {
@@ -143,6 +170,10 @@
   width: 100%;
   max-width: var(--site-content-max);
   margin: 0 auto;
+}
+
+.worksIntro {
+  padding-bottom: var(--home-content-space);
 }
 
 .aboutPage {
@@ -161,23 +192,20 @@
   width: 100%;
   margin: 0 auto;
   padding: 10px 0;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: #000000;
+  background: var(--accent);
 }
 
 .ticker + :global(#contacts) {
   --contact-divider-width: 0px;
-  /* Match the space above the ticker to the flower's top edge, not the title. */
+  --contact-heading-gap: min(100px, var(--home-section-space));
   --contact-top-space: calc(
-    var(--ticker-section-gap) + 20px + var(--contact-flower-size) * 0.4845 -
-      var(--contact-heading-gap)
+    var(--home-section-space) - var(--contact-heading-gap)
   );
 }
 
 .tickerViewport {
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
   scrollbar-width: none;
   mask-image: linear-gradient(
     to right,
@@ -201,23 +229,6 @@
 .tickerTrack {
   display: flex;
   width: max-content;
-  animation: tickerScroll 60s linear infinite;
-  will-change: transform;
-}
-
-.tickerViewport:hover .tickerTrack,
-.tickerViewport:focus-within .tickerTrack {
-  animation-play-state: paused;
-}
-
-@keyframes tickerScroll {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
 }
 
 .tickerGroup {
@@ -250,7 +261,7 @@
   flex-shrink: 0;
   width: 6px;
   height: 6px;
-  fill: #f35a47;
+  fill: #ffffff;
 }
 
 .tickerItem span {
@@ -365,7 +376,7 @@
 
 .worksHeading {
   margin-top: 0;
-  color: var(--foreground);
+  color: #ffffff;
   text-align: center;
 }
 
@@ -375,6 +386,7 @@
 }
 
 .headline em {
+  color: var(--accent);
   font-style: italic;
 }
 
@@ -410,7 +422,7 @@
   width: 100%;
   max-width: 530px;
   margin: 0 auto;
-  color: var(--secondary);
+  color: #a1a1aa;
   line-height: 1.45;
   letter-spacing: normal;
   text-align: center;
@@ -468,6 +480,15 @@
 .navLinks .contactButton:hover,
 .navLinks .contactButton[aria-current="page"] {
   color: #ffffff;
+}
+
+.navLinks .contactButton:hover {
+  border-color: var(--foreground);
+  background: var(--foreground);
+}
+
+.contactButton svg {
+  flex-shrink: 0;
 }
 
 .socialLinks {
@@ -549,7 +570,11 @@
   }
 
   .navLinks {
-    gap: 24px;
+    gap: 8px;
+  }
+
+  .navLinks a:not(.contactButton) {
+    width: clamp(96px, 12vw, 150px);
   }
 
   .aboutPage {
@@ -568,15 +593,12 @@
 }
 
 @media (max-width: 759px) {
-  .hero {
-    min-height: min(90svh, 1000px);
-    min-height: min(90dvh, 1000px);
-  }
-
   .headerInner {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: 42px 22.5px;
+    grid-template-rows: 42px 40px;
+    height: 100px;
+    min-height: 100px;
     align-content: center;
     gap: 4px 20px;
     padding: 0;
@@ -596,13 +618,20 @@
     grid-column: 1 / -1;
     grid-row: 2;
     justify-content: center;
-    gap: clamp(8px, 3vw, 24px);
+    gap: 8px;
     margin: 0;
+  }
+
+  .navLinks a:not(.contactButton) {
+    flex: 1;
+    width: auto;
+    max-width: 150px;
   }
 
   .navLinks .contactButton {
     position: absolute;
-    top: 26.25px;
+    top: 29px;
+    width: 150px;
     right: 0;
     transform: translateY(-50%);
   }

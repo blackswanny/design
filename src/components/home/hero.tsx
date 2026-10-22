@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import ArrowUpRight from "../arrowUpRight";
 import styles from "./headerHero.module.css";
 import HeroLine from "./heroLine";
 
@@ -10,7 +9,7 @@ export default function Hero() {
       <div className={styles.heroInner}>
         <div className={styles.copy} data-hero-copy>
           <div className={styles.intro}>
-            <span>Hello</span>
+            <span>Hi there</span>
             <span className={styles.portraitAnchor}>
               <span className={styles.heroFlourish} aria-hidden="true">
                 <HeroLine />
@@ -67,30 +66,6 @@ export default function Hero() {
             — connecting user needs, product direction, and intuitive
             experiences.
           </p>
-          <div className={styles.actions}>
-            <a href="#projects" className={styles.primary}>
-              Selected works
-              <ArrowUpRight />
-            </a>
-            <div className={styles.socialLinks}>
-              <a
-                href="https://www.linkedin.com/in/hanna-gomozova/"
-                className={styles.socialLink}
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn <ArrowUpRight />
-              </a>
-              <a
-                href="https://www.behance.net/hanna_gomozova"
-                className={styles.socialLink}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Behance <ArrowUpRight />
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </section>

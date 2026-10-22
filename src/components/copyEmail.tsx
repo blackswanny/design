@@ -49,7 +49,10 @@ function copyWithSelection(email: string) {
   }
 }
 
-export default function CopyEmail({ email }: Readonly<{ email: string }>) {
+export default function CopyEmail({
+  email,
+  className,
+}: Readonly<{ email: string; className?: string }>) {
   const [message, setMessage] = useState("");
   const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hintRef = useRef<HTMLDivElement>(null);
@@ -133,7 +136,7 @@ export default function CopyEmail({ email }: Readonly<{ email: string }>) {
   };
 
   return (
-    <div className={styles.emailBlock}>
+    <div className={[styles.emailBlock, className].filter(Boolean).join(" ")}>
       <button
         type="button"
         onClick={copy}

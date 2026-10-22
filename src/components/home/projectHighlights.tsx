@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 import styles from "./projectHighlights.module.css";
 
@@ -51,61 +51,9 @@ const highlights = [
 ] as const;
 
 export default function ProjectHighlights() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const cueRef = useRef<HTMLAnchorElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef<DragState | null>(null);
-
-  useLayoutEffect(() => {
-    const section = sectionRef.current;
-    const cue = cueRef.current;
-    const viewport = viewportRef.current;
-    const heroCopy = document.querySelector<HTMLElement>("[data-hero-copy]");
-    const projects = document.getElementById("projects");
-    if (!section || !cue || !viewport || !heroCopy) return;
-
-    let active = true;
-    const updatePosition = () => {
-      const above = heroCopy.getBoundingClientRect().bottom;
-      const cardBounds = trackRef.current
-        ?.querySelector("img")
-        ?.getBoundingClientRect();
-      const below = cardBounds?.top ?? viewport.getBoundingClientRect().top;
-      const cueHeight = cue.getBoundingClientRect().height;
-      const top =
-        (above + below - cueHeight) / 2 - section.getBoundingClientRect().top;
-      cue.style.top = `${top}px`;
-      const gap = Math.max(0, (below - above - cueHeight) / 2);
-      const shadowSpace = cardBounds
-        ? Math.max(
-            0,
-            section.getBoundingClientRect().bottom - cardBounds.bottom,
-          )
-        : 0;
-      projects?.style.setProperty(
-        "--highlights-next-gap",
-        `${Math.max(0, gap - shadowSpace)}px`,
-      );
-    };
-
-    updatePosition();
-    const observer = new ResizeObserver(updatePosition);
-    [section, cue, viewport, heroCopy].forEach((element) =>
-      observer.observe(element),
-    );
-    window.addEventListener("resize", updatePosition);
-    void document.fonts.ready.then(() => {
-      if (active) updatePosition();
-    });
-
-    return () => {
-      active = false;
-      observer.disconnect();
-      window.removeEventListener("resize", updatePosition);
-      projects?.style.removeProperty("--highlights-next-gap");
-    };
-  }, []);
 
   const finishDrag = useCallback(() => {
     const drag = dragRef.current;
@@ -205,34 +153,10 @@ export default function ProjectHighlights() {
 
   return (
     <section
-      ref={sectionRef}
       className={styles.highlights}
       aria-label="Project highlights"
       id="project-highlights"
     >
-      <a
-        ref={cueRef}
-        href="#project-highlights"
-        className={styles.scrollCue}
-        aria-label="Scroll to project cards"
-      >
-        <span>Explore</span>
-        <svg
-          width="24"
-          height="40"
-          viewBox="0 0 24 40"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M12 2v36m-7-7 7 7 7-7"
-            stroke="currentColor"
-            strokeWidth="1"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </a>
       <div
         ref={viewportRef}
         className={styles.viewport}
