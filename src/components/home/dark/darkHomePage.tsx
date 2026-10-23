@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import styles from "./darkPortfolio.module.css";
 import { portfolioDisplay, portfolioSans } from "./fonts";
+import HeroCover from "./heroCover";
 import ProjectRibbon from "./projectRibbon";
 import { portfolioProjects } from "./projects";
 import SiteHeader from "./siteHeader";
@@ -105,6 +106,7 @@ export default function DarkHomePage() {
           </div>
         </div>
         <ProjectRibbon />
+        <HeroCover />
         <h1 id="hero-title" className={styles.heroTitle}>
           <span>
             I design <strong>products</strong>

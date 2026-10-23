@@ -1,0 +1,168 @@
+/* Dark case study layout: a sticky description on the left and the project
+   media stacked on the right, like a Behance gallery. */
+:global(html):has(.page) {
+  --background: #202020;
+  --foreground: #fff;
+  --site-gutter: 0px;
+  color-scheme: dark;
+}
+:global(html):has(.page) :global([aria-label="Scroll down"]) {
+  display: none;
+}
+.page {
+  /* Layout unit: 1px at a 1440px-wide window, so the description, the gap
+     and the project scale together on smaller screens. Above 1440px only
+     the project grows; text, margins and the gap keep their 1440px size. */
+  --u: calc(100vw / 1440);
+  --muted: #a8a8a8;
+  --red: #e54438;
+  min-height: 100svh;
+  background: #202020;
+  color: #fff;
+  font-family: var(--font-portfolio-sans), Arial, sans-serif;
+  font-weight: 400;
+  font-synthesis: none;
+}
+.close {
+  position: fixed;
+  top: 56px;
+  /* Right edge lines up with the project. */
+  right: min(60px, calc(60 * var(--u)));
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.25);
+  color: #161616;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+.close:hover {
+  background: var(--red);
+  color: #fff;
+}
+.close:focus-visible,
+.behance:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+}
+.case {
+  display: grid;
+  /* Above 1440px the gap to the project grows gently (17% of the extra
+     width) instead of staying fixed or scaling fully. */
+  grid-template-columns:
+    min(calc(548 * var(--u)), calc(548px + (100vw - 1440px) * 0.17))
+    minmax(0, 1fr);
+}
+.sidebar {
+  /* Title cap height, first image and close button share one top line. */
+  padding: 56px min(40px, calc(40 * var(--u))) 40px
+    min(60px, calc(60 * var(--u)));
+}
+.sidebarInner {
+  position: sticky;
+  top: 56px;
+}
+.title {
+  /* Pull the cap height up to the top edge of the line box. */
+  position: relative;
+  top: -0.13em;
+  margin: 0;
+  font-size: clamp(36px, calc(54 * var(--u)), 54px);
+  font-weight: 600;
+  line-height: 0.99;
+  letter-spacing: -0.015em;
+}
+.description {
+  max-width: clamp(240px, calc(340 * var(--u)), 340px);
+  margin: min(28px, calc(28 * var(--u))) 0 0;
+  font-size: clamp(15px, calc(18 * var(--u)), 18px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px min(22px, calc(22 * var(--u)));
+  margin: min(26px, calc(26 * var(--u))) 0 0;
+  padding: 0;
+  color: var(--muted);
+  font-size: clamp(14px, calc(18 * var(--u)), 18px);
+  font-weight: 500;
+  line-height: 1.2;
+  list-style: none;
+}
+.behance {
+  display: inline-flex;
+  gap: 6px;
+  margin-top: min(40px, calc(40 * var(--u)));
+  font-size: clamp(14px, calc(18 * var(--u)), 18px);
+  font-weight: 500;
+}
+.behance span {
+  color: var(--red);
+}
+.behance:hover {
+  color: var(--red);
+}
+.gallery {
+  min-width: 0;
+  padding: 56px min(60px, calc(60 * var(--u))) 40px 0;
+}
+/* Barely visible hairline around the whole project. */
+.stack {
+  display: flex;
+  flex-direction: column;
+  outline: 1px solid rgb(255 255 255 / 0.1);
+}
+.media {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.video {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #0d0d0d;
+}
+.video iframe {
+  /* Containers use each video's exact aspect ratio (Vimeo oEmbed); a small
+     overscan hides sub-pixel gaps where the white player background shows. */
+  position: absolute;
+  inset: -3px -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 6px);
+  border: 0;
+}
+@media (max-width: 900px) {
+  .page {
+    --u: 1px;
+  }
+  .case {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sidebar {
+    padding: 96px 20px 32px;
+  }
+  .sidebarInner {
+    position: static;
+  }
+  .title {
+    font-size: 40px;
+  }
+  .gallery {
+    padding: 0 20px 40px;
+  }
+  .close {
+    top: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+  }
+}

@@ -63,6 +63,7 @@ export default function ProjectRibbon() {
     let hovered = false;
     let focused = false;
     let visible = true;
+    let covered = hero.dataset.covered === "true";
     let frame = 0;
     let lastTime = 0;
     let lastInput = performance.now();
@@ -155,7 +156,7 @@ export default function ProjectRibbon() {
 
     const tick = (time: number) => {
       frame = 0;
-      if (!active || !visible || document.hidden) return;
+      if (!active || !visible || covered || document.hidden) return;
       if (reportedPaused !== isPaused) {
         reportedPaused = isPaused;
         setPaused(isPaused);
@@ -199,7 +200,7 @@ export default function ProjectRibbon() {
     };
 
     const startFrames = () => {
-      if (!frame && active && visible && !document.hidden) {
+      if (!frame && active && visible && !covered && !document.hidden) {
         lastTime = 0;
         frame = requestAnimationFrame(tick);
       }
@@ -347,6 +348,15 @@ export default function ProjectRibbon() {
       }
     });
     intersection.observe(hero);
+    // Stop drawing while the next section fully covers the pinned hero.
+    const coverChange = () => {
+      covered = hero.dataset.covered === "true";
+      if (covered) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+      } else startFrames();
+    };
+    hero.addEventListener("herocoverchange", coverChange);
     calibrate();
     offset = geometry.cardWidth / 2 - viewportWidth / 2;
     target = offset;
@@ -363,6 +373,7 @@ export default function ProjectRibbon() {
       controls.current = null;
       sizing.disconnect();
       intersection.disconnect();
+      hero.removeEventListener("herocoverchange", coverChange);
       viewport.removeEventListener("pointerdown", pointerDown);
       viewport.removeEventListener("pointermove", pointerMove);
       viewport.removeEventListener("pointerup", pointerUp);

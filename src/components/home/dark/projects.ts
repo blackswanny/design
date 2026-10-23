@@ -33,14 +33,14 @@ export const portfolioProjects: readonly PortfolioProject[] = [
     href: "/projects/mindscape",
   },
   {
-    id: "dove-closet",
-    name: "Dove Closet",
+    id: "daff",
+    name: "DAFF",
     subtitle: "Online store for curated fashion",
     tags: ["UX/UI", "E-commerce", "Brand"],
     image: `${mediaRoot}/dove-closet.webp`,
     width: 1280,
     height: 716,
-    href: "https://www.behance.net/gallery/211201181/DAFF",
+    href: "/projects/daff",
   },
   {
     id: "groove-avenue",
@@ -50,7 +50,7 @@ export const portfolioProjects: readonly PortfolioProject[] = [
     image: `${mediaRoot}/groove-avenue.webp`,
     width: 1280,
     height: 721,
-    href: "https://www.behance.net/gallery/246119825/The-Groove-Avenue-Digital-Music-Experience",
+    href: "/projects/groove-avenue",
   },
   {
     id: "bee",

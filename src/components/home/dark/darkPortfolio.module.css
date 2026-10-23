@@ -64,6 +64,19 @@
   padding: 24px 0 60px;
   overflow: hidden;
 }
+/* Pinned hero: Selected works slides over it while it recedes
+   (heroCover.tsx drives the variables). */
+@media (prefers-reduced-motion: no-preference) {
+  .hero {
+    position: sticky;
+    top: var(--hero-sticky-top, 0px);
+    opacity: calc(1 - var(--hero-cover, 0));
+    transform: scale(calc(1 - 0.04 * var(--hero-cover, 0)));
+  }
+  .hero[data-covered="true"] {
+    visibility: hidden;
+  }
+}
 .heroTop {
   position: relative;
   z-index: 2;
@@ -315,6 +328,8 @@
 }
 .projects {
   --text: #121212;
+  position: relative;
+  z-index: 1;
   --muted: #6b6b6b;
   padding: 72px var(--gutter) 90px;
   border-radius: 50px;
@@ -329,15 +344,17 @@
   gap: 64px;
   margin-bottom: 64px;
 }
+/* Same scale and faces as the hero slogan, in dark ink on the white panel. */
 .sectionHeading {
-  font-size: 72px;
+  font-size: calc(96px * var(--hero-scale));
   font-weight: 600;
-  line-height: 1;
+  line-height: calc(94px * var(--hero-scale));
   letter-spacing: -0.015em;
   white-space: nowrap;
 }
 .sectionHeading em {
-  font-size: 1.2em;
+  font-size: 1.25em;
+  letter-spacing: -0.015em;
 }
 .sectionDescription {
   max-width: 370px;
@@ -413,6 +430,8 @@
   font-size: 13px;
 }
 .contact {
+  position: relative;
+  z-index: 1;
   padding: 120px var(--gutter) 40px;
 }
 .footerNote {
@@ -496,9 +515,6 @@
 @media (min-width: 760px) and (max-width: 1400px) {
   .site {
     --gutter: 40px;
-  }
-  .sectionHeading {
-    font-size: 56px;
   }
   .sectionIntro {
     gap: 32px;
@@ -649,8 +665,12 @@
     margin-bottom: 32px;
   }
   .sectionHeading {
-    font-size: clamp(32px, 9.5vw, 50px);
+    font-size: clamp(30px, 9.3vw, 44px);
+    line-height: 1.07;
     white-space: normal;
+  }
+  .sectionHeading em {
+    font-size: 1.22727em;
   }
   .site .sectionDescription {
     margin-top: 26px;
