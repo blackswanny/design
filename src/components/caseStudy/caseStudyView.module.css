@@ -113,11 +113,9 @@
   min-width: 0;
   padding: 56px min(60px, calc(60 * var(--u))) 40px 0;
 }
-/* Barely visible hairline around the whole project. */
 .stack {
   display: flex;
   flex-direction: column;
-  outline: 1px solid rgb(255 255 255 / 0.1);
 }
 .media {
   display: block;

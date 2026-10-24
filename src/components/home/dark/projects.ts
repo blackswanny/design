@@ -67,15 +67,18 @@ const heroRoot = `${mediaRoot}/hero`;
 
 // Order must match the atlas built by scripts/build-ribbon-atlas.mjs.
 export const ribbonImages = [
-  ["01-music-store", "TFS — music store website"],
-  ["02-mindscape", "MindScape — mental health mobile app"],
-  ["03-workreactor", "WorkReactor — founder execution workspace"],
+  ["01-workreactor", "WorkReactor — founder execution workspace"],
+  ["02-daff", "DAFF — fashion online store"],
+  [
+    "03-groove-avenue",
+    "The Groove Avenue — brand website and digital experience",
+  ],
   ["04-diagnosis", "Diagnosis — medical care mobile app"],
-  ["05-spring-collection", "Spring collection fashion lookbook website"],
-  ["06-dance-academy", "Dance Academy website"],
-  ["07-daff", "DAFF — fashion online store"],
-  ["08-workreactor-spotlight", "WorkReactor — startup spotlight features"],
-  ["09-vegamore", "Vegamore — clean beauty online store"],
+  ["05-workreactor-spotlight", "WorkReactor — startup spotlight features"],
+  ["06-mindscape", "MindScape — mental health mobile app"],
+  ["07-spring-collection", "Spring collection fashion lookbook website"],
+  ["08-skilley", "Skilley — team learning dashboard"],
+  ["09-dance-academy", "Dance Academy website"],
 ].map(([file, alt]) => ({
   src: `${heroRoot}/${file}.webp`,
   alt,
