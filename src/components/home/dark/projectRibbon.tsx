@@ -95,7 +95,9 @@ export default function ProjectRibbon() {
         Math.min(
           1,
           (viewportWidth - 63) / 1377,
-          (height - (wide ? 132 : 112)) / 769.674,
+          // 769.674 is the hero content height at scale 1; the extra 100px
+          // keeps breathing room around the intro on shorter windows.
+          (height - (wide ? 132 : 112)) / 869.674,
         ),
       );
       const maxBandScale = wide

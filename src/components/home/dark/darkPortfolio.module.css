@@ -194,7 +194,7 @@
   object-fit: cover;
 }
 .site .introText {
-  color: var(--muted);
+  color: var(--text);
 }
 .introLine {
   display: block;
