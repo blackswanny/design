@@ -15,8 +15,9 @@ export const portfolioProjects: readonly PortfolioProject[] = [
   {
     id: "workreactor",
     name: "WorkReactor",
-    subtitle: "Social network and workspace for founders",
-    tags: ["Product Design", "UX/UI", "Research", "0→1"],
+    subtitle:
+      "A social platform connecting people, projects, and opportunities.",
+    tags: ["Product Design", "UX Research", "0 → 1"],
     image: `${mediaRoot}/workreactor-cover.webp`,
     width: 1280,
     height: 797,
@@ -25,8 +26,9 @@ export const portfolioProjects: readonly PortfolioProject[] = [
   {
     id: "mindscape",
     name: "MindScape",
-    subtitle: "Personalized onboarding for mental health support",
-    tags: ["UX/UI", "Product Strategy", "Mobile", "Research"],
+    subtitle:
+      "A mental wellness app with personalized support and easy onboarding.",
+    tags: ["Product Design", "UX/UI", "Mobile App"],
     image: `${mediaRoot}/mindscape-cover.webp`,
     width: 1280,
     height: 716,
@@ -35,7 +37,7 @@ export const portfolioProjects: readonly PortfolioProject[] = [
   {
     id: "daff",
     name: "DAFF",
-    subtitle: "Online store for curated fashion",
+    subtitle: "An editorial e-commerce experience for contemporary fashion.",
     tags: ["UX/UI", "E-commerce", "Brand"],
     image: `${mediaRoot}/daff-cover.webp`,
     width: 1280,
@@ -45,8 +47,9 @@ export const portfolioProjects: readonly PortfolioProject[] = [
   {
     id: "groove-avenue",
     name: "Groove Avenue",
-    subtitle: "Website for a music band",
-    tags: ["UX/UI", "Web Design", "Animation"],
+    subtitle:
+      "A website for a music band that brings their sound and story to life.",
+    tags: ["Web Design", "Creative Direction", "Animation"],
     image: `${mediaRoot}/groove-avenue-cover.webp`,
     width: 1600,
     height: 1000,

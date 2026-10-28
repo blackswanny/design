@@ -131,11 +131,11 @@ export default function DarkHomePage() {
       >
         <div className={styles.sectionIntro}>
           <h2 id="work-title" className={styles.sectionHeading}>
-            Selected <em>works</em>
+            Selected <em>Work</em>
           </h2>
+          <span className={styles.sectionRule} aria-hidden="true" />
           <p className={styles.sectionDescription}>
-            A selection of digital products and creative experiences, each
-            shaped by a different idea, challenge, and purpose.
+            Digital products, thoughtful experiences, and creative exploration.
           </p>
         </div>
         <div className={styles.projectGrid}>
@@ -168,7 +168,10 @@ export default function DarkHomePage() {
                 ) : (
                   <div className={styles.projectStage}>{image}</div>
                 )}
-                <div className={styles.projectTitle}>
+                <div
+                  className={styles.projectTitle}
+                  data-caps={project.name === project.name.toUpperCase()}
+                >
                   <h3
                     id={`${project.id}-heading`}
                     className={styles.projectName}
@@ -189,9 +192,11 @@ export default function DarkHomePage() {
                 </div>
                 <p className={styles.projectSubtitle}>{project.subtitle}</p>
                 {project.tags.length > 0 && (
-                  <div className={styles.projectTags}>
-                    {project.tags.join(" · ")}
-                  </div>
+                  <ul className={styles.projectTags}>
+                    {project.tags.map((tag) => (
+                      <li key={tag}>{tag}</li>
+                    ))}
+                  </ul>
                 )}
               </article>
             );
