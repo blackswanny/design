@@ -283,7 +283,8 @@ export default function DarkHomePage() {
           </nav>
           <div className={styles.credits}>
             <span>© 2026 Hanna Gomozova</span>
-            <Link href="/light-version" className={styles.preservedLink}>
+            {/* Hidden for now; the /light-version page stays live. */}
+            <Link href="/light-version" className={styles.preservedLink} hidden>
               Light version ↗
             </Link>
           </div>
