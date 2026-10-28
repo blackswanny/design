@@ -9,10 +9,12 @@
 
 .particle {
   position: absolute;
-  top: calc(var(--burst-y) - 3px);
-  left: calc(var(--burst-x) - 3px);
-  width: 6px;
-  height: 6px;
+  opacity: 0;
+}
+
+.star {
+  width: 7px;
+  height: 7px;
   clip-path: polygon(
     50% 0%,
     61% 35%,
@@ -25,14 +27,16 @@
     2% 35%,
     39% 35%
   );
-  background: var(--accent);
 }
 
-.particle:nth-child(3n) {
+.confetti {
+  width: 6px;
+  height: 3px;
+  border-radius: 1px;
+}
+
+.dot {
   width: 4px;
   height: 4px;
-}
-
-.particle:nth-child(4n) {
-  background: color-mix(in srgb, var(--accent) 60%, var(--background));
+  border-radius: 50%;
 }

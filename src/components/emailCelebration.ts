@@ -1,5 +1,21 @@
 import styles from "./emailCelebration.module.css";
 
+const palette = [
+  "#e54438",
+  "#ffc83d",
+  "#ff5fa2",
+  "#8b5cf6",
+  "#3dd6f5",
+  "#4ade80",
+  "#ffffff",
+];
+
+const shapes = [styles.star, styles.confetti, styles.dot] as const;
+
+const pick = <T>(items: readonly T[]) =>
+  items[Math.floor(Math.random() * items.length)];
+const between = (min: number, max: number) => min + Math.random() * (max - min);
+
 export function celebrateEmailCopy(x: number, y: number) {
   if (
     window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
@@ -12,42 +28,52 @@ export function celebrateEmailCopy(x: number, y: number) {
   burst.className = styles.burst;
   burst.setAttribute("aria-hidden", "true");
   burst.setAttribute("data-copy-celebration", "");
-  burst.style.setProperty("--burst-x", `${x}px`);
-  burst.style.setProperty("--burst-y", `${y}px`);
   document.body.appendChild(burst);
 
-  const particleCount = 48;
-  const animations = Array.from({ length: particleCount }, (_, index) => {
-    const particle = document.createElement("span");
-    particle.className = styles.particle;
-    burst.appendChild(particle);
+  const animations: Animation[] = [];
+  const spawn = (className: string, left: number, top: number) => {
+    const element = document.createElement("span");
+    element.className = className;
+    element.style.left = `${left}px`;
+    element.style.top = `${top}px`;
+    burst.appendChild(element);
+    return element;
+  };
 
-    const angle = (index / particleCount) * Math.PI * 2 - Math.PI / 2;
-    const distance = 2 * (50 + (index % 5) * 13);
+  // Main confetti burst: mixed shapes and colours that arc out and fall.
+  for (let index = 0; index < 300; index += 1) {
+    const particle = spawn(`${styles.particle} ${pick(shapes)}`, x, y);
+    particle.style.background = pick(palette);
+
+    const angle = between(0, Math.PI * 2);
+    const distance = between(40, 200);
     const dx = Math.cos(angle) * distance;
-    const dy = Math.sin(angle) * distance;
-    const rotation = index % 2 === 0 ? 220 : -220;
+    const dy = Math.sin(angle) * distance - between(20, 60);
+    const spin = between(360, 900) * (Math.random() < 0.5 ? -1 : 1);
 
-    return particle.animate(
-      [
-        { transform: "translate(0, 0) rotate(0deg) scale(0.5)", opacity: 1 },
+    animations.push(
+      particle.animate(
+        [
+          { transform: "translate(-50%, -50%) scale(0.4)", opacity: 1 },
+          {
+            transform: `translate(calc(${dx}px - 50%), calc(${dy}px - 50%)) rotate(${spin * 0.55}deg) scale(1)`,
+            opacity: 1,
+            offset: 0.45,
+          },
+          {
+            transform: `translate(calc(${dx * 1.15}px - 50%), calc(${dy + between(90, 160)}px - 50%)) rotate(${spin}deg) scale(0.6)`,
+            opacity: 0,
+          },
+        ],
         {
-          transform: `translate(${dx * 0.85}px, ${dy * 0.85}px) rotate(${rotation * 0.6}deg) scale(1)`,
-          opacity: 1,
-          offset: 0.6,
+          duration: between(1300, 2000),
+          delay: between(0, 60),
+          easing: "cubic-bezier(0.12, 0.7, 0.3, 1)",
+          fill: "backwards",
         },
-        {
-          transform: `translate(${dx}px, ${dy + 72}px) rotate(${rotation}deg) scale(0.3)`,
-          opacity: 0,
-        },
-      ],
-      {
-        duration: 850 + (index % 5) * 45,
-        easing: "cubic-bezier(0.15, 0.65, 0.3, 1)",
-        fill: "forwards",
-      },
+      ),
     );
-  });
+  }
 
   const cancel = () => {
     animations.forEach((animation) => animation.cancel());

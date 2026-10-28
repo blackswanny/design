@@ -485,7 +485,7 @@
   font-size: 1.15em;
 }
 .site .contactDescription {
-  max-width: 460px;
+  max-width: 500px;
   margin-top: 30px;
   color: var(--muted);
   font-size: 20px;
@@ -517,7 +517,13 @@
   color: var(--red);
 }
 .emailBlock [data-visible] {
+  border-color: #fff;
+  background: #fff;
+  color: #121212;
   font-family: var(--font-portfolio-sans), Arial, sans-serif;
+}
+.emailBlock [data-visible] svg {
+  color: var(--red);
 }
 .contactBottom {
   display: flex;
@@ -532,9 +538,44 @@
 .socials {
   display: flex;
   flex-wrap: wrap;
-  gap: 32px;
+  align-items: center;
+  gap: 16px 0;
 }
-.socials a:hover,
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+/* Thin divider between profiles. */
+.socials a + a::before {
+  content: "";
+  width: 1px;
+  height: 24px;
+  margin: 0 16px 0 28px;
+  background: #4a4a4a;
+}
+.socialName {
+  color: var(--muted);
+  transition: color 0.2s ease;
+}
+.socials a:hover .socialName {
+  color: var(--text);
+}
+.behanceMark {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+}
+.socialArrow {
+  margin-left: -4px;
+  color: var(--red);
+  /* The arrow glyph sits high; centre it on the name. */
+  transform: translateY(0.132em);
+}
 .preservedLink:hover {
   color: var(--text);
 }
@@ -780,8 +821,22 @@
     font-size: 12px;
   }
   .socials {
-    gap: 24px;
     margin-bottom: 28px;
+  }
+  .socials a {
+    gap: 6px;
+    font-size: 14px;
+  }
+  .socials svg {
+    width: 20px;
+    height: 20px;
+  }
+  .behanceMark {
+    font-size: 18px;
+  }
+  .socials a + a::before {
+    height: 18px;
+    margin: 0 4px 0 10px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
