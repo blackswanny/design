@@ -120,7 +120,7 @@
   display: flex;
   gap: 0.5em;
   color: var(--muted);
-  font-size: calc(18px * var(--hero-scale));
+  font-size: clamp(13px, calc(18px * var(--hero-scale) * 1.15), 18px);
   line-height: 0.99;
   transform: translateY(calc(-85px * var(--p)));
 }
@@ -136,7 +136,7 @@
 }
 .wordmark {
   flex: none;
-  padding: calc(10px * var(--p)) calc(18px * var(--p));
+  padding: calc(12px * var(--p)) calc(18px * var(--p));
   border-radius: 12px;
   background: var(--glass);
   backdrop-filter: var(--glass-blur);
@@ -151,13 +151,18 @@
 }
 .nav {
   display: flex;
-  gap: calc(50px * var(--hero-scale) * (1 - var(--p)) + 30px * var(--p));
+  /* Sizes follow anfalova.art: 18px links 50px apart at the top, a 51px-tall
+     pill with 14px links 30px apart when condensed. They only shrink below
+     18px on narrow windows. */
+  --nav-size: clamp(13px, calc(18px * var(--hero-scale) * 1.15), 18px);
+  --nav-gap: min(50px, calc(50px * var(--hero-scale) * 1.15));
+  gap: calc(var(--nav-gap) * (1 - var(--p)) + 30px * var(--p));
   padding: calc(7px * (1 - var(--p)) + 17px * var(--p)) calc(24px * var(--p));
   border-radius: 12px;
   background: var(--glass);
   backdrop-filter: var(--glass-blur);
-  font-size: calc(18px * var(--hero-scale) * (1 - var(--p)) + 14px * var(--p));
-  line-height: 0.99;
+  font-size: calc(var(--nav-size) * (1 - var(--p)) + 14px * var(--p));
+  line-height: calc(var(--nav-size) * 0.99 * (1 - var(--p)) + 17px * var(--p));
 }
 .nav a:hover {
   color: var(--red);
@@ -531,8 +536,19 @@
   .intro {
     margin-right: 0;
   }
+  /* Not enough room beside the nav: the profile links move under the intro,
+     as on phones. */
   .headerSocials {
-    left: calc(100% - var(--gutter) - 437px * var(--hero-scale));
+    display: none;
+  }
+  .site .introSocials {
+    display: flex;
+    gap: 0.5em;
+    margin-top: calc(21px * var(--hero-scale));
+    color: var(--text);
+  }
+  .introSocials a:hover {
+    color: var(--red);
   }
   .sectionIntro {
     display: block;
