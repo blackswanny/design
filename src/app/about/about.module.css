@@ -407,6 +407,13 @@
   font-size: 18px;
   line-height: 1.5;
 }
+/* Two even lines on large screens. */
+@media (min-width: 1200px) {
+  .outside p.outsideText {
+    max-width: 470px;
+    text-wrap: balance;
+  }
+}
 .outside .darkRule,
 .approachBody .darkRule {
   background: #363636;
@@ -416,34 +423,40 @@
   display: flex;
   justify-content: center;
   margin: 0;
-  padding: 24px 0 48px;
+  padding: 32px 0 120px;
   list-style: none;
 }
 .photoSlot {
   position: relative;
-  flex: 0 1 380px;
+  flex: 0 1 320px;
   min-width: 0;
-  transform: rotate(var(--tilt)) translateY(var(--lift, 0));
+  transform: translate(var(--shift, 0px), var(--lift, 0px)) rotate(var(--tilt));
   transition: transform 0.35s ease;
 }
 .photoSlot + .photoSlot {
-  margin-left: -28px;
+  margin-left: -40px;
 }
+/* Tossed on a table: uneven tilts, heights and gaps. Each photo lies on the
+   one before it, so no caption is covered. */
 .photoSlot:nth-child(1) {
-  --tilt: -5deg;
-  --lift: 12px;
+  --tilt: -4deg;
+  --lift: 72px;
+  --shift: 12px;
 }
 .photoSlot:nth-child(2) {
-  --tilt: 3deg;
-  z-index: 1;
+  --tilt: 9deg;
+  --lift: -16px;
+  --shift: -8px;
 }
 .photoSlot:nth-child(3) {
-  --tilt: -2.5deg;
-  --lift: 20px;
+  --tilt: -12deg;
+  --lift: 36px;
+  --shift: 28px;
 }
 .photoSlot:hover {
-  z-index: 2;
-  transform: rotate(0deg) translateY(-6px);
+  z-index: 1;
+  transform: translate(var(--shift, 0px), calc(var(--lift, 0px) - 8px))
+    rotate(0deg);
 }
 .snap {
   margin: 0;
@@ -452,12 +465,22 @@
   background: #f8f7f3;
   box-shadow: 0 24px 60px rgb(0 0 0 / 0.45);
 }
+/* Like the intro polaroid caption, with the small grey label on top. */
 .snapCaption {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   padding: 18px 0 22px;
+  line-height: 1.1;
+}
+.snapCaption span {
+  color: #6b6b6b;
+  font-size: 14px;
+}
+.snapCaption strong {
   color: #121212;
   font-size: 20px;
   font-weight: 600;
-  line-height: 1.1;
   letter-spacing: -0.015em;
 }
 
@@ -477,7 +500,7 @@
     gap: 16px;
   }
   .photoSlot + .photoSlot {
-    margin-left: -40px;
+    margin-left: -64px;
   }
 }
 @media (max-width: 759px) {
@@ -603,27 +626,34 @@
   }
   .photoSlot {
     flex: none;
-    width: min(80%, 340px);
+    width: min(72%, 300px);
   }
   .photoSlot + .photoSlot {
     margin: 8px 0 0;
   }
+  /* Beats the desktop nth-child offsets. */
+  .photos .photoSlot {
+    --lift: 0px;
+    --shift: 0px;
+  }
   .photoSlot:nth-child(1) {
-    --lift: 0;
     left: -6%;
   }
-  .photoSlot:nth-child(3) {
-    --lift: 0;
-    left: -4%;
-  }
   .photoSlot:nth-child(2) {
-    left: 6%;
+    left: 8%;
+    --tilt: 6deg;
+  }
+  .photoSlot:nth-child(3) {
+    left: -3%;
+    --tilt: -8deg;
   }
   .snap {
     padding: 12px 12px 0;
   }
   .snapCaption {
     padding: 14px 0 18px;
-    font-size: 17px;
+  }
+  .snapCaption strong {
+    font-size: 18px;
   }
 }

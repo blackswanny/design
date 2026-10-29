@@ -91,17 +91,20 @@ const outsidePhotos = [
   {
     src: "/images/about/outside/aerial.webp",
     alt: "Hanna on an aerial hoop",
-    caption: "Pole dance",
+    label: "Lyra, pole, aerial",
+    caption: "Life upside down",
   },
   {
     src: "/images/about/outside/travel.webp",
     alt: "Hanna walking towards a bridge in the mountains",
-    caption: "New places",
+    label: "Travel",
+    caption: "Always exploring",
   },
   {
     src: "/images/about/outside/dog.webp",
     alt: "Hanna holding her poodle at sunset",
-    caption: "My dog",
+    label: "My dog",
+    caption: "Rocky, my sidekick",
   },
 ];
 
@@ -248,8 +251,8 @@ export default function AboutPage() {
             aria-hidden="true"
           />
           <p className={`${site.sectionDescription} ${styles.outsideText}`}>
-            When I’m not designing, you’ll find me practicing pole dance,
-            exploring new places, or spending time with my dog.
+            When I’m not designing, I’m usually upside down, exploring somewhere
+            new, or hanging out with my&nbsp;dog.
           </p>
         </div>
         <ul className={styles.photos}>
@@ -266,7 +269,8 @@ export default function AboutPage() {
                   unoptimized
                 />
                 <figcaption className={styles.snapCaption}>
-                  {photo.caption}
+                  <span>{photo.label}</span>
+                  <strong>{photo.caption}</strong>
                 </figcaption>
               </figure>
             </li>
