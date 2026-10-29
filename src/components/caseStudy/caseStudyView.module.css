@@ -15,7 +15,7 @@
      the project grows; text, margins and the gap keep their 1440px size. */
   --u: calc(100vw / 1440);
   --muted: #a8a8a8;
-  --red: #e54438;
+  --red: #e03a2a;
   min-height: 100svh;
   background: #202020;
   color: #fff;

@@ -4,7 +4,7 @@
   --foreground: #fff;
   --surface: #252525;
   --secondary: #a8a8a8;
-  --accent: #e54438;
+  --accent: #e03a2a;
   --border: #353535;
   --site-gutter: 0px;
   color-scheme: dark;
@@ -18,10 +18,15 @@
   --panel: #040404;
   --text: #fff;
   --muted: #a8a8a8;
-  --red: #e54438;
+  /* One red across the site: bright enough on black, white text stays
+     readable on it. */
+  --red: #e03a2a;
   --gutter: 60px;
   --hero-scale: 1;
   --carousel-scale: 1;
+  /* Shared size of the hero, Selected Work and Let's talk headings: 90px at
+     1440×900, shrinking with the hero on narrower or shorter windows. */
+  --heading-size: min(90px, calc(99.4px * var(--hero-scale)));
   width: 100%;
   background: var(--canvas);
   color: var(--text);
@@ -167,6 +172,11 @@
 .nav a:hover {
   color: var(--red);
 }
+.nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.35em;
+}
 .nav a:last-child span {
   margin-left: 5px;
 }
@@ -218,9 +228,9 @@
   margin-left: var(--gutter);
   padding-top: calc(103px * var(--hero-scale));
   color: var(--muted);
-  font-size: calc(96px * var(--hero-scale));
+  font-size: var(--heading-size);
   font-weight: 600;
-  line-height: calc(94px * var(--hero-scale));
+  line-height: 0.979;
   letter-spacing: -0.015em;
 }
 .heroTitle > span {
@@ -235,7 +245,7 @@
   color: var(--red);
 }
 .heroTitle em {
-  font-size: calc(120px * var(--hero-scale));
+  font-size: 1.25em;
   line-height: 0;
   letter-spacing: -0.015em;
   vertical-align: baseline;
@@ -357,9 +367,9 @@
 }
 /* Same scale and faces as the hero slogan, in dark ink on the white panel. */
 .sectionHeading {
-  font-size: calc(96px * var(--hero-scale));
+  font-size: var(--heading-size);
   font-weight: 600;
-  line-height: calc(94px * var(--hero-scale));
+  line-height: 0.979;
   letter-spacing: -0.015em;
   white-space: nowrap;
 }
@@ -470,19 +480,30 @@
   z-index: 1;
   padding: 120px var(--gutter) 40px;
 }
+/* Faint plus signs washing in from the top-right, just below the
+   "Hanna Gomozova / Product Designer" line. */
+.contactTexture {
+  position: absolute;
+  z-index: -1;
+  inset: 168px 0 0 20%;
+  background-position: right top;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M12 8.5v7M8.5 12h7' stroke='%23fff' stroke-opacity='.24' stroke-width='1.4'/%3E%3C/svg%3E");
+  mask: radial-gradient(ellipse 85% 120% at 100% 0%, #000 35%, transparent 80%);
+  pointer-events: none;
+}
 .footerNote {
   color: var(--muted);
   font-size: 14px;
 }
 .site .contactTitle {
   margin-top: 40px;
-  font-size: 120px;
+  font-size: var(--heading-size);
   font-weight: 600;
   line-height: 1;
   letter-spacing: -0.015em;
 }
 .contactTitle em {
-  font-size: 1.15em;
+  font-size: 1.25em;
 }
 .site .contactDescription {
   max-width: 500px;
@@ -766,7 +787,8 @@
     line-height: 1.07;
     white-space: normal;
   }
-  .sectionHeading em {
+  .sectionHeading em,
+  .contactTitle em {
     font-size: 1.22727em;
   }
   .site .sectionDescription {
@@ -801,9 +823,13 @@
   .contact {
     padding: 64px 20px 32px;
   }
+  .contactTexture {
+    inset: 112px 0 0 20%;
+  }
   .site .contactTitle {
     margin-top: 30px;
-    font-size: 64px;
+    font-size: clamp(30px, 9.3vw, 44px);
+    line-height: 1.07;
   }
   .site .contactDescription {
     margin-top: 24px;

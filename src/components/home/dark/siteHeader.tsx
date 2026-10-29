@@ -4,20 +4,35 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 import styles from "./darkPortfolio.module.css";
+import { computeHeroScale } from "./heroScale";
 
 // Scroll distance over which the hero header condenses into the sticky bar.
 const CONDENSE_DISTANCE = 180;
 
-export default function SiteHeader() {
+// On the home page the ribbon sets --hero-scale; other pages have no hero, so
+// the header sets it itself to keep the same sizes.
+export default function SiteHeader({
+  page = "home",
+}: {
+  page?: "home" | "about";
+}) {
   const headerRef = useRef<HTMLElement>(null);
+  const onHome = page === "home";
 
   useEffect(() => {
     const header = headerRef.current;
-    if (!header) return;
+    const root = header?.parentElement;
+    if (!header || !root) return;
 
     let frame = 0;
     const update = () => {
       frame = 0;
+      if (!onHome) {
+        root.style.setProperty(
+          "--hero-scale",
+          String(computeHeroScale(root.clientWidth)),
+        );
+      }
       const t = Math.min(1, Math.max(0, window.scrollY / CONDENSE_DISTANCE));
       const eased = t * t * (3 - 2 * t);
       header.style.setProperty("--header-progress", eased.toFixed(4));
@@ -34,18 +49,19 @@ export default function SiteHeader() {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
+      if (!onHome) root.style.removeProperty("--hero-scale");
     };
-  }, []);
+  }, [onHome]);
 
   return (
     <header ref={headerRef} className={styles.header}>
-      <a
+      <Link
         className={styles.wordmark}
-        href="#home"
+        href={onHome ? "#home" : "/"}
         aria-label="Hanna Gomozova — home"
       >
         hanna<span className={styles.wordmarkDot}>.</span>
-      </a>
+      </Link>
       <div className={styles.headerSocials}>
         <a
           href="https://www.linkedin.com/in/hanna-gomozova/"
@@ -64,8 +80,13 @@ export default function SiteHeader() {
         </a>
       </div>
       <nav className={styles.nav} aria-label="Main navigation">
-        <a href="#projects">Works</a>
-        <Link href="/about">About</Link>
+        <Link href={onHome ? "#projects" : "/#projects"}>Works</Link>
+        <Link
+          href="/about"
+          aria-current={page === "about" ? "page" : undefined}
+        >
+          About
+        </Link>
         <a
           href="/Hanna-Gomozova-Product-Designer.pdf"
           download="Hanna Gomozova_Product Designer.pdf"

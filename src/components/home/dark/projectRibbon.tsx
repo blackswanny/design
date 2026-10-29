@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import styles from "./darkPortfolio.module.css";
+import { computeHeroScale } from "./heroScale";
 import { ribbonImages } from "./projects";
 import { createRibbonRenderer } from "./ribbonRenderer";
 
@@ -90,16 +91,7 @@ export default function ProjectRibbon() {
       compact = viewportWidth <= 759;
       const height = Math.max(window.innerHeight, 640);
       const wide = viewportWidth >= 1536;
-      const heroScale = Math.max(
-        0.35,
-        Math.min(
-          1,
-          (viewportWidth - 63) / 1377,
-          // 769.674 is the hero content height at scale 1; the extra 100px
-          // keeps breathing room around the intro on shorter windows.
-          (height - (wide ? 132 : 112)) / 869.674,
-        ),
-      );
+      const heroScale = computeHeroScale(viewportWidth);
       const maxBandScale = wide
         ? Math.min(1.4, 1 + (viewportWidth - 1536) / 3200)
         : heroScale;

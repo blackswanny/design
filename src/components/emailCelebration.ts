@@ -1,7 +1,7 @@
 import styles from "./emailCelebration.module.css";
 
 const palette = [
-  "#e54438",
+  "#e03a2a",
   "#ffc83d",
   "#ff5fa2",
   "#8b5cf6",
