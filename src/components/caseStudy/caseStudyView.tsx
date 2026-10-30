@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import styles from "./caseStudyView.module.css";
+import CaseVideo from "./caseVideo";
 import { portfolioDisplay, portfolioSans } from "../home/dark/fonts";
 
 import type { CaseStudy } from "./types";
@@ -81,17 +82,17 @@ export default function CaseStudyView({ project }: { project: CaseStudy }) {
               if (module.type === "video") {
                 return (
                   <div
-                    key={module.vimeoId}
+                    key={module.src}
                     className={styles.video}
                     style={{
                       aspectRatio: `${module.width} / ${module.height}`,
                     }}
                   >
-                    <iframe
-                      src={`https://player.vimeo.com/video/${module.vimeoId}?autoplay=1&loop=1&muted=1&autopause=0&background=1&title=0&byline=0&portrait=0`}
-                      title={`${project.title} website interaction video`}
-                      allow="autoplay; fullscreen; picture-in-picture"
-                      loading="lazy"
+                    <CaseVideo
+                      src={module.src}
+                      poster={module.poster}
+                      title={`${project.title} interaction video`}
+                      eager={index === 0}
                     />
                   </div>
                 );

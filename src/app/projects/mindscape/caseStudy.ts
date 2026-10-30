@@ -37,14 +37,14 @@ export const mindscapeCase: CaseStudy = {
   behanceUrl:
     "https://www.behance.net/gallery/246126405/Mindscape-Mental-Health-App-Design",
   modules: [
-    caseVideo("1175366730", 4000, 2464),
+    caseVideo("mindscape-1", 2338, 1440),
     image(1),
     image(2),
     image(3),
     image(4),
     image(5),
     image(6),
-    caseVideo("1175682456", 4000, 2535),
+    caseVideo("mindscape-2", 1884, 1194),
     ...Array.from({ length: 13 }, (_, i) => image(i + 7)),
   ],
 };

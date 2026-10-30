@@ -8,7 +8,8 @@ export type CaseImage = {
 
 export type CaseVideo = {
   type: "video";
-  vimeoId: string;
+  src: string;
+  poster: string;
   width: number;
   height: number;
 };
@@ -47,8 +48,16 @@ export const caseImage = (
   height,
 });
 
+// Videos live in /videos/cases/<name>.mp4 with a first-frame poster
+// <name>.webp beside them; width and height are the file's pixel size.
 export const caseVideo = (
-  vimeoId: string,
+  name: string,
   width: number,
   height: number,
-): CaseVideo => ({ type: "video", vimeoId, width, height });
+): CaseVideo => ({
+  type: "video",
+  src: `/videos/cases/${name}.mp4`,
+  poster: `/videos/cases/${name}.webp`,
+  width,
+  height,
+});
