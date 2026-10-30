@@ -58,7 +58,7 @@ export default function SiteFooter() {
     >
       <div className={styles.contactTexture} aria-hidden="true" />
       <span className={styles.footerNote}>
-        Hanna Gomozova / Product Designer
+        Based in the San Francisco Bay Area
       </span>
       <h2 id="contact-heading" className={styles.contactTitle}>
         Let’s <em>talk</em>
