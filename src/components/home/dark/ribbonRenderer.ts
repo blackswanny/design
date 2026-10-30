@@ -235,7 +235,8 @@ export function createRibbonRenderer(
       gl.uniform1f(uniforms.cardGap, frame.geometry.gap);
       gl.uniform1f(uniforms.itemCount, frame.geometry.count);
       gl.uniform1f(uniforms.offset, frame.offset);
-      gl.uniform1f(uniforms.lensStrength, frame.compact ? 0.12 : frame.reveal);
+      // Phones get a flat, straight ribbon: no lens bend.
+      gl.uniform1f(uniforms.lensStrength, frame.compact ? 0 : frame.reveal);
       gl.uniform1f(uniforms.entry, frame.reveal);
       gl.uniform1f(
         uniforms.motionScale,

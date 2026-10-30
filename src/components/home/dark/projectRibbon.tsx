@@ -61,8 +61,6 @@ export default function ProjectRibbon() {
     let isPaused = reduced.matches;
     let reportedPaused: boolean | null = null;
     let drag: Drag | null = null;
-    let hovered = false;
-    let focused = false;
     let visible = true;
     let covered = hero.dataset.covered === "true";
     let frame = 0;
@@ -158,20 +156,16 @@ export default function ProjectRibbon() {
       const delta = lastTime ? Math.min(40, time - lastTime) : 16;
       lastTime = time;
       const idle = time - lastInput;
-      const autoplay =
-        !isPaused &&
-        !reduced.matches &&
-        !drag &&
-        !hovered &&
-        !focused &&
-        idle > 1800;
+      // Keeps moving under the pointer and with focus; only Pause, a drag or
+      // the arrow keys hold it, and it picks up again shortly after.
+      const autoplay = !isPaused && !reduced.matches && !drag && idle > 1000;
       if (!drag && !isPaused && momentum) {
         target += momentum * delta;
         momentum *= Math.exp(-delta / 115);
         if (Math.abs(momentum) < 0.025) momentum = 0;
       }
       if (autoplay) target += delta * 0.0288;
-      else if (!drag && !isPaused && !momentum && idle > 160 && idle < 1700)
+      else if (!drag && !isPaused && !momentum && idle > 160 && idle < 900)
         target = nearestCard(target);
       const previous = offset;
       const follow = reduced.matches
@@ -263,21 +257,6 @@ export default function ProjectRibbon() {
     };
     const pointerUp = () => finishDrag();
     const pointerCancel = () => finishDrag(true);
-    const pointerEnter = (event: PointerEvent) => {
-      if (event.pointerType === "mouse") hovered = true;
-    };
-    const pointerLeave = () => {
-      hovered = false;
-      lastInput = performance.now();
-    };
-    const focus = () => {
-      focused = true;
-      momentum = 0;
-    };
-    const blur = () => {
-      focused = false;
-      lastInput = performance.now();
-    };
     const keyDown = (event: KeyboardEvent) => {
       if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
       event.preventDefault();
@@ -320,10 +299,6 @@ export default function ProjectRibbon() {
     viewport.addEventListener("pointerup", pointerUp);
     viewport.addEventListener("pointercancel", pointerCancel);
     viewport.addEventListener("lostpointercapture", pointerCancel);
-    viewport.addEventListener("pointerenter", pointerEnter);
-    viewport.addEventListener("pointerleave", pointerLeave);
-    viewport.addEventListener("focus", focus);
-    viewport.addEventListener("blur", blur);
     viewport.addEventListener("keydown", keyDown);
     window.addEventListener("resize", resize);
     window.addEventListener("blur", windowBlur);
@@ -373,10 +348,6 @@ export default function ProjectRibbon() {
       viewport.removeEventListener("pointerup", pointerUp);
       viewport.removeEventListener("pointercancel", pointerCancel);
       viewport.removeEventListener("lostpointercapture", pointerCancel);
-      viewport.removeEventListener("pointerenter", pointerEnter);
-      viewport.removeEventListener("pointerleave", pointerLeave);
-      viewport.removeEventListener("focus", focus);
-      viewport.removeEventListener("blur", blur);
       viewport.removeEventListener("keydown", keyDown);
       window.removeEventListener("resize", resize);
       window.removeEventListener("blur", windowBlur);
@@ -427,8 +398,8 @@ export default function ProjectRibbon() {
         <span aria-hidden="true">{paused ? "▷" : "Ⅱ"}</span>
       </button>
       <p id="ribbon-instructions" className={styles.visuallyHidden}>
-        Drag horizontally or use the left and right arrow keys to explore.
-        Motion pauses while hovered or focused.
+        Drag horizontally or use the left and right arrow keys to explore. Use
+        the Pause motion button to stop the movement.
       </p>
       <ol className={styles.visuallyHidden} aria-label="Ribbon artwork">
         {ribbonImages.map((image) => (

@@ -480,12 +480,12 @@
   z-index: 1;
   padding: 120px var(--gutter) 40px;
 }
-/* Faint plus signs washing in from the top-right, just below the
-   "Hanna Gomozova / Product Designer" line. */
+/* Faint plus signs washing in from the top-right; the first row lines up
+   with the "Hanna Gomozova / Product Designer" line. */
 .contactTexture {
   position: absolute;
   z-index: -1;
-  inset: 168px 0 0 20%;
+  inset: 116px 0 0 20%;
   background-position: right top;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M12 8.5v7M8.5 12h7' stroke='%23fff' stroke-opacity='.24' stroke-width='1.4'/%3E%3C/svg%3E");
   mask: radial-gradient(ellipse 85% 120% at 100% 0%, #000 35%, transparent 80%);
@@ -824,7 +824,7 @@
     padding: 64px 20px 32px;
   }
   .contactTexture {
-    inset: 112px 0 0 20%;
+    inset: 60px 0 0 20%;
   }
   .site .contactTitle {
     margin-top: 30px;
