@@ -8,8 +8,32 @@ const image = (index: number, height: number) =>
 
 export const daffCase: CaseStudy = {
   title: "DAFF",
-  description:
-    "E-commerce website for DAFF, a fashion brand of concise, comfortable and authentic everyday clothing.",
+  description: "An editorial online store for a Kyiv womenswear brand.",
+  sections: [
+    {
+      title: "The challenge",
+      text: "DAFF makes minimal, comfortable everyday clothing. The store needed to feel as calm and considered as the brand while staying easy to shop.",
+    },
+    {
+      title: "What I did",
+      text: "Redesigned the core shopping flow, from the home page and catalog to the product page and checkout, on desktop and mobile.",
+    },
+    {
+      title: "Key decisions",
+      points: [
+        "Large editorial photography that carries the brand",
+        "Collections organized by season and capsule",
+        "Product pages with clear details and related items",
+        "A simplified bag and checkout",
+      ],
+    },
+  ],
+  facts: [
+    { title: "Role", text: "UX/UI Designer" },
+    { title: "Project", text: "Redesign concept" },
+    { title: "Year", text: "2024" },
+    { title: "Platform", text: "Responsive web" },
+  ],
   tags: ["UX/UI", "E-commerce", "Brand"],
   year: "2024",
   behanceUrl: "https://www.behance.net/gallery/211201181/DAFF",

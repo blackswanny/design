@@ -18,7 +18,9 @@ export type CaseModule = CaseImage | CaseVideo;
 
 export type CaseSection = {
   title: string;
-  text: string;
+  text?: string;
+  /* Short bullet points, e.g. key design decisions. */
+  points?: string[];
 };
 
 export type CaseStudy = {

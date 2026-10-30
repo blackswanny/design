@@ -17,20 +17,27 @@ export const mindscapeCase: CaseStudy = {
   sections: [
     {
       title: "The challenge",
-      text: "Finding the right psychologist involves more than browsing profiles. People need to understand their options, evaluate compatibility, and feel confident taking the first step toward professional support.",
+      text: "Looking for a psychologist is stressful. People struggle to compare specialists, trust credentials, and know the cost before booking.",
     },
     {
-      title: "The solution",
-      text: "MindScape brings personalized onboarding, specialist discovery, detailed profiles, and session booking into one connected mobile experience. The design prioritizes clear information, intuitive navigation, and a supportive journey from initial exploration to booking.",
+      title: "What I did",
+      text: "Ran user interviews, built personas and a journey map, then moved through wireframes, a design system, and usability testing.",
     },
     {
-      title: "My contribution",
-      text: "Defined user flows and interaction patterns, designed the mobile interface, and developed prototypes to communicate the experience across key touchpoints.",
+      title: "Key decisions",
+      points: [
+        "Three-screen onboarding you can skip",
+        "Filters by specialization, availability, and reviews",
+        "Credentials, intro videos, and reviews on profiles",
+        "Full cost shown before booking",
+      ],
     },
   ],
   facts: [
     { title: "Role", text: "Product Designer" },
-    { title: "Project", text: "Mobile app concept" },
+    { title: "Project", text: "iOS app concept" },
+    { title: "Timeline", text: "4 months, 2026" },
+    { title: "Scope", text: "120+ screens" },
   ],
   tags: ["UX/UI", "Product Strategy", "Mobile", "Research"],
   year: "2026",

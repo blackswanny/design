@@ -9,8 +9,31 @@ const image = (index: number, height: number) =>
 
 export const grooveAvenueCase: CaseStudy = {
   title: "Groove Avenue",
-  description:
-    "A concept website for a modern soul band, focused on translating musical identity into a structured digital experience. The project combines bold typography, editorial layouts, and interaction design to create an immersive and rhythm-driven interface.",
+  description: "A website concept for a modern soul band.",
+  sections: [
+    {
+      title: "The challenge",
+      text: "Turn a band’s sound and identity into a site that feels like their music and still works as a home for albums, tours, and merch.",
+    },
+    {
+      title: "What I did",
+      text: "Researched the genre and visual references, then built an editorial layout system and typography direction, designed the interface, and adapted it for mobile.",
+    },
+    {
+      title: "Key decisions",
+      points: [
+        "Album pages with built-in playback",
+        "Modular components reused across albums, band, and shop",
+        "Bold type and torn-paper textures that set the rhythm",
+      ],
+    },
+  ],
+  facts: [
+    { title: "Role", text: "UX/UI Designer" },
+    { title: "Project", text: "Website concept" },
+    { title: "Year", text: "2026" },
+    { title: "Platform", text: "Responsive web" },
+  ],
   tags: ["UX/UI", "Web Design", "Animation"],
   year: "2026",
   behanceUrl:

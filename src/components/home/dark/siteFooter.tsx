@@ -58,7 +58,7 @@ export default function SiteFooter() {
     >
       <div className={styles.contactTexture} aria-hidden="true" />
       <span className={styles.footerNote}>
-        Based in the San Francisco Bay Area
+        Based in the <strong>San Francisco Bay Area</strong>
       </span>
       <h2 id="contact-heading" className={styles.contactTitle}>
         Let’s <em>talk</em>

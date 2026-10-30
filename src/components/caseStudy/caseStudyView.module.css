@@ -135,17 +135,41 @@
   font-size: clamp(14px, calc(16 * var(--u)), 16px);
   line-height: 1.5;
 }
+.points {
+  display: grid;
+  gap: min(6px, calc(6 * var(--u)));
+  margin: min(10px, calc(10 * var(--u))) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.points li {
+  position: relative;
+  padding-left: 16px;
+  color: var(--muted);
+  font-size: clamp(14px, calc(16 * var(--u)), 16px);
+  line-height: 1.45;
+}
+.points li::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--red);
+}
 /* Short facts side by side. */
 .facts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: min(16px, calc(16 * var(--u))) 16px;
 }
 .facts + .behance {
   margin-top: min(32px, calc(32 * var(--u)));
 }
 /* The long intro scrolls with the page when it would not fit on screen. */
-@media (max-height: 859px) {
+@media (max-height: 919px) {
   .sidebarInner:has(.section) {
     position: static;
   }

@@ -40,7 +40,16 @@ export default function CaseStudyView({ project }: { project: CaseStudy }) {
                 {project.sections.map((section) => (
                   <section key={section.title} className={styles.section}>
                     <h2 className={styles.sectionTitle}>{section.title}</h2>
-                    <p className={styles.sectionText}>{section.text}</p>
+                    {section.text && (
+                      <p className={styles.sectionText}>{section.text}</p>
+                    )}
+                    {section.points && (
+                      <ul className={styles.points}>
+                        {section.points.map((point) => (
+                          <li key={point}>{point}</li>
+                        ))}
+                      </ul>
+                    )}
                   </section>
                 ))}
                 {project.facts && (
