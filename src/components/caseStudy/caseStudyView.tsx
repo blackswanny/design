@@ -33,14 +33,38 @@ export default function CaseStudyView({ project }: { project: CaseStudy }) {
             <h1 id="case-title" className={styles.title}>
               {project.title}
             </h1>
-            <p className={styles.description}>{project.description}</p>
-            <ul className={styles.tags}>
-              {project.tags.map((tag) => (
-                <li key={tag}>{tag}</li>
-              ))}
-              <li aria-hidden="true">/</li>
-              <li>{project.year}</li>
-            </ul>
+            {project.sections ? (
+              <>
+                <p className={styles.lead}>{project.description}</p>
+                {project.sections.map((section) => (
+                  <section key={section.title} className={styles.section}>
+                    <h2 className={styles.sectionTitle}>{section.title}</h2>
+                    <p className={styles.sectionText}>{section.text}</p>
+                  </section>
+                ))}
+                {project.facts && (
+                  <dl className={styles.facts}>
+                    {project.facts.map((fact) => (
+                      <div key={fact.title}>
+                        <dt>{fact.title}</dt>
+                        <dd>{fact.text}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+              </>
+            ) : (
+              <>
+                <p className={styles.description}>{project.description}</p>
+                <ul className={styles.tags}>
+                  {project.tags.map((tag) => (
+                    <li key={tag}>{tag}</li>
+                  ))}
+                  <li aria-hidden="true">/</li>
+                  <li>{project.year}</li>
+                </ul>
+              </>
+            )}
             <a
               className={styles.behance}
               href={project.behanceUrl}

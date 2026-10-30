@@ -13,8 +13,25 @@ const image = (index: number) =>
 
 export const mindscapeCase: CaseStudy = {
   title: "MindScape",
-  description:
-    "A mobile app designed to help users find psychologists, book sessions, and manage their mental health journey in a simple and intuitive way.",
+  description: "Making mental health support easier to find and access.",
+  sections: [
+    {
+      title: "The challenge",
+      text: "Finding the right psychologist involves more than browsing profiles. People need to understand their options, evaluate compatibility, and feel confident taking the first step toward professional support.",
+    },
+    {
+      title: "The solution",
+      text: "MindScape brings personalized onboarding, specialist discovery, detailed profiles, and session booking into one connected mobile experience. The design prioritizes clear information, intuitive navigation, and a supportive journey from initial exploration to booking.",
+    },
+    {
+      title: "My contribution",
+      text: "Defined user flows and interaction patterns, designed the mobile interface, and developed prototypes to communicate the experience across key touchpoints.",
+    },
+  ],
+  facts: [
+    { title: "Role", text: "Product Designer" },
+    { title: "Project", text: "Mobile app concept" },
+  ],
   tags: ["UX/UI", "Product Strategy", "Mobile", "Research"],
   year: "2026",
   behanceUrl:

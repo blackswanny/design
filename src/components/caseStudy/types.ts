@@ -15,9 +15,18 @@ export type CaseVideo = {
 
 export type CaseModule = CaseImage | CaseVideo;
 
+export type CaseSection = {
+  title: string;
+  text: string;
+};
+
 export type CaseStudy = {
   title: string;
   description: string;
+  /* Optional long-form intro: the description becomes a one-line lead,
+     followed by labelled sections and a row of short facts (Role…). */
+  sections?: CaseSection[];
+  facts?: CaseSection[];
   tags: string[];
   year: string;
   behanceUrl: string;

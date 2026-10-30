@@ -68,24 +68,19 @@ const strengths = [
 const journey = [
   {
     dates: "2024 – Present",
-    role: "Freelance Product Designer",
+    role: "Product Designer",
     company: "Independent",
     place: "Bay Area, CA",
-    text: "Project-based design for SET.DO (AI calendar and task planning) and Unit Post (messaging/outreach). Designed and built hanna.vision with AI-assisted development, while growing my skills in design engineering.",
-    tags: [
-      "Product Design",
-      "AI & Tools",
-      "Web & Mobile",
-      "Design Engineering",
-    ],
+    text: "Product design and UX support for SET.DO (AI-powered calendar and task planning) and Unit Post (messaging and outreach), plus responsive websites for independent projects. Designed and built hanna.vision with Next.js and AI-assisted development.",
+    tags: ["Consulting", "UX Research", "Web & Mobile", "Design Engineering"],
   },
   {
     dates: "2021 – 2024",
-    role: "Sole Product Designer",
+    role: "Product Designer",
     company: "WorkReactor",
     place: "San Francisco, CA",
-    text: "Owned end-to-end product design for a SaaS platform combining professional networking, startup collaboration, and project management. Designed 100+ screens across product iterations, built the design system, and worked closely with the founder and engineering team.",
-    tags: ["Product Design", "Design Systems", "User Flows", "Prototyping"],
+    text: "Sole designer. Owned research, UX, UI, and the design system for a live SaaS platform combining professional networking, startup collaboration, and project management. Iterated with early users through several product pivots, working closely with the founder and engineers.",
+    tags: ["Product Design", "UX Research", "Design Systems", "0 → 1"],
   },
   {
     dates: "2019 – 2021",

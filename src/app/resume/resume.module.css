@@ -170,11 +170,19 @@
   border-radius: 50%;
   background: var(--red);
 }
+.skillGroup {
+  margin-top: 28px;
+}
+.sheet .skillLabel {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 600;
+}
 .skills {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 28px;
+  margin-top: 12px;
 }
 .skills li {
   padding: 9px 16px;

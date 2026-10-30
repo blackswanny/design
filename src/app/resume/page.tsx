@@ -26,74 +26,82 @@ const links = [
   },
   { label: "Behance", href: "https://www.behance.net/hanna_gomozova" },
   { label: "anna.mayskay@gmail.com", href: "mailto:anna.mayskay@gmail.com" },
+  { label: "925-966-8197", href: "tel:+19259668197" },
 ];
 
 const skills = [
-  "Product Design",
-  "UX/UI Design",
-  "User Flows",
-  "Information Architecture",
-  "Wireframing",
-  "High-Fidelity UI",
-  "Interactive Prototyping",
-  "Interaction Design",
-  "Responsive Design",
-  "Design Systems",
-  "Usability Testing",
-  "Developer Handoff",
-  "Figma",
-  "Adobe Creative Suite",
+  {
+    group: "Design",
+    items: [
+      "Product Design",
+      "UX Research",
+      "Usability Testing",
+      "User Flows",
+      "Information Architecture",
+      "Wireframing",
+      "Prototyping",
+      "Interaction Design",
+      "Design Systems",
+      "Developer Handoff",
+    ],
+  },
+  {
+    group: "Tools",
+    items: [
+      "Figma",
+      "Adobe Creative Suite",
+      "Next.js",
+      "AI-assisted development",
+    ],
+  },
 ];
 
 const experience = [
   {
-    role: "Freelance Product Designer",
+    role: "Product Designer",
     company: "Independent",
     place: "Bay Area, CA",
     dates: "2024 – Present",
     points: [
-      "Provided occasional project-based design support for SET.DO, an AI calendar and task-planning product, and Unit Post, a messaging/outreach product.",
-      "Designed and implemented hanna.vision, a responsive portfolio website, using AI-assisted development workflows; final refinements in progress.",
-      "Designed various websites and digital experiences, including responsive layouts, user interfaces, and web and mobile app concepts; continued professional training in product design and design engineering.",
+      "Provide product design and UX support for SET.DO, an AI-powered calendar and task-planning app, and Unit Post, a messaging and outreach platform.",
+      "Design responsive websites and digital experiences across a variety of independent projects.",
+      "Designed and built hanna.vision, a responsive portfolio website using Next.js and AI-assisted development.",
     ],
   },
   {
-    role: "Sole Product Designer",
+    role: "Product Designer",
     company: "WorkReactor",
     place: "San Francisco, CA",
-    dates: "Feb 2021 – 2024",
+    dates: "2021 – 2024",
     points: [
-      "Owned end-to-end product design for a SaaS platform combining professional networking, startup collaboration, and project management.",
-      "Designed an estimated 100+ unique high-fidelity screens across multiple product iterations as business priorities and feature requirements evolved.",
-      "Created and maintained a comprehensive design system of reusable components, UI patterns, and consistent visual standards.",
-      "Developed user flows, wireframes, and interactive prototypes for profiles, networking, project collaboration, tasks, and milestones.",
-      "Partnered with the founder and engineering team on product decisions, feature planning, design reviews, and developer handoff.",
-      "Completed a comprehensive redesign in 2024; implementation was paused following engineering team changes.",
+      "Sole designer on a SaaS platform combining professional networking, startup collaboration, and project management, owning research, UX, UI, and developer handoff.",
+      "Led user research and continuous iteration on a live product with early users, adapting the experience through several shifts in product direction.",
+      "Designed 100+ high-fidelity screens, from user flows and prototypes for profiles, networking, projects, tasks, and milestones to production-ready UI.",
+      "Built and maintained the design system: reusable components, UI patterns, and visual standards shared with engineering.",
+      "Partnered with the founder and engineers on product decisions, feature planning, and design reviews.",
+      "Led a full product redesign in 2024 based on user feedback and the new product direction.",
     ],
   },
   {
     role: "UI/UX Designer",
     company: "ArtLife Studio",
     place: "Kyiv, Ukraine",
-    dates: "Nov 2019 – Feb 2021",
+    dates: "2019 – 2021",
     points: [
-      "Designed web and mobile interfaces, emphasizing visual clarity, usability, and consistent UI patterns.",
-      "Collaborated with design and development teams; prepared and presented project concepts to clients and incorporated feedback.",
+      "Designed web and mobile interfaces for client projects, focusing on clarity, usability, and consistent UI patterns.",
+      "Presented concepts to clients and iterated with designers and developers based on feedback.",
     ],
   },
 ];
 
 const education = [
   {
-    title: "Bachelor’s Degree in Mathematics",
+    title: "B.S. in Mathematics",
     school: "National Pedagogical Dragomanov University",
     year: "",
   },
-  { title: "Design Engineering Course", school: "In progress", year: "2026" },
   { title: "Mobile App Design", school: "Projector Institute", year: "2023" },
-  { title: "Design Pro", school: "Uprock School", year: "2021" },
   { title: "UI/UX Design", school: "DAN.IT", year: "2019" },
-  { title: "Web & Mobile UI/UX", school: "Mobios School", year: "2019" },
 ];
 
 export default function ResumePage() {
@@ -123,9 +131,7 @@ export default function ResumePage() {
         <article className={styles.sheet}>
           <header className={styles.sheetHeader}>
             <h2 className={styles.name}>Hanna Gomozova</h2>
-            <p className={styles.roles}>
-              Product Designer · UI/UX Designer · Design Systems Designer
-            </p>
+            <p className={styles.roles}>Product Designer</p>
             <p className={styles.location}>Bay Area, CA</p>
             <ul className={styles.links}>
               {links.map((link) => (
@@ -133,7 +139,7 @@ export default function ResumePage() {
                   <a
                     href={link.href}
                     target={
-                      link.href.startsWith("mailto:") ? undefined : "_blank"
+                      /^(mailto|tel):/.test(link.href) ? undefined : "_blank"
                     }
                     rel="noopener noreferrer"
                   >
@@ -147,13 +153,13 @@ export default function ResumePage() {
           <section className={styles.block}>
             <h3 className={styles.blockTitle}>Summary</h3>
             <p className={styles.summary}>
-              Product Designer with 5+ years of experience creating web and
-              mobile interfaces for early-stage digital products. Sole designer
-              for a complex SaaS platform combining professional networking and
-              project management; experienced in end-to-end UX/UI, iterative
-              product development, design systems, prototyping, and
-              collaboration with founders and engineers. Building skills in
-              design engineering and AI-assisted development.
+              Product Designer with 5+ years of experience designing web and
+              mobile products from 0 to 1. As the sole designer at WorkReactor,
+              owned research, UX, UI, and the design system for a live SaaS
+              platform, iterating through several product pivots with the
+              founder and engineers. Currently provides product design and UX
+              support for early-stage products and builds in code with
+              AI-assisted development.
             </p>
           </section>
 
@@ -184,27 +190,16 @@ export default function ResumePage() {
 
           <section className={styles.block}>
             <h3 className={styles.blockTitle}>Skills</h3>
-            <ul className={styles.skills}>
-              {skills.map((skill) => (
-                <li key={skill}>{skill}</li>
-              ))}
-            </ul>
-          </section>
-
-          <section className={styles.block}>
-            <h3 className={styles.blockTitle}>Selected project</h3>
-            <div className={styles.row}>
-              <div>
-                <p className={styles.rowTitle}>
-                  Hanna Vision — Portfolio Website
-                </p>
-                <p className={styles.rowText}>
-                  Responsive site designed and implemented with AI-assisted
-                  development tools.
-                </p>
+            {skills.map(({ group, items }) => (
+              <div key={group} className={styles.skillGroup}>
+                <p className={styles.skillLabel}>{group}</p>
+                <ul className={styles.skills}>
+                  {items.map((skill) => (
+                    <li key={skill}>{skill}</li>
+                  ))}
+                </ul>
               </div>
-              <p className={styles.jobDates}>2026</p>
-            </div>
+            ))}
           </section>
 
           <section className={styles.block}>
