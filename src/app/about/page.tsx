@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import site from "@/components/home/dark/darkPortfolio.module.css";
 import { portfolioDisplay, portfolioSans } from "@/components/home/dark/fonts";
@@ -62,30 +63,39 @@ const strengths = [
   },
 ];
 
-// From the resume. Logos are lettered placeholders until real ones arrive.
-const experience = [
+// Matches the resume (public/Hanna-Gomozova-Product-Designer.pdf), newest
+// first.
+const journey = [
   {
-    role: "Product Designer",
-    company: "SET.DO (AI Calendar & Tasks)",
-    mark: "S",
-    tone: "red",
-    dates: "Oct 2024 – Feb 2026",
+    dates: "2024 – Present",
+    role: "Freelance Product Designer",
+    company: "Independent",
+    place: "Bay Area, CA",
+    text: "Project-based design for SET.DO (AI calendar and task planning) and Unit Post (messaging/outreach). Designed and built hanna.vision with AI-assisted development, while growing my skills in design engineering.",
+    tags: [
+      "Product Design",
+      "AI & Tools",
+      "Web & Mobile",
+      "Design Engineering",
+    ],
   },
   {
-    role: "Product Designer",
-    company: "Work Reactor",
-    mark: "W",
-    tone: "light",
-    dates: "Feb 2021 – Aug 2024",
+    dates: "2021 – 2024",
+    role: "Sole Product Designer",
+    company: "WorkReactor",
+    place: "San Francisco, CA",
+    text: "Owned end-to-end product design for a SaaS platform combining professional networking, startup collaboration, and project management. Designed 100+ screens across product iterations, built the design system, and worked closely with the founder and engineering team.",
+    tags: ["Product Design", "Design Systems", "User Flows", "Prototyping"],
   },
   {
+    dates: "2019 – 2021",
     role: "UI/UX Designer",
     company: "ArtLife Studio",
-    mark: "A",
-    tone: "dark",
-    dates: "Nov 2019 – Feb 2021",
+    place: "Kyiv, Ukraine",
+    text: "Designed web and mobile interfaces with a focus on visual clarity and usability. Collaborated with design and development teams, presented concepts to clients, and incorporated feedback.",
+    tags: ["UI/UX Design", "Client Work", "Web & Mobile", "Collaboration"],
   },
-] as const;
+];
 
 const outsidePhotos = [
   {
@@ -157,16 +167,12 @@ export default function AboutPage() {
           everything from the big-picture ideas to the smallest interface
           details.
         </p>
-        <a
-          className={styles.resumeLink}
-          href="/Hanna-Gomozova-Product-Designer.pdf"
-          download="Hanna Gomozova_Product Designer.pdf"
-        >
+        <Link className={styles.resumeLink} href="/resume">
           <span className={styles.resumeLabel}>View resume</span>
           <span className={styles.resumeArrow} aria-hidden="true">
             <span>↗</span>
           </span>
-        </a>
+        </Link>
       </section>
 
       <section className={styles.bring} aria-label="What I bring">
@@ -188,57 +194,41 @@ export default function AboutPage() {
 
       <section className={styles.approach} aria-labelledby="approach-title">
         <div className={styles.plusField} aria-hidden="true" />
-        <div className={styles.approachBody}>
-          <h2 id="approach-title" className={styles.approachTitle}>
-            The best work starts{" "}
-            <span className={styles.approachTail}>
-              with a <em>conversation</em>
-            </span>
-          </h2>
-          <span
-            className={`${site.sectionRule} ${styles.darkRule}`}
-            aria-hidden="true"
-          />
-          <p className={styles.approachText}>
-            I enjoy working closely with engineers, product teams, and
-            founders&nbsp;— especially when ideas are still evolving. I ask
-            questions, explore different approaches, and use prototypes to make
-            ideas easier to discuss and&nbsp;improve.
-          </p>
-        </div>
-      </section>
-
-      <section className={styles.experience} aria-labelledby="experience-title">
-        <div className={styles.experienceIntro}>
-          <h2 id="experience-title" className={styles.experienceTitle}>
-            My work <em>experience</em>
-          </h2>
-          <a
-            className={styles.linkedinLink}
-            href="https://www.linkedin.com/in/hanna-gomozova/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View LinkedIn <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-        <ul className={styles.jobs}>
-          {experience.map((job) => (
-            <li key={job.company}>
-              <span
-                className={styles.jobMark}
-                data-tone={job.tone}
-                aria-hidden="true"
-              >
-                {job.mark}
+        <div className={styles.approachPanel}>
+          <div className={styles.approachBody}>
+            <h2 id="approach-title" className={styles.approachTitle}>
+              The best work starts{" "}
+              <span className={styles.approachTail}>
+                with a <em>conversation</em>
               </span>
-              <p className={styles.jobRole}>
-                {job.role} <span>— {job.company}</span>
-              </p>
-              <p className={styles.jobDates}>{job.dates}</p>
-            </li>
-          ))}
-        </ul>
+            </h2>
+            <p className={styles.approachText}>
+              I enjoy working closely with engineers, product teams, and
+              founders&nbsp;— especially when ideas are still evolving. I ask
+              questions, explore different approaches, and use prototypes to
+              make ideas easier to discuss and&nbsp;improve.
+            </p>
+          </div>
+          <ol className={styles.journey} aria-label="My journey">
+            {journey.map((job) => (
+              <li key={job.company}>
+                <p className={styles.journeyDates}>{job.dates}</p>
+                <div className={styles.journeyBody}>
+                  <h3 className={styles.journeyRole}>{job.role}</h3>
+                  <p className={styles.journeyCompany}>
+                    {job.company} <span aria-hidden="true">·</span> {job.place}
+                  </p>
+                  <p className={styles.journeyText}>{job.text}</p>
+                  <ul className={styles.journeyTags}>
+                    {job.tags.map((tag) => (
+                      <li key={tag}>{tag}</li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
       </section>
 
       <section className={styles.outside} aria-labelledby="outside-title">

@@ -240,114 +240,22 @@
   line-height: 1.2;
 }
 
-/* My work experience: a white panel like Selected Work on the home page —
-   centred heading and LinkedIn link, the ruled list of roles underneath. */
-.experience {
-  --text: #121212;
-  --muted: #6b6b6b;
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 90px var(--gutter);
-  border-radius: 50px;
-  background: #fff;
-  color: var(--text);
-}
-.experienceIntro {
-  text-align: center;
-}
-.experience .experienceTitle {
-  font-size: var(--heading-size);
-  font-weight: 600;
-  line-height: 0.979;
-  letter-spacing: -0.015em;
-}
-.experienceTitle em {
-  display: block;
-  font-size: 1.25em;
-  line-height: 0.9;
-  letter-spacing: -0.015em;
-}
-.linkedinLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 32px;
-  padding: 10px 18px;
-  border-radius: 999px;
-  background: #f1f1f1;
-  color: #2b2b2b;
-  font-size: 14px;
-  transition: background-color 0.2s ease;
-}
-.linkedinLink span {
-  color: var(--red);
-}
-.linkedinLink:hover {
-  background: #e4e4e4;
-}
-.jobs {
-  width: 100%;
-  max-width: 880px;
-  margin: 56px 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid #e4e4e4;
-}
-.jobs li {
-  display: grid;
-  grid-template-columns: 48px minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 20px;
-  padding: 36px 0;
-  border-bottom: 1px solid #e4e4e4;
-}
-.jobMark {
-  display: grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  font-size: 22px;
-  font-weight: 600;
-}
-.jobMark[data-tone="red"] {
-  background: var(--red);
-  color: #fff;
-}
-.jobMark[data-tone="light"] {
-  background: #121212;
-  color: #fff;
-}
-.jobMark[data-tone="dark"] {
-  background: #f1f1f1;
-  color: #121212;
-}
-.jobs .jobRole {
-  color: var(--text);
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.3;
-}
-.jobRole span {
-  color: var(--muted);
-  font-weight: 500;
-}
-.jobs .jobDates {
-  color: var(--muted);
-  font-size: 16px;
-  white-space: nowrap;
-}
-
 /* How I work */
 .approach {
   position: relative;
   isolation: isolate;
-  /* 109px + the heading's leading = the 160px gap above the cards. */
-  padding: 109px var(--gutter) 120px;
+  /* The dark gap under the cards, where the plus signs show. */
+  padding: 120px 0 0;
   overflow-x: clip;
+}
+/* A white panel like Selected Work on the home page. */
+.approachPanel {
+  --text: #121212;
+  --muted: #6b6b6b;
+  padding: 120px var(--gutter);
+  border-radius: 50px;
+  background: #fff;
+  color: var(--text);
 }
 /* Plus signs washing in from the top-left corner. */
 /* Starts under the cards above and washes down past the heading. */
@@ -356,18 +264,18 @@
   background-position: left top;
   mask: radial-gradient(ellipse 85% 120% at 0% 0%, #000 35%, transparent 80%);
 }
-/* Laid out like "Outside the screen": heading on the left, a thin rule,
-   the paragraph on the right. */
+/* Heading on the left, the paragraph pushed to the right. */
 .approachBody {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 56px;
 }
 /* Same size as the other section headings ("Outside the screen"). */
 .approachTitle {
   flex: 0 1 auto;
   min-width: 0;
-  /* About the width of "The best work", so the rule gets the rest. */
+  /* About the width of "The best work". */
   max-width: 6.6em;
   font-size: var(--heading-size);
   font-weight: 600;
@@ -380,7 +288,7 @@
   text-wrap: balance;
 }
 @media (min-width: 1600px) {
-  /* Two lines whenever they fit beside the rule and the paragraph. */
+  /* Two lines whenever they fit beside the paragraph. */
   .approachTitle {
     max-width: none;
   }
@@ -396,6 +304,84 @@
   font-size: 18px;
   line-height: 1.5;
   text-wrap: pretty;
+}
+
+/* My journey: a vertical timeline, dates on the left, a red dot on the line
+   for each role. */
+.journey {
+  margin: 88px 0 0;
+  padding: 72px 0 0;
+  list-style: none;
+  border-top: 1px solid #e4e4e4;
+}
+.journey > li {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+}
+.journey .journeyDates {
+  padding-top: 6px;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.3;
+}
+.journeyBody {
+  position: relative;
+  padding: 0 0 72px 56px;
+  border-left: 1px solid #e4e4e4;
+}
+.journey > li:last-child .journeyBody {
+  padding-bottom: 0;
+  border-left-color: transparent;
+}
+.journeyBody::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: -6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--red);
+}
+.journey .journeyRole {
+  color: var(--text);
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.journey .journeyCompany {
+  margin-top: 10px;
+  color: #2b2b2b;
+  font-size: 20px;
+  line-height: 1.3;
+}
+.journeyCompany span {
+  margin: 0 4px;
+  color: var(--muted);
+}
+.journey .journeyText {
+  max-width: 640px;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.5;
+}
+.journeyTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 24px 0 0;
+  list-style: none;
+}
+.journeyTags li {
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: #f1f1f1;
+  color: #2b2b2b;
+  font-size: 14px;
+  line-height: 1.2;
 }
 
 /* Outside the screen */
@@ -414,8 +400,7 @@
     text-wrap: balance;
   }
 }
-.outside .darkRule,
-.approachBody .darkRule {
+.outside .darkRule {
   background: #363636;
 }
 /* Three overlapping polaroids, tilted like the one in the intro. */
@@ -488,9 +473,6 @@
   .approachBody {
     display: block;
   }
-  .approachBody .darkRule {
-    display: none;
-  }
   .approachBody .approachText {
     margin-top: 28px;
   }
@@ -501,6 +483,12 @@
   }
   .photoSlot + .photoSlot {
     margin-left: -64px;
+  }
+  .journey > li {
+    grid-template-columns: 160px minmax(0, 1fr);
+  }
+  .journeyBody {
+    padding-left: 40px;
   }
 }
 @media (max-width: 759px) {
@@ -564,49 +552,62 @@
   .strengths .strengthText {
     font-size: 16px;
   }
-  .experience {
-    padding: 44px 20px 52px;
+  .approach {
+    padding: 72px 0 0;
+  }
+  .approachPanel {
+    padding: 56px 20px 32px;
     border-radius: 30px;
   }
-  .jobs {
-    margin-top: 32px;
+  .journey {
+    margin-top: 48px;
+    padding-top: 40px;
   }
-  .experience .experienceTitle {
-    font-size: clamp(30px, 9.3vw, 44px);
-    line-height: 1.07;
+  /* One column: the dates sit above each role, the line runs down the left. */
+  .journey > li {
+    position: relative;
+    display: block;
+    padding: 0 0 48px 28px;
+    border-left: 1px solid #e4e4e4;
   }
-  .experienceTitle em {
-    font-size: 1.22727em;
+  .journey > li:last-child {
+    padding-bottom: 0;
+    border-left-color: transparent;
   }
-  .linkedinLink {
-    margin-top: 20px;
+  .journey .journeyDates {
+    padding-top: 0;
+    font-size: 16px;
   }
-  .jobs li {
-    grid-template-columns: 40px minmax(0, 1fr);
-    gap: 4px 16px;
-    padding: 24px 0;
+  .journeyBody,
+  .journey > li:last-child .journeyBody {
+    position: static;
+    margin-top: 10px;
+    padding: 0;
+    border-left: 0;
   }
-  .jobMark {
-    grid-row: span 2;
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    font-size: 18px;
+  .journeyBody::before {
+    top: 4px;
   }
-  .jobs .jobRole {
+  .journey .journeyRole {
+    font-size: 24px;
+  }
+  .journey .journeyCompany {
+    margin-top: 6px;
     font-size: 17px;
   }
-  .jobs .jobDates {
-    font-size: 14px;
+  .journey .journeyText {
+    margin-top: 14px;
+    font-size: 16px;
   }
-  .approach {
-    padding: 90px 20px 72px;
+  .journeyTags {
+    padding-top: 18px;
+  }
+  .journeyTags li {
+    padding: 8px 14px;
+    font-size: 13px;
   }
   .approachBody {
     display: block;
-  }
-  .approachBody .darkRule {
-    display: none;
   }
   .approachBody .approachText {
     max-width: none;

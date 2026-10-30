@@ -14,7 +14,7 @@ const CONDENSE_DISTANCE = 180;
 export default function SiteHeader({
   page = "home",
 }: {
-  page?: "home" | "about";
+  page?: "home" | "about" | "resume";
 }) {
   const headerRef = useRef<HTMLElement>(null);
   const onHome = page === "home";
@@ -87,12 +87,12 @@ export default function SiteHeader({
         >
           About
         </Link>
-        <a
-          href="/Hanna-Gomozova-Product-Designer.pdf"
-          download="Hanna Gomozova_Product Designer.pdf"
+        <Link
+          href="/resume"
+          aria-current={page === "resume" ? "page" : undefined}
         >
           Resume
-        </a>
+        </Link>
         <a href="#contacts">
           Contact <span aria-hidden="true">↗</span>
         </a>
