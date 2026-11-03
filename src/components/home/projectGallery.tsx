@@ -25,7 +25,7 @@ const projects: readonly Project[] = [
       "A 0→1 product that helps founders connect, collaborate, and move ideas forward. I led the design from early research to a working product, creating a cohesive experience across discovery, profiles, and project collaboration.",
     tags: ["Product Design", "UX/UI", "Research", "0→1"],
     imageSrc: "/images/wr.png",
-    href: "https://www.behance.net/gallery/246318193/Work-Reactor-Startup-Platform-(Web-Mobile)",
+    href: "/projects/workreactor",
     featured: true,
   },
   {

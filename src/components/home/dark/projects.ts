@@ -21,7 +21,7 @@ export const portfolioProjects: readonly PortfolioProject[] = [
     image: `${mediaRoot}/workreactor-cover.webp`,
     width: 1280,
     height: 797,
-    href: "https://www.behance.net/gallery/246318193/Work-Reactor-Startup-Platform-(Web-Mobile)",
+    href: "/projects/workreactor",
   },
   {
     id: "mindscape",
