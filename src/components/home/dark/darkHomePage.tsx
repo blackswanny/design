@@ -77,13 +77,15 @@ export default function DarkHomePage() {
               <span>Hi, I’m Hanna</span>
             </div>
             <p className={styles.introText}>
-              <span className={styles.introLine}>
-                From the first idea to a working product —
+              <span className={`${styles.introLine} ${styles.introRole}`}>
+                Product&nbsp;Designer <em>&amp;</em> Design&nbsp;Engineer
               </span>{" "}
               <span className={styles.introLine}>
-                combining research, product thinking, and
+                based in the San Francisco Bay Area —
               </span>{" "}
-              <span className={styles.introLine}>intuitive design.</span>
+              <span className={styles.introLine}>
+                from the first idea to a working product.
+              </span>
             </p>
             {/* Phones only: the header's profile links move here. */}
             <p className={styles.introSocials}>

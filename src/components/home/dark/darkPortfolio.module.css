@@ -209,7 +209,22 @@
   object-fit: cover;
 }
 .site .introText {
+  color: var(--muted);
+}
+/* The role reads first: white, with a red italic ampersand. */
+.introRole {
   color: var(--text);
+  font-weight: 600;
+}
+.site .introRole em {
+  color: var(--red);
+  font-family: inherit;
+  font-weight: inherit;
+  font-style: italic;
+  /* Inter Tight ships upright only; let the browser slant the "&". */
+  font-synthesis: style;
+  /* The slant leans the glyph right; even out the gaps on both sides. */
+  margin-right: 0.12em;
 }
 .introLine {
   display: block;
@@ -744,6 +759,9 @@
   }
   .introLine {
     display: inline;
+  }
+  .introLine.introRole {
+    display: block;
   }
   .profilePhoto {
     width: 42px;

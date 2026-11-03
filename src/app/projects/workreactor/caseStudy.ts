@@ -22,7 +22,7 @@ export const workreactorCase: CaseStudy = {
     },
     {
       title: "What I did",
-      text: "Interviewed 32 founders, engineers, and investors, then designed profiles, discovery, the team workspace, and tasks on a token-based design system.",
+      text: "Sole designer on the live product from 2021. In 2024, after 32 interviews with founders, engineers, and investors, I led a full redesign. The company closed before it shipped.",
     },
     {
       title: "Key decisions",
@@ -36,7 +36,7 @@ export const workreactorCase: CaseStudy = {
   ],
   facts: [
     { title: "Role", text: "Product Designer" },
-    { title: "Product", text: "SaaS platform" },
+    { title: "Product", text: "Live SaaS platform" },
     { title: "Timeline", text: "2021–2024" },
     { title: "Scope", text: "100+ screens" },
   ],
