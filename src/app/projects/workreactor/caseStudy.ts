@@ -42,6 +42,7 @@ export const workreactorCase: CaseStudy = {
   ],
   tags: ["Product Design", "UX Research", "Design Systems", "0 → 1"],
   year: "2021–2024",
+  theme: "grey",
   behanceUrl:
     "https://www.behance.net/gallery/257960101/Work-Reactor-SaaS-for-Startup-Teams",
   modules: [

@@ -23,6 +23,53 @@
   font-weight: 400;
   font-synthesis: none;
 }
+/* Light variant: black text on white, for mostly light presentations. */
+:global(html):has(.light) {
+  --background: #fff;
+  --foreground: #111;
+  color-scheme: light;
+}
+:global(html):has(.grey) {
+  --background: #f9f9f9;
+}
+.light {
+  --page-bg: #fff;
+  --muted: #555;
+  background: var(--page-bg);
+  color: #111;
+}
+/* Grey matches the page around a Behance project. */
+.grey {
+  --page-bg: #f9f9f9;
+  --muted: #505050;
+}
+/* Deep black matches the dark slides' background. */
+:global(html):has(.black) {
+  --background: #09090d;
+}
+.black {
+  background: #09090d;
+}
+.black .section,
+.black .facts {
+  border-top-color: #26262c;
+}
+.light .close {
+  background: #111;
+  /* Thin light ring keeps it visible over the dark slides too. */
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.22),
+    0 6px 24px rgb(0 0 0 / 0.12);
+  color: #fff;
+}
+.light .sectionTitle,
+.light .facts dt {
+  color: #111;
+}
+.light .section,
+.light .facts {
+  border-top-color: #e4e4e4;
+}
 .close {
   position: fixed;
   top: 56px;

@@ -32,6 +32,8 @@ export type CaseStudy = {
   facts?: CaseSection[];
   tags: string[];
   year: string;
+  /* Page background other than the default dark grey, matched to the deck. */
+  theme?: "light" | "grey" | "black";
   behanceUrl: string;
   modules: CaseModule[];
 };

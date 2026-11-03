@@ -7,12 +7,18 @@ import { portfolioDisplay, portfolioSans } from "../home/dark/fonts";
 
 import type { CaseStudy } from "./types";
 
+const themeClass = {
+  light: styles.light,
+  grey: `${styles.light} ${styles.grey}`,
+  black: styles.black,
+};
+
 // Dark case study page: sticky description on the left, the Behance project
 // media stacked on the right.
 export default function CaseStudyView({ project }: { project: CaseStudy }) {
   return (
     <main
-      className={`${styles.page} ${portfolioSans.variable} ${portfolioDisplay.variable}`}
+      className={`${styles.page} ${project.theme ? themeClass[project.theme] : ""} ${portfolioSans.variable} ${portfolioDisplay.variable}`}
     >
       <Link
         href="/#projects"
