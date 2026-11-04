@@ -5,7 +5,7 @@ import type { CaseStudy } from "../../../components/caseStudy/types";
 // Media in the same order as
 // https://www.behance.net/gallery/257960101/Work-Reactor-SaaS-for-Startup-Teams
 const heights = [
-  1964, 1608, 1586, 1633, 1825, 1962, 1259, 949, 1888, 1537, 1783, 2797, 2970,
+  1964, 1608, 1612, 1633, 1825, 1962, 1259, 949, 1888, 1537, 1783, 2797, 2970,
   1537, 404, 862, 749, 974, 1203, 481, 582, 2300, 1896, 2177, 2128, 1671, 1527,
   1238,
 ];
