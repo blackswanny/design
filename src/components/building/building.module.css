@@ -375,83 +375,6 @@
   color: var(--red);
 }
 
-/* Stages: a hairline down the left, one dot per stage. */
-.log {
-  position: relative;
-  display: grid;
-  gap: 32px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.log::before {
-  content: "";
-  position: absolute;
-  top: 8px;
-  bottom: 8px;
-  left: 5px;
-  width: 1px;
-  background: var(--b-line, #3a3a3a);
-}
-.step {
-  position: relative;
-  display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  grid-template-areas:
-    "status title"
-    ". text";
-  column-gap: 24px;
-  padding-left: 36px;
-}
-.stepDot {
-  position: absolute;
-  top: 6px;
-  left: 0;
-  width: 11px;
-  height: 11px;
-  border: 1.5px solid var(--b-next, #6a6a6a);
-  border-radius: 50%;
-  background: var(--b-dot-bg, #1e1e1e);
-}
-.step[data-status="done"] .stepDot {
-  border-color: var(--b-done, #e8e8e8);
-  background: var(--b-done, #e8e8e8);
-}
-.step[data-status="now"] .stepDot {
-  border-color: var(--red);
-  background: var(--red);
-  box-shadow: 0 0 0 5px rgb(224 58 42 / 0.22);
-}
-.stepStatus {
-  grid-area: status;
-  padding-top: 4px;
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.3;
-}
-.step[data-status="now"] .stepStatus {
-  color: var(--red);
-  font-weight: 600;
-}
-.stepTitle {
-  grid-area: title;
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.01em;
-}
-.step[data-status="next"] .stepTitle {
-  color: var(--b-next-title, #cfcfcf);
-}
-.step .stepText {
-  grid-area: text;
-  max-width: 720px;
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 17px;
-  line-height: 1.5;
-}
-
 @media (max-width: 1000px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);
@@ -514,22 +437,5 @@
   .survey {
     justify-content: center;
     width: 100%;
-  }
-  .step {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-areas:
-      "status"
-      "title"
-      "text";
-    padding-left: 28px;
-  }
-  .stepStatus {
-    padding: 0 0 4px;
-  }
-  .stepTitle {
-    font-size: 19px;
-  }
-  .step .stepText {
-    font-size: 15px;
   }
 }

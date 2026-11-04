@@ -63,17 +63,32 @@ export const smartboo = {
       text: "The full history stays with the owner: never lost, easy to export, ready for the vet.",
     },
   ],
-  pains: [
-    "Logging takes too many taps, so the habit dies",
-    "No one knows who already fed the cat or gave the pill",
-    "My species isn't supported, or only as “Other”",
-    "Records live in the clinic's portal, not with me",
-    "Paywalls for a second pet, data held hostage",
+  insights: [
+    {
+      title: "Logging dies at the third tap",
+      text: "A quick note turns into a form, a picker and a save button. Owners give up before the habit forms.",
+    },
+    {
+      title: "Nobody knows who did what",
+      text: "“Did you feed the cat?” Missed or doubled meds were the most serious complaints we read.",
+    },
+    {
+      title: "My pet is “Other”",
+      text: "Rabbit, gecko and fish-tank owners can’t log grams, sheds or water tests in apps built for dogs.",
+    },
   ],
-  goals: [
-    { value: "≤ 15 s", label: "from tap to saved" },
-    { value: "≥ 80%", label: "AI cards saved without edits" },
-    { value: "< 2 min", label: "from install to first entry" },
-    { value: "≥ 40%", label: "back on day 7" },
+  principles: [
+    {
+      title: "AI suggests, people confirm",
+      text: "Nothing is saved until a person checks the cards. If something is unclear, it asks one question.",
+    },
+    {
+      title: "Never a diagnosis",
+      text: "Worrying symptoms get a calm nudge to call the vet, from a fixed list. No advice on meds or doses.",
+    },
+    {
+      title: "Every pet, no paywall",
+      text: "No limit on pets, and export is always free. The record belongs to the owner.",
+    },
   ],
 } as const;
