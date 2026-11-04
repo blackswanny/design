@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import ArrowIcon from "../arrowIcon";
 import styles from "./caseStudyView.module.css";
 import CaseVideo from "./caseVideo";
 import { portfolioDisplay, portfolioSans } from "../home/dark/fonts";
@@ -87,7 +88,10 @@ export default function CaseStudyView({ project }: { project: CaseStudy }) {
               target="_blank"
               rel="noopener noreferrer"
             >
-              View on Behance <span aria-hidden="true">↗</span>
+              View on Behance{" "}
+              <span aria-hidden="true">
+                <ArrowIcon />
+              </span>
             </a>
           </div>
         </aside>

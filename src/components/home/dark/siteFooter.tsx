@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import styles from "./darkPortfolio.module.css";
@@ -49,14 +50,27 @@ const footerSocials = [
   },
 ];
 
-export default function SiteFooter() {
+/** `panel` (home page): the footer becomes its own near-black sheet with
+    rounded top corners and a 3D pixel heart, so it doesn't run into the
+    dark block above it. */
+export default function SiteFooter({ panel = false }: { panel?: boolean }) {
   return (
     <footer
       id="contacts"
-      className={styles.contact}
+      className={`${styles.contact} ${panel ? styles.contactPanel : ""}`}
       aria-labelledby="contact-heading"
     >
       <div className={styles.contactTexture} aria-hidden="true" />
+      {panel && (
+        <Image
+          className={styles.contactHeart}
+          src="/images/about/pixel-heart-3d.webp"
+          alt=""
+          width={400}
+          height={400}
+          unoptimized
+        />
+      )}
       <span className={styles.footerNote}>
         Based in the <strong>San Francisco Bay Area</strong>
       </span>

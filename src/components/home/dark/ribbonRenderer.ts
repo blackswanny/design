@@ -7,7 +7,12 @@ export type RibbonGeometry = {
 
 export type RibbonFrame = {
   offset: number;
-  reveal: number;
+  /** Intro, after anfalova.art: a small strip of thumbnails appears
+      (fade), zooms out to the full ribbon (zoom), then the lens bends and
+      blurs the edges (lens). All three are 0–1 and 1 once settled. */
+  fade: number;
+  zoom: number;
+  lens: number;
   velocity: number;
   geometry: RibbonGeometry;
   compact: boolean;
@@ -37,7 +42,8 @@ const fragmentSource = `
   uniform float itemCount;
   uniform float offset;
   uniform float lensStrength;
-  uniform float entry;
+  uniform float fade;
+  uniform float zoom;
   uniform float motionScale;
   uniform int opticalSamples;
   uniform sampler2D projectAtlas;
@@ -48,21 +54,34 @@ const fragmentSource = `
     return length(max(q, 0.0)) + min(max(q.x, q.y), 0.0) - radius;
   }
 
-  vec3 scene(vec2 p) {
+  vec3 scene(vec2 screen) {
+    // Zoom about the ribbon's centre: at the start the whole set of
+    // projects sits in a small strip in the middle of the hero.
+    vec2 centre = vec2(resolution.x * .5, rowY);
+    vec2 p = centre + (screen - centre) / zoom;
     float stride = cardWidth + cardGap;
-    float item = mod(floor((p.x + offset) / stride), itemCount);
+    float slot = floor((p.x + offset) / stride);
+    float item = mod(slot, itemCount);
     vec2 local = vec2(
       mod(p.x + offset, stride) - cardWidth * .5,
-      p.y - rowY - (1.0 - entry) * cardHeight * .65
+      p.y - rowY
     );
-    float grow = mix(.42, 1.0, entry) * motionScale;
-    float distance = roundedBox(local, vec2(cardWidth * .5 * motionScale, cardHeight * .5 * grow), 2.0);
-    float inside = 1.0 - smoothstep(-.7, .7, distance);
-    vec2 uv = clamp(local / vec2(cardWidth * motionScale, cardHeight * grow) + .5, 0.0, 1.0);
+    float distance = roundedBox(local, vec2(cardWidth * .5 * motionScale, cardHeight * .5 * motionScale), 2.0);
+    float edge = .7 / zoom;
+    float inside = 1.0 - smoothstep(-edge, edge, distance);
+    // One copy of the set while small, so the strip has clear ends; cards
+    // pop in from the centre outwards.
+    float centreSlot = floor((centre.x + offset) / stride);
+    float rank = abs(slot - centreSlot);
+    float fromCentre = abs((p.x + offset) / stride - centreSlot - .5);
+    float strip = 1.0 - smoothstep(itemCount * .5 - .05, itemCount * .5, fromCentre);
+    float shown = mix(strip, 1.0, smoothstep(.55, .9, zoom));
+    float pop = smoothstep(rank * .09, rank * .09 + .35, fade * 1.4);
+    vec2 uv = clamp(local / vec2(cardWidth * motionScale, cardHeight * motionScale) + .5, 0.0, 1.0);
     vec2 cell = vec2(mod(item, 3.0), floor(item / 3.0));
     vec2 atlasPoint = cell * vec2(640.0, 424.0) + vec2(4.5) + uv * vec2(631.0, 415.0);
     vec3 color = texture2D(projectAtlas, atlasPoint / vec2(1920.0, 1272.0)).rgb;
-    return mix(background, color, inside * smoothstep(0.0, .22, entry));
+    return mix(background, color, inside * shown * pop);
   }
 
   void main() {
@@ -159,7 +178,8 @@ export function createRibbonRenderer(
       "itemCount",
       "offset",
       "lensStrength",
-      "entry",
+      "fade",
+      "zoom",
       "motionScale",
       "opticalSamples",
       "projectAtlas",
@@ -236,8 +256,9 @@ export function createRibbonRenderer(
       gl.uniform1f(uniforms.itemCount, frame.geometry.count);
       gl.uniform1f(uniforms.offset, frame.offset);
       // Phones get a flat, straight ribbon: no lens bend.
-      gl.uniform1f(uniforms.lensStrength, frame.compact ? 0 : frame.reveal);
-      gl.uniform1f(uniforms.entry, frame.reveal);
+      gl.uniform1f(uniforms.lensStrength, frame.compact ? 0 : frame.lens);
+      gl.uniform1f(uniforms.fade, frame.fade);
+      gl.uniform1f(uniforms.zoom, Math.max(0.05, frame.zoom));
       gl.uniform1f(
         uniforms.motionScale,
         1 - Math.min(0.07, Math.abs(frame.velocity) * 0.028),

@@ -38,8 +38,11 @@ export default function ProjectRibbon() {
     canvas.className = styles.lensCanvas;
     canvas.setAttribute("aria-hidden", "true");
     hero.prepend(canvas);
+    // The intro starts once the artwork is on the GPU.
+    let introStart = 0;
     const renderer = createRibbonRenderer(canvas, (ready) => {
       if (!active) return;
+      if (ready && !introStart) introStart = performance.now();
       hero.dataset.lens = ready ? "true" : "false";
       hero.dataset.mediaAtlas = ready ? "ready" : "fallback";
     });
@@ -66,7 +69,6 @@ export default function ProjectRibbon() {
     let frame = 0;
     let lastTime = 0;
     let lastInput = performance.now();
-    const startedAt = lastInput;
 
     const nearestCard = (position: number) => {
       const centre = viewportWidth / 2 - geometry.cardWidth / 2;
@@ -117,17 +119,34 @@ export default function ProjectRibbon() {
       updateBounds();
     };
 
+    const ease = (value: number) => value * value * (3 - 2 * value);
+    const easeInOut = (value: number) =>
+      value < 0.5
+        ? 4 * value * value * value
+        : 1 - Math.pow(-2 * value + 2, 3) / 2;
+    const span = (time: number, from: number, length: number) =>
+      Math.min(1, Math.max(0, (time - from) / length));
+    // Small strip appears (0–0.6s), holds, zooms out to the ribbon
+    // (1.1–2.4s), then the lens bends and blurs the edges (2.0–3.2s).
+    const intro = () => {
+      if (reduced.matches) return { fade: 1, zoom: 1, lens: 1, done: true };
+      const time = introStart ? performance.now() - introStart : 0;
+      const zoomIn = easeInOut(span(time, 1100, 1300));
+      return {
+        fade: ease(span(time, 80, 600)),
+        zoom: 0.24 + 0.76 * zoomIn,
+        lens: ease(span(time, 2000, 1200)),
+        done: time >= 3200,
+      };
+    };
+
     const draw = () => {
-      const progress = reduced.matches
-        ? 1
-        : Math.min(
-            1,
-            Math.max(0, (performance.now() - startedAt - 120) / 1250),
-          );
-      const reveal = progress * progress * (3 - 2 * progress);
+      const stage = intro();
       const rendered = renderer?.draw({
         offset,
-        reveal,
+        fade: stage.fade,
+        zoom: stage.zoom,
+        lens: stage.lens,
         velocity: renderVelocity,
         geometry,
         compact,
@@ -158,7 +177,8 @@ export default function ProjectRibbon() {
       const idle = time - lastInput;
       // Keeps moving under the pointer and with focus; only Pause, a drag or
       // the arrow keys hold it, and it picks up again shortly after.
-      const autoplay = !isPaused && !reduced.matches && !drag && idle > 1000;
+      const autoplay =
+        !isPaused && !reduced.matches && !drag && idle > 1000 && intro().done;
       if (!drag && !isPaused && momentum) {
         target += momentum * delta;
         momentum *= Math.exp(-delta / 115);

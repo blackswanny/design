@@ -8,6 +8,7 @@ import ProjectRibbon from "./projectRibbon";
 import { portfolioProjects } from "./projects";
 import SiteFooter from "./siteFooter";
 import SiteHeader from "./siteHeader";
+import NowBuilding from "../../building/nowBuilding";
 
 import type { ReactNode } from "react";
 
@@ -206,7 +207,9 @@ export default function DarkHomePage() {
         </div>
       </section>
 
-      <SiteFooter />
+      <NowBuilding />
+
+      <SiteFooter panel />
     </main>
   );
 }

@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 
 import styles from "./darkPortfolio.module.css";
 import { computeHeroScale } from "./heroScale";
+import ArrowIcon from "../../arrowIcon";
 
 // Scroll distance over which the hero header condenses into the sticky bar.
 const CONDENSE_DISTANCE = 180;
@@ -14,7 +15,7 @@ const CONDENSE_DISTANCE = 180;
 export default function SiteHeader({
   page = "home",
 }: {
-  page?: "home" | "about" | "resume";
+  page?: "home" | "about" | "resume" | "project";
 }) {
   const headerRef = useRef<HTMLElement>(null);
   const onHome = page === "home";
@@ -94,7 +95,10 @@ export default function SiteHeader({
           Resume
         </Link>
         <a href="#contacts">
-          Contact <span aria-hidden="true">↗</span>
+          Contact{" "}
+          <span aria-hidden="true">
+            <ArrowIcon />
+          </span>
         </a>
       </nav>
     </header>
