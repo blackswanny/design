@@ -4,7 +4,7 @@ import { portfolioDisplay, portfolioSans } from "@/components/home/dark/fonts";
 import SiteFooter from "@/components/home/dark/siteFooter";
 import SiteHeader from "@/components/home/dark/siteHeader";
 
-import { CaptureScreen, ReviewScreen, TodayScreen } from "./phones";
+import { ScreenShot } from "./phones";
 import styles from "./smartboo.module.css";
 
 import type { Metadata } from "next";
@@ -31,24 +31,33 @@ const stats = [
   { value: "4", label: "weeks from first research to a working beta" },
 ];
 
+const screens = {
+  boo: "/images/projects/smartboo/today-boo.webp",
+  due: "/images/projects/smartboo/today-due.webp",
+  done: "/images/projects/smartboo/today-done.webp",
+};
+
 const flow = [
   {
     step: "01",
     title: "Say it",
-    text: "One tap, one sentence. Several pets, events and reminders at once.",
-    Screen: CaptureScreen,
+    text: "Tap Boo and talk. One sentence can cover several pets and events.",
+    src: screens.boo,
+    alt: "Boo, the voice assistant, on the Today screen",
   },
   {
     step: "02",
-    title: "Check the cards",
-    text: "AI turns words into cards. Fix anything in place, then save all.",
-    Screen: ReviewScreen,
+    title: "See what’s next",
+    text: "Due today puts the one task that matters first. Mark it done in one tap.",
+    src: screens.due,
+    alt: "Due today with the next task and a Mark done button",
   },
   {
     step: "03",
     title: "Everyone sees it",
-    text: "Today updates for the whole home, with who did what and when.",
-    Screen: TodayScreen,
+    text: "Done shows who did what and when, for the whole family.",
+    src: screens.done,
+    alt: "Your pack and the Done list with who did each task",
   },
 ];
 
@@ -93,9 +102,12 @@ export default function SmartBooPage() {
             </div>
           </div>
           <div className={styles.heroStage}>
-            <ReviewScreen tilt="left" />
-            <CaptureScreen />
-            <TodayScreen tilt="right" />
+            <ScreenShot src={screens.due} alt="" tilt="left" />
+            <ScreenShot
+              src={screens.boo}
+              alt="SmartBoo Today screen: Boo, the pet assistant, asks what happened with the pack today"
+            />
+            <ScreenShot src={screens.done} alt="" tilt="right" />
           </div>
           <dl className={styles.facts}>
             {facts.map((fact) => (
@@ -159,15 +171,15 @@ export default function SmartBooPage() {
               Less tracking. <em>More caring.</em>
             </h2>
             <p className={styles.body}>
-              The whole product is one loop: say what happened, check the cards,
+              The whole product is one loop: say what happened, see what’s next,
               and the home’s shared Today updates for everyone.
             </p>
           </div>
           <ol className={styles.flow}>
-            {flow.map(({ step, title, text, Screen }) => (
+            {flow.map(({ step, title, text, src, alt }) => (
               <li key={step}>
                 <div className={styles.flowStage}>
-                  <Screen />
+                  <ScreenShot src={src} alt={alt} />
                 </div>
                 <span className={styles.index}>{step}</span>
                 <h3>{title}</h3>
@@ -175,6 +187,21 @@ export default function SmartBooPage() {
               </li>
             ))}
           </ol>
+        </section>
+
+        {/* Edge cases: what happens when things are unclear. */}
+        <section className={styles.split} aria-labelledby="edge-title">
+          <h2 id="edge-title" className={styles.label}>
+            Edge cases
+          </h2>
+          <ul className={styles.principles}>
+            {smartboo.edgeCases.map((item) => (
+              <li key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </li>
+            ))}
+          </ul>
         </section>
 
         {/* Principles. */}

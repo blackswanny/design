@@ -19,32 +19,26 @@
 }
 .sheet {
   --text: #121212;
-  --muted: #5b6664;
-  /* SmartBoo's own palette (from the concept): deep teal for actions,
-     light teal for the "boo" of the wordmark, mint surfaces, a warm
-     orange for meds and alerts. The site header and footer keep red. */
-  /* One teal, the "boo" of the wordmark. On white it is for shapes and
-     large type only; small text and buttons use ink for contrast. */
-  --teal: #3dbfae;
-  --teal-light: var(--teal);
-  --mint: #e4f4f0;
-  --mint-strong: #cdeae3;
-  --warm: #ef8a5c;
-  --surface: #f0f8f6;
-  --edge: #d9ebe6;
+  --muted: #5b6273;
+  /* SmartBoo palette, from the Figma design system (SmartBoo · Color):
+     accent/primary blue for actions and the wordmark, the AI gradient
+     (mint → blue → lilac → pink) for the stage, cool greys for text. */
+  --accent: #2a55c4;
+  --surface: #f2f5fc;
+  --edge: #dfe5f1;
+  --ink: #111a2e;
+  --wire: #7d8597;
+  --wire-soft: #eef2fb;
+  --wire-line: #e2e7f1;
   /* Type scale: label 15 · caption 15 · body 17 · lead 19 · h3 24 ·
      section 64 · statement 44. Greys: --muted for text, --label for
      small labels. One divider colour: --line. */
-  --line: #cfd8d6;
+  --line: #d3d9e5;
   /* Layout: a 12-column grid with 24px gutters; spacing steps
      8 · 16 · 24 · 32 · 48 · 120. */
   --gutter-x: 24px;
-  --ink: #0f2b29;
-  --wire: #7d8e8b;
-  --wire-soft: var(--mint);
-  --wire-line: #e0ece9;
   /* One style for every small label: facts, section names, targets. */
-  --label: #8f9998;
+  --label: #8a90a0;
   position: relative;
   z-index: 1;
   padding: 0 var(--gutter) 120px;
@@ -78,7 +72,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--teal);
+  background: var(--accent);
 }
 @media (prefers-reduced-motion: no-preference) {
   .liveDot::after {
@@ -86,7 +80,7 @@
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background: var(--teal);
+    background: var(--accent);
     animation: pulse 2s ease-out infinite;
   }
 }
@@ -104,7 +98,7 @@
   color: #121212;
 }
 .title .boo {
-  color: var(--teal-light);
+  color: var(--accent);
 }
 .sheet .title {
   grid-column: 1 / 7;
@@ -131,7 +125,7 @@
   font-weight: 600;
 }
 /* No display italic on this page: emphasis stays in the sans, so the
-   project's teal and type read as one system. */
+   project's colour and type read as one system. */
 .sheet em {
   color: inherit;
   font-family: var(--font-portfolio-sans), Arial, sans-serif;
@@ -162,12 +156,12 @@
   overflow: hidden;
   border-radius: 40px;
   background: radial-gradient(
-      circle at 12% 18%,
-      rgb(61 191 174 / 0.22),
-      transparent 38%
+      circle at 14% 18%,
+      rgb(183 232 214 / 0.6),
+      transparent 42%
     ),
-    radial-gradient(circle at 88% 82%, rgb(239 138 92 / 0.12), transparent 40%),
-    linear-gradient(180deg, #eef8f6, #d9eee9);
+    radial-gradient(circle at 86% 86%, rgb(246 206 226 / 0.6), transparent 44%),
+    linear-gradient(160deg, #e5effd, #e9e3fa);
 }
 .heroStage > .phone {
   --phone-w: clamp(220px, 21vw, 300px);
@@ -337,7 +331,7 @@
   letter-spacing: -0.02em;
 }
 .sheet .sectionTitle em {
-  color: var(--teal);
+  color: var(--accent);
 }
 .flowHead .body {
   max-width: 420px;
@@ -412,7 +406,7 @@
   letter-spacing: -0.02em;
 }
 .sheet .help em {
-  color: var(--teal);
+  color: var(--accent);
 }
 .sheet .helpText {
   max-width: 520px;
@@ -434,10 +428,10 @@
   /* Thin bezel with a hairline edge, like a real device at a distance. */
   padding: calc(var(--phone-w) * 0.016);
   border-radius: calc(var(--phone-w) * 0.15);
-  background: #23302e;
+  background: #1b1f2a;
   box-shadow:
-    0 0 0 1px rgb(15 43 41 / 0.18),
-    0 30px 60px -10px rgb(15 43 41 / 0.22);
+    0 0 0 1px rgb(20 28 60 / 0.18),
+    0 30px 60px -10px rgb(20 28 60 / 0.22);
   /* Everything inside scales with the phone width. */
   font-size: calc(var(--phone-w) / 270 * 16px);
 }
@@ -447,279 +441,16 @@
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  padding: 0 1.05em 1.1em;
   border-radius: calc(var(--phone-w) * 0.135);
-  background: #f8fbfa;
+  background: #f8fafd;
   color: var(--ink);
 }
-.statusBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 2.6em;
-  font-size: 0.72em;
-  font-weight: 600;
-}
-.notch {
-  width: 5.4em;
-  height: 1.55em;
-  border-radius: 1em;
-  background: var(--ink);
-}
-.appHead {
-  display: flex;
-  flex-direction: column;
-  gap: 0.2em;
-  margin-top: 0.9em;
-}
-.appKicker {
-  color: var(--wire);
-  font-size: 0.68em;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.appTitle {
-  font-size: 1.32em;
-  font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-/* Capture */
-.sheet .transcript {
-  margin-top: 1.3em;
-  font-size: 1.28em;
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: -0.015em;
-}
-.caret {
-  display: inline-block;
-  width: 0.08em;
-  height: 1em;
-  margin-left: 0.08em;
-  vertical-align: -0.12em;
-  background: var(--teal);
-}
-@media (prefers-reduced-motion: no-preference) {
-  .caret {
-    animation: blink 1s steps(2) infinite;
-  }
-}
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-.phoneWave {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.22em;
-  height: 3em;
-  margin-top: auto;
-}
-.phoneWave i {
-  /* teal bars */
-  width: 0.2em;
-  height: 30%;
-  border-radius: 0.1em;
-  background: var(--teal);
-  opacity: 0.5;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .phoneWave i {
-    /* teal bars */
-    animation: phoneWave 1.1s ease-in-out infinite alternate;
-  }
-}
-@keyframes phoneWave {
-  from {
-    height: 18%;
-  }
-  to {
-    height: 100%;
-  }
-}
-.micDock {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6em;
-  margin-top: 1.1em;
-}
-.micBig {
-  display: grid;
-  place-items: center;
-  width: 4.2em;
-  height: 4.2em;
-  border-radius: 50%;
-  background: var(--teal);
-  box-shadow:
-    0 0 0 0.55em rgb(61 191 174 / 0.2),
-    0 0 0 1.2em rgb(61 191 174 / 0.08);
-}
-.micBig svg {
-  width: 1.6em;
-  height: 1.6em;
-}
-.micHint {
-  color: var(--wire);
-  font-size: 0.68em;
-}
-
-/* Review */
-.sheet .quoteChip {
-  margin-top: 1em;
-  padding: 0.7em 0.8em;
-  border-radius: 0.8em;
-  background: var(--wire-soft);
-  color: #555;
-  font-size: 0.72em;
-  line-height: 1.35;
-}
-.reviewList {
-  display: grid;
-  gap: 0.5em;
-  margin: 0.9em 0 0;
-  padding: 0;
-  list-style: none;
-}
-.reviewList li {
-  display: grid;
-  grid-template-columns: 2.2em minmax(0, 1fr);
-  grid-template-areas:
-    "icon text"
-    "icon meta";
-  align-items: center;
-  column-gap: 0.7em;
-  padding: 0.6em 0.7em;
-  border: 1px solid var(--wire-line);
-  border-radius: 0.9em;
-  background: #fff;
-}
-.reviewIcon {
-  grid-area: icon;
-  display: grid;
-  place-items: center;
-  width: 2.2em;
-  height: 2.2em;
-  border-radius: 0.65em;
-  background: var(--wire-soft);
-  font-size: 0.95em;
-}
-.reviewList li:last-child .reviewIcon {
-  background: #fde7dc;
-}
-.reviewText {
-  grid-area: text;
-  display: flex;
-  gap: 0.4em;
-  align-items: baseline;
-  font-size: 0.8em;
-  color: #555;
-}
-.reviewText b {
-  color: var(--ink);
-  font-weight: 700;
-}
-.reviewMeta {
-  grid-area: meta;
-  color: var(--wire);
-  font-size: 0.66em;
-}
-.reviewList li:last-child .reviewMeta {
-  color: var(--ink);
-  font-weight: 600;
-}
-.saveAll {
-  display: grid;
-  place-items: center;
-  height: 2.9em;
-  margin-top: auto;
-  border-radius: 1.45em;
-  background: var(--teal);
-  color: var(--ink);
-  font-size: 0.82em;
-  font-weight: 700;
-}
-
-/* Today */
-.petRow {
-  display: flex;
-  gap: 0.45em;
-  margin-top: 0.9em;
-}
-.petRow span {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 2.5em;
-  height: 2.5em;
-  border-radius: 50%;
-  background: var(--wire-soft);
-  color: var(--ink);
-  font-size: 0.8em;
-  font-weight: 700;
-}
-.petRow span[data-due]::after {
-  content: "";
-  position: absolute;
-  top: 0.05em;
-  right: 0.05em;
-  width: 0.55em;
-  height: 0.55em;
-  border: 0.14em solid #fff;
-  border-radius: 50%;
-  background: var(--warm);
-}
-.sheet .groupLabel {
-  margin-top: 1.1em;
-  color: var(--wire);
-  font-size: 0.66em;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-.taskList {
-  display: grid;
-  gap: 0.4em;
-  margin: 0.5em 0 0;
-  padding: 0;
-  list-style: none;
-}
-.taskList li {
-  display: grid;
-  grid-template-columns: 1.2em minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 0.6em;
-  padding: 0.62em 0.7em;
-  border-radius: 0.8em;
-  background: #fff;
-  font-size: 0.78em;
-  font-weight: 600;
-}
-.taskList small {
-  color: var(--wire);
-  font-size: 0.85em;
-  font-weight: 500;
-}
-.check {
-  width: 1.2em;
-  height: 1.2em;
-  border: 0.12em solid #c7c7cc;
-  border-radius: 50%;
-}
-.taskList[data-done] li {
-  background: transparent;
-  color: var(--wire);
-}
-.taskList[data-done] .check {
-  border-color: var(--teal);
-  background: var(--teal)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 6.2l2 2 4-4.4' fill='none' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
-    center / 80% no-repeat;
+.screen img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
 }
 
 /* ---------- Responsive ---------- */

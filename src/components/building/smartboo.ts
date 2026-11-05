@@ -77,6 +77,20 @@ export const smartboo = {
       text: "Rabbit, gecko and fish-tank owners can’t log grams, sheds or water tests in apps built for dogs.",
     },
   ],
+  edgeCases: [
+    {
+      title: "“Which cat?”",
+      text: "If a sentence could mean more than one pet, the card asks one question with choices: Milo · Cleo · Both. It never guesses.",
+    },
+    {
+      title: "Someone already did it",
+      text: "If another person logged the same thing in the last two hours, Review warns: “Alex already logged this at 7:40.” No double doses.",
+    },
+    {
+      title: "No signal",
+      text: "The sentence is saved as a draft and turned into cards once the phone is back online. Nothing is lost.",
+    },
+  ],
   principles: [
     {
       title: "AI suggests, people confirm",

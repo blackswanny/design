@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Resume — Hanna Gomozova",
   description:
-    "Resume of Hanna Gomozova, a product designer with 5+ years of experience across web and mobile products.",
+    "Resume of Hanna Gomozova, a product designer and design engineer with 5+ years of experience across web and mobile products.",
 };
 
 // The web version of public/Hanna-Gomozova-Product-Designer.pdf; keep the
@@ -50,13 +50,26 @@ const skills = [
     items: [
       "Figma",
       "Adobe Creative Suite",
+      "Claude Code",
       "Next.js",
+      "React",
       "AI-assisted development",
     ],
   },
 ];
 
 const experience = [
+  {
+    role: "Product Designer & Design Engineer",
+    company: "SmartBoo (personal project)",
+    place: "Bay Area, CA",
+    dates: "2026 – Present",
+    points: [
+      "Designing and building SmartBoo, a voice-first AI care log for homes with more than one pet, with Claude Code.",
+      "Ran an owner survey and analyzed ~2,900 App Store reviews across ~40 pet apps to define the MVP.",
+      "Mapped the core loop and edge cases (ambiguous pets, duplicate logs, offline capture) into product requirements.",
+    ],
+  },
   {
     role: "Product Designer",
     company: "Independent",
@@ -79,7 +92,7 @@ const experience = [
       "Designed 100+ high-fidelity screens, from user flows and prototypes for profiles, networking, projects, tasks, and milestones to production-ready UI.",
       "Built and maintained the design system: reusable components, UI patterns, and visual standards shared with engineering.",
       "Partnered with the founder and engineers on product decisions, feature planning, and design reviews.",
-      "Led a full product redesign in 2024 based on user feedback and the new product direction.",
+      "Led a 2024 redesign based on 32 interviews with founders, engineers, and investors; the company closed before launch.",
     ],
   },
   {
@@ -131,7 +144,7 @@ export default function ResumePage() {
         <article className={styles.sheet}>
           <header className={styles.sheetHeader}>
             <h2 className={styles.name}>Hanna Gomozova</h2>
-            <p className={styles.roles}>Product Designer</p>
+            <p className={styles.roles}>Product Designer & Design Engineer</p>
             <p className={styles.location}>Bay Area, CA</p>
             <ul className={styles.links}>
               {links.map((link) => (
@@ -153,13 +166,13 @@ export default function ResumePage() {
           <section className={styles.block}>
             <h3 className={styles.blockTitle}>Summary</h3>
             <p className={styles.summary}>
-              Product Designer with 5+ years of experience designing web and
-              mobile products from 0 to 1. As the sole designer at WorkReactor,
-              owned research, UX, UI, and the design system for a live SaaS
-              platform, iterating through several product pivots with the
-              founder and engineers. Currently provides product design and UX
-              support for early-stage products and builds in code with
-              AI-assisted development.
+              Product Designer and Design Engineer with 5+ years of experience
+              taking web and mobile products from 0 to 1. As the sole designer
+              at WorkReactor, owned research, UX, UI, and the design system for
+              a live SaaS platform through several product pivots. Now designing
+              and building an AI voice-first app with Claude Code, turning
+              research and fuzzy ideas into clear flows, edge cases, and shipped
+              UI.
             </p>
           </section>
 
