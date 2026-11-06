@@ -5,19 +5,23 @@ import { smartboo } from "./smartboo";
 import ArrowIcon from "../arrowIcon";
 import site from "../home/dark/darkPortfolio.module.css";
 
-// One spoken sentence turning into cards: the core idea of the app.
+// A vet paper turning into records: the core idea of the app.
 const demoCards = [
-  { icon: "🍽", what: "Fed", pet: "Milo & Cleo", meta: "7:40 · Anna" },
+  { icon: "💉", what: "Rabies", pet: "Rocky", meta: "Due Nov 1" },
   {
-    icon: "💊",
-    what: "Pill given",
-    pet: "Rocky",
-    meta: "Task done ✓",
+    icon: "🔔",
+    what: "Reminder set",
+    pet: "2 weeks before",
+    meta: "Saved ✓",
     done: true,
   },
 ];
 
-const pains = ["Too many taps", "Who fed the cat?", "No grams for my hamster"];
+const pains = [
+  "Records everywhere",
+  "“Can you show the shots?”",
+  "Missed due dates",
+];
 
 /** Home page block between Selected Work and Let's talk: the app I'm
     building, as three cards (after anfalova.art's side-project row), with
@@ -45,8 +49,9 @@ export default function NowBuilding() {
         </span>
       </h2>
       <p className={styles.lead}>
-        Right now: <strong>{smartboo.name}</strong>, a pet care app with an AI
-        voice assistant. Say what happened, and the whole family knows.
+        Right now: <strong>{smartboo.name}</strong>, an iOS app that keeps
+        everything about your pets in one place. Hand its AI assistant a vet
+        paper, and it files it and reminds you what’s due.
       </p>
       <div className={styles.actions}>
         <Link className={styles.follow} href="/projects/smartboo">
@@ -75,33 +80,22 @@ export default function NowBuilding() {
               <div className={styles.say}>
                 <span className={styles.mic}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                    <rect
-                      x="9"
-                      y="3"
-                      width="6"
-                      height="11"
-                      rx="3"
-                      fill="#fff"
-                    />
                     <path
-                      d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"
+                      d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.8l1.4-2h4.6l1.4 2h1.8A2.5 2.5 0 0 1 20 8.5v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5z"
                       stroke="#fff"
                       strokeWidth="2"
-                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    <circle
+                      cx="12"
+                      cy="12.5"
+                      r="3.2"
+                      stroke="#fff"
+                      strokeWidth="2"
                     />
                   </svg>
                 </span>
-                <span className={styles.wave}>
-                  {Array.from({ length: 12 }, (_, i) => (
-                    <i
-                      key={i}
-                      style={{ animationDelay: `${(i % 6) * 0.12}s` }}
-                    />
-                  ))}
-                </span>
-                <p className={styles.quote}>
-                  “Fed both cats, gave Rocky his pill”
-                </p>
+                <p className={styles.quote}>Rocky’s vaccine certificate</p>
               </div>
               <ul className={styles.cards}>
                 {demoCards.map((card) => (
@@ -118,7 +112,7 @@ export default function NowBuilding() {
             </div>
           </div>
           <p className={styles.caption}>
-            Talk to it, and the AI turns your words into care notes
+            Snap a vet paper, and the AI files it in the right pet’s folder
           </p>
         </Link>
 
@@ -150,17 +144,17 @@ export default function NowBuilding() {
               </div>
               <div className={styles.terminal}>
                 <p className={styles.prompt}>
-                  <b>&gt;</b> Build the voice capture screen from our Figma
-                  tokens
+                  <b>&gt;</b> Build the review card from our Figma tokens
                 </p>
                 <p>
-                  <span className={styles.ok}>✓</span> Capture.tsx
+                  <span className={styles.ok}>✓</span> ReviewCard.tsx
                 </p>
                 <p>
-                  <span className={styles.ok}>✓</span> ReviewCards.tsx
+                  <span className={styles.ok}>✓</span> PetFolder.tsx
                 </p>
                 <p className={styles.running}>
-                  <span className={styles.spin} /> Checking on iPhone Safari…
+                  <span className={styles.spin} /> Checking on the iPhone
+                  simulator…
                 </p>
               </div>
             </div>

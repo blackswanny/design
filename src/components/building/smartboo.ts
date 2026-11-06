@@ -14,95 +14,90 @@ export type BuildStep = {
 export const smartboo = {
   name: "SmartBoo",
   summary:
-    "A voice care log for every pet in the house. Say what happened, and the app logs it, reminds you and shows the whole family.",
+    "Everything about your pets in one place. Hand Boo a vet paper or tell it what happened, and it files it in the right pet's folder and reminds you what's due.",
   surveyUrl:
     "https://docs.google.com/forms/d/e/1FAIpQLSctmTbRnMgishL8bN8yVVKF2j1-daLY1nXwzkJOYT-dib_tHA/viewform",
+  /** The clickable Figma prototype (iPhone 14 frame, starts on Today). */
+  prototypeUrl:
+    "https://www.figma.com/proto/aqt5PinybJw1SsotXrtLlP/Smartboo---Pet-care-app?node-id=59-2444&starting-point-node-id=59%3A2444&scaling=scale-down&content-scaling=fixed&hide-ui=1",
+  prototypeEmbedUrl:
+    "https://embed.figma.com/proto/aqt5PinybJw1SsotXrtLlP/Smartboo---Pet-care-app?node-id=59-2444&starting-point-node-id=59%3A2444&scaling=scale-down&content-scaling=fixed&hide-ui=1&hotspot-hints=0&embed-host=hanna-vision",
   stack: [
     "Claude Code",
     "Vite",
     "React",
     "TypeScript",
     "Tailwind",
+    "Capacitor",
     "Storybook",
-    "Supabase",
-    "PWA",
+    "Cloudflare",
   ],
   log: [
     {
       title: "Research",
-      text: "A survey of pet owners and about 2,900 App Store reviews of nearly 40 pet apps, ranked by pain.",
+      text: "Owner interviews, an ongoing survey and about 2,900 App Store reviews of nearly 40 pet apps.",
       status: "done",
     },
     {
       title: "Concept",
-      text: "Three pillars: capture by voice, care together, own the record. For every species, from a dog to a fish tank.",
+      text: "Boo files vet papers and events into each pet's folder, reminds you what's due and makes records easy to share.",
       status: "done",
     },
     {
       title: "Design and build",
-      text: "Design system, voice capture and the Today screen, built with Claude Code and tested with real owners.",
+      text: "18 screens and a clickable prototype in Figma; the iOS app built with Claude Code and Capacitor.",
       status: "now",
     },
     {
-      title: "Beta",
-      text: "Families use it at home every day. Fixes from real use and the first metrics.",
+      title: "Demo",
+      text: "A working iOS demo on TestFlight on December 1, then usability tests with real owners.",
       status: "next",
     },
   ] satisfies BuildStep[],
-  pillars: [
-    {
-      title: "Capture",
-      text: "Faster to log than to remember. One sentence can cover several pets, events and reminders.",
-    },
-    {
-      title: "Care together",
-      text: "One home, one plan. Everyone sees what's done today, by whom, and what's left.",
-    },
-    {
-      title: "Own the record",
-      text: "The full history stays with the owner: never lost, easy to export, ready for the vet.",
-    },
-  ],
   insights: [
     {
-      title: "Logging dies at the third tap",
-      text: "A quick note turns into a form, a picker and a save button. Owners give up before the habit forms.",
+      title: "Nobody logs every day",
+      text: "Most owners look up or record pet info only a few times a year, and most have never used a pet app. The real competitor is memory, paper and email.",
     },
     {
-      title: "Nobody knows who did what",
-      text: "“Did you feed the cat?” Missed or doubled meds were the most serious complaints we read.",
+      title: "The paper is the moment",
+      text: "Back from the vet, or a PDF in email: that's when people want to put it somewhere safe. It's the install moment and the aha moment.",
     },
     {
-      title: "My pet is “Other”",
-      text: "Rabbit, gecko and fish-tank owners can’t log grams, sheds or water tests in apps built for dogs.",
+      title: "“Can you show the shots?”",
+      text: "Boarding, groomers and new vets ask for records, and owners can't pull them together fast. Due dates for vaccines and rechecks slip.",
     },
   ],
   edgeCases: [
     {
       title: "“Which cat?”",
-      text: "If a sentence could mean more than one pet, the card asks one question with choices: Milo · Cleo · Both. It never guesses.",
+      text: "If a sentence could mean more than one pet, Boo doesn't guess. It asks with choices: Milo · Cleo · Both.",
     },
     {
-      title: "Someone already did it",
-      text: "If another person logged the same thing in the last two hours, Review warns: “Alex already logged this at 7:40.” No double doses.",
+      title: "“Is this the same Rocky?”",
+      text: "A paper for a name that's already in the pack goes into that folder. When Boo isn't sure, it asks first.",
     },
     {
-      title: "No signal",
-      text: "The sentence is saved as a draft and turned into cards once the phone is back online. Nothing is lost.",
+      title: "Boo isn't sure",
+      text: "Fields Boo can't read clearly are highlighted on the review card, like a due date with a question mark. One tap to fix.",
+    },
+    {
+      title: "It sounds serious",
+      text: "Red-flag symptoms from a fixed list get “That sounds worth a call to your vet today” and a button to call the vet. No diagnosis.",
     },
   ],
   principles: [
     {
-      title: "AI suggests, people confirm",
-      text: "Nothing is saved until a person checks the cards. If something is unclear, it asks one question.",
+      title: "Never makes things up",
+      text: "Missing data stays empty or becomes a question. Answers come only from the records, with a link to the source.",
     },
     {
       title: "Never a diagnosis",
-      text: "Worrying symptoms get a calm nudge to call the vet, from a fixed list. No advice on meds or doses.",
+      text: "No advice on meds or doses. Worrying symptoms get a calm nudge to call the vet.",
     },
     {
       title: "Every pet, no paywall",
-      text: "No limit on pets, and export is always free. The record belongs to the owner.",
+      text: "Dogs and cats, but also rabbits, birds and reptiles, with weight in grams. No limit on pets, and export is always free.",
     },
   ],
 } as const;
