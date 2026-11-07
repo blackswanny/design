@@ -39,18 +39,18 @@ export const smartboo = {
       status: "done",
     },
     {
-      title: "Concept",
-      text: "Boo files vet papers and events into each pet's folder, reminds you what's due and makes records easy to share.",
+      title: "Design",
+      text: "The concept, 18 screens and a clickable prototype in Figma, with colors, spacing and type set up as Figma Variables.",
       status: "done",
     },
     {
-      title: "Design and build",
-      text: "18 screens and a clickable prototype in Figma; the iOS app built with Claude Code and Capacitor.",
+      title: "First build",
+      text: "The first version runs in React: Today, Schedule, pet folders, Share and Boo's sheet, with sample pets. Built with Claude Code.",
       status: "now",
     },
     {
       title: "Demo",
-      text: "A working iOS demo on TestFlight on December 1, then usability tests with real owners.",
+      text: "A working iOS demo on TestFlight on December 2, then usability tests with real owners.",
       status: "next",
     },
   ] satisfies BuildStep[],

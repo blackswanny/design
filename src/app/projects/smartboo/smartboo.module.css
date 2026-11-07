@@ -528,6 +528,61 @@
   color: var(--label);
 }
 
+/* Decision 06: a design token from Figma to code. */
+.tokens {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  width: min(320px, 88%);
+}
+.tokenStep {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 20px;
+  background: #fff;
+}
+.tokenWhere {
+  color: var(--label);
+  font-size: 13px;
+  font-weight: 600;
+}
+.tokenStep code {
+  color: var(--ink);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 15px;
+}
+.tokenSwatches {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.tokenSwatches i {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+}
+.tokenSwatches small {
+  margin-left: 4px;
+  color: var(--label);
+  font-size: 13px;
+}
+.tokenArrow {
+  color: var(--label);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+}
+.tokenButton {
+  justify-self: start;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: #2a55c4;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+}
+
 /* ---------- The path ---------- */
 .path {
   display: grid;

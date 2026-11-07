@@ -20,8 +20,8 @@ export const metadata: Metadata = {
 const facts = [
   { label: "Role", value: "Design and build" },
   { label: "Timeline", value: "Nov 2026 – now" },
-  { label: "Tools", value: "Figma, Claude Code" },
-  { label: "Status", value: "iOS demo Dec 1" },
+  { label: "Tools", value: "Figma, Claude Code, React" },
+  { label: "Status", value: "iOS demo Dec 2" },
 ];
 
 const stats = [
@@ -62,7 +62,7 @@ function ScopeVisual() {
   return (
     <div className={styles.scope} aria-hidden="true">
       <div>
-        <span className={styles.scopeHead}>In the Dec 1 demo</span>
+        <span className={styles.scopeHead}>In the Dec 2 demo</span>
         <ul>
           <li>Snap a vet paper</li>
           <li>Pet folders</li>
@@ -78,6 +78,33 @@ function ScopeVisual() {
           <li>Sitter links</li>
           <li>Boo talks back</li>
         </ul>
+      </div>
+    </div>
+  );
+}
+
+/** One design token traced from Figma to code, in light and dark. */
+function TokensVisual() {
+  return (
+    <div className={styles.tokens} aria-hidden="true">
+      <div className={styles.tokenStep}>
+        <span className={styles.tokenWhere}>Figma Variables</span>
+        <code>accent/primary</code>
+        <span className={styles.tokenSwatches}>
+          <i style={{ background: "#2A55C4" }} />
+          <i style={{ background: "#7A9CF5" }} />
+          <small>Light · Dark</small>
+        </span>
+      </div>
+      <span className={styles.tokenArrow}>↓ npm run tokens</span>
+      <div className={styles.tokenStep}>
+        <span className={styles.tokenWhere}>tokens.css</span>
+        <code>--accent-primary</code>
+      </div>
+      <span className={styles.tokenArrow}>↓</span>
+      <div className={styles.tokenStep}>
+        <span className={styles.tokenWhere}>The app</span>
+        <span className={styles.tokenButton}>Looks right</span>
       </div>
     </div>
   );
@@ -146,6 +173,14 @@ const decisions: Decision[] = [
     chose: "Everything on the phone, no sign-up, until the demo",
     why: "The question to answer first is whether people bring a paper in their first minute. Sharing and sync only matter after that. Data goes through one storage module, so moving to a server later is one rewrite.",
     visual: <ScopeVisual />,
+  },
+  {
+    title: "One source of truth for the look",
+    considered: "Copying colors and sizes from Figma into the code by hand",
+    chose:
+      "Figma Variables exported as design tokens, so code uses the same names",
+    why: "I design and build alone, so the mockup and the app drift apart the moment I tweak a color. Now a change in Figma is one export and one command. Light and dark come from the same roles, and the code never holds a raw hex value.",
+    visual: <TokensVisual />,
   },
 ];
 
@@ -272,7 +307,7 @@ export default function SmartBooPage() {
         <section className={styles.decisions} aria-labelledby="decisions-title">
           <div className={styles.flowHead}>
             <h2 id="decisions-title" className={styles.sectionTitle}>
-              Five decisions <em>that shaped it.</em>
+              Six decisions <em>that shaped it.</em>
             </h2>
             <p className={styles.body}>
               Every part of the app started as a choice between two options.
