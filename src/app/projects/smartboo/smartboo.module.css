@@ -39,6 +39,11 @@
   /* Layout: a 12-column grid with 24px gutters; spacing steps
      8 · 16 · 24 · 32 · 48 · 120. */
   --gutter-x: 24px;
+  /* Vertical rhythm between chapters. */
+  --section-gap: 120px;
+  /* A chapter (the decisions) gets more air than a regular section. */
+  --chapter-gap: 200px;
+  --section-pad: 32px;
   /* One style for every small label: facts, section names, targets. */
   --label: #8a90a0;
   position: relative;
@@ -206,8 +211,10 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 24px var(--gutter-x);
-  margin-top: 120px;
-  padding-top: 24px;
+  /* Every chapter opens the same way: 120px of air, a hairline, 32px to
+     its first line. */
+  margin-top: var(--section-gap);
+  padding-top: var(--section-pad);
   border-top: 1px solid var(--line);
 }
 .split > :first-child {
@@ -327,10 +334,12 @@
 
 /* ---------- Section heads ---------- */
 .flowHead {
-  /* Title with its intro right below, so they read as one head for the
-     list that follows. */
+  /* A centred chapter opener, like the survey call at the end: title with
+     its intro right below, then the list. */
   display: grid;
+  justify-items: center;
   gap: 16px;
+  text-align: center;
 }
 .sheet .sectionTitle {
   font-size: clamp(36px, 4.4vw, 64px);
@@ -348,10 +357,12 @@
 
 /* ---------- Decisions ---------- */
 .decisions {
-  margin-top: 120px;
+  /* A chapter opener: no hairline, the centred title carries the break,
+     like the survey call at the end. */
+  margin-top: var(--chapter-gap);
 }
 .decisionList {
-  margin: 16px 0 0;
+  margin: 72px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -401,7 +412,11 @@
 }
 /* No rule above the first decision: it belongs to the head above. */
 .decision:first-child {
+  padding-top: 0;
   border-top: 0;
+}
+.decision:last-child {
+  padding-bottom: 0;
 }
 
 .decisionVisual .phone {
@@ -668,9 +683,9 @@
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gutter-x);
-  align-items: center;
-  margin-top: 120px;
-  padding: 64px 0;
+  align-items: start;
+  margin-top: var(--section-gap);
+  padding: var(--section-pad) 0 0;
   border-top: 1px solid var(--line);
 }
 .deviceText {
@@ -850,7 +865,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 120px;
+  margin-top: var(--section-gap);
   text-align: center;
 }
 .sheet .helpTitle {
@@ -897,7 +912,7 @@
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--gutter-x);
   align-items: center;
-  margin-top: 120px;
+  margin-top: var(--section-gap);
   padding: 48px;
   border-radius: 40px;
   /* The Figma player has a black canvas; the panel continues it. */
@@ -993,9 +1008,6 @@
   .facts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .split {
-    margin-top: 96px;
-  }
   .insights,
   .principles {
     grid-template-columns: minmax(0, 1fr);
@@ -1009,7 +1021,7 @@
     display: block;
   }
   .flowHead .body {
-    margin-top: 16px;
+    margin: 16px auto 0;
   }
   .decision .decisionText,
   .decision .decisionVisual {
@@ -1073,19 +1085,15 @@
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;
   }
-  .split,
-  .decisions,
-  .prototype,
-  .help {
-    margin-top: 72px;
+  .sheet {
+    --chapter-gap: 112px;
+    --section-gap: 72px;
+    --section-pad: 24px;
   }
   .decision {
     padding: 32px 0;
   }
-  .device {
-    margin-top: 72px;
-    padding: 40px 0 0;
-  }
+
   .choice > div {
     grid-template-columns: minmax(0, 1fr);
     gap: 4px;

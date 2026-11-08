@@ -21,3 +21,63 @@
   /* Nunito sits a little high; nudge it onto the mark's centre line. */
   transform: translateY(-0.04em);
 }
+
+/* A living Boo: the petals turn slowly and the eyes look around and
+   blink. Off for people who prefer reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .alive .petals {
+    transform-box: view-box;
+    transform-origin: 50px 50px;
+    animation: turn 24s linear infinite;
+  }
+  .alive .eyes {
+    animation: look 7s ease-in-out infinite;
+  }
+  .alive .eyes ellipse {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: blink 7s ease-in-out infinite;
+  }
+  .alive:hover .petals {
+    animation-duration: 6s;
+  }
+}
+@keyframes turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes look {
+  0%,
+  18%,
+  92%,
+  100% {
+    transform: translate(0, 0);
+  }
+  24%,
+  40% {
+    transform: translate(-5px, 1px);
+  }
+  48%,
+  64% {
+    transform: translate(5px, -1px);
+  }
+  72%,
+  84% {
+    transform: translate(0, -2px);
+  }
+}
+@keyframes blink {
+  0%,
+  8%,
+  12%,
+  86%,
+  90%,
+  100% {
+    transform: scaleY(1);
+  }
+  10%,
+  88% {
+    transform: scaleY(0.12);
+  }
+}

@@ -144,6 +144,13 @@ const decisions: Decision[] = [
     ),
   },
   {
+    title: "Cut to the aha moment",
+    considered: "Household sharing, accounts and sync in the first version",
+    chose: "Everything on the phone, no sign-up, until the demo",
+    why: "The question to answer first is whether people bring a paper in their first minute. Sharing and sync only matter after that. Data goes through one storage module, so moving to a server later is one rewrite.",
+    visual: <ScopeVisual />,
+  },
+  {
     title: "Boo is a sheet, not a chat",
     considered: "A chat tab with Boo and a conversation history",
     chose: "A bottom sheet that opens over any screen: talk, snap or type",
@@ -155,6 +162,13 @@ const decisions: Decision[] = [
       />
     ),
     crop: "bottom",
+  },
+  {
+    title: "Ask, never guess",
+    considered: "Pick the most likely pet and let people fix it",
+    chose: "One short question with choices when anything is unclear",
+    why: "With two cats, a wrong guess means a missed dose. One tap on a choice is cheaper than finding and fixing a wrong record later. The same rule covers “Is this the same Rocky?”",
+    visual: <AskVisual />,
   },
   {
     title: "Confirm by risk",
@@ -169,20 +183,6 @@ const decisions: Decision[] = [
       />
     ),
     crop: "bottom",
-  },
-  {
-    title: "Ask, never guess",
-    considered: "Pick the most likely pet and let people fix it",
-    chose: "One short question with choices when anything is unclear",
-    why: "With two cats, a wrong guess means a missed dose. One tap on a choice is cheaper than finding and fixing a wrong record later. The same rule covers “Is this the same Rocky?”",
-    visual: <AskVisual />,
-  },
-  {
-    title: "Cut to the aha moment",
-    considered: "Household sharing, accounts and sync in the first version",
-    chose: "Everything on the phone, no sign-up, until the demo",
-    why: "The question to answer first is whether people bring a paper in their first minute. Sharing and sync only matter after that. Data goes through one storage module, so moving to a server later is one rewrite.",
-    visual: <ScopeVisual />,
   },
   {
     title: "One source of truth for the look",
@@ -244,7 +244,7 @@ export default function SmartBooPage() {
               Case study in progress · Clickable prototype
             </p>
             <h1 id="smartboo-title" className={styles.title}>
-              <SmartBooLogo tone="blue" />
+              <SmartBooLogo tone="blue" animated />
             </h1>
             <p className={styles.tagline}>
               Everything about your pets in one place.{" "}

@@ -80,7 +80,7 @@ export default function NowBuilding() {
             <div className={styles.voice}>
               <div className={styles.say}>
                 <span className={styles.booMark}>
-                  <BooMark tone="blue" />
+                  <BooMark tone="blue" animated />
                 </span>
                 <p className={styles.quote}>Rocky’s vaccine certificate</p>
               </div>

@@ -18,9 +18,12 @@ type Tone = "black" | "white" | "blue";
 export function BooMark({
   tone = "black",
   className,
+  animated,
 }: {
   tone?: Tone;
   className?: string;
+  /** Petals turn slowly; the eyes look around and blink. */
+  animated?: boolean;
 }) {
   const id = useId();
   const petals =
@@ -31,7 +34,7 @@ export function BooMark({
 
   return (
     <svg
-      className={className}
+      className={`${className ?? ""} ${animated ? styles.alive : ""}`}
       viewBox="0 0 100 100"
       aria-hidden="true"
       focusable="false"
@@ -45,7 +48,7 @@ export function BooMark({
           </linearGradient>
         </defs>
       )}
-      <g fill={petals}>
+      <g fill={petals} className={styles.petals}>
         <circle cx="50" cy="50" r="38" />
         {Array.from({ length: 12 }, (_, i) => {
           const a = ((15 + i * 30) * Math.PI) / 180;
@@ -61,8 +64,10 @@ export function BooMark({
       </g>
       <circle cx="50" cy="50" r="37.2" fill={ring} />
       <circle cx="50" cy="50" r="28.8" fill={core} />
-      <ellipse cx="37.8" cy="46.2" rx="4.8" ry="8.6" fill={eyes} />
-      <ellipse cx="62.2" cy="46.2" rx="4.8" ry="8.6" fill={eyes} />
+      <g className={styles.eyes} fill={eyes}>
+        <ellipse cx="37.8" cy="46.2" rx="4.8" ry="8.6" />
+        <ellipse cx="62.2" cy="46.2" rx="4.8" ry="8.6" />
+      </g>
     </svg>
   );
 }
@@ -71,9 +76,11 @@ export function BooMark({
 export default function SmartBooLogo({
   tone = "black",
   className,
+  animated,
 }: {
   tone?: Tone;
   className?: string;
+  animated?: boolean;
 }) {
   return (
     <span
@@ -82,7 +89,7 @@ export default function SmartBooLogo({
       role="img"
       aria-label="SmartBoo"
     >
-      <BooMark tone={tone} className={styles.mark} />
+      <BooMark tone={tone} className={styles.mark} animated={animated} />
       <span className={`${styles.word} ${wordmarkFont.className}`}>
         smartboo
       </span>
