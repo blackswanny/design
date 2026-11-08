@@ -1,0 +1,23 @@
+/* SmartBoo lockup: the mark is about 1.2× the cap height of the word, with
+   a gap of a quarter of the mark, as on the Figma "Logo kit" frame. */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.26em;
+  color: #111318;
+  line-height: 1;
+}
+.logo[data-tone="white"] {
+  color: #fff;
+}
+.mark {
+  flex: none;
+  width: 1.08em;
+  height: 1.08em;
+}
+.word {
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  /* Nunito sits a little high; nudge it onto the mark's centre line. */
+  transform: translateY(-0.04em);
+}

@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import styles from "./building.module.css";
 import { smartboo } from "./smartboo";
+import SmartBooLogo, { BooMark } from "./smartbooLogo";
 import ArrowIcon from "../arrowIcon";
 import site from "../home/dark/darkPortfolio.module.css";
 
@@ -49,9 +50,9 @@ export default function NowBuilding() {
         </span>
       </h2>
       <p className={styles.lead}>
-        Right now: <strong>{smartboo.name}</strong>, an iOS app that keeps
-        everything about your pets in one place. Hand its AI assistant a vet
-        paper, and it files it and reminds you what’s due.
+        Right now: <SmartBooLogo tone="white" className={styles.leadLogo} />, an
+        iOS app that keeps everything about your pets in one place. Hand its AI
+        assistant a vet paper, and it files it and reminds you what’s due.
       </p>
       <div className={styles.actions}>
         <Link className={styles.follow} href="/projects/smartboo">
@@ -78,22 +79,8 @@ export default function NowBuilding() {
           <div className={styles.visual} aria-hidden="true">
             <div className={styles.voice}>
               <div className={styles.say}>
-                <span className={styles.mic}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                    <path
-                      d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.8l1.4-2h4.6l1.4 2h1.8A2.5 2.5 0 0 1 20 8.5v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5z"
-                      stroke="#fff"
-                      strokeWidth="2"
-                      strokeLinejoin="round"
-                    />
-                    <circle
-                      cx="12"
-                      cy="12.5"
-                      r="3.2"
-                      stroke="#fff"
-                      strokeWidth="2"
-                    />
-                  </svg>
+                <span className={styles.booMark}>
+                  <BooMark tone="blue" />
                 </span>
                 <p className={styles.quote}>Rocky’s vaccine certificate</p>
               </div>

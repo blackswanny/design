@@ -99,6 +99,22 @@
   background: var(--red);
   box-shadow: 0 0 0 5px rgb(224 58 42 / 0.2);
 }
+/* Boo's mark from the Figma logo kit, receiving the paper. */
+.booMark {
+  display: block;
+  width: 34px;
+  height: 34px;
+}
+.booMark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* The SmartBoo lockup inline in the lead, a touch larger than the text. */
+.leadLogo {
+  font-size: 1.12em;
+  vertical-align: -0.12em;
+}
 .wave {
   display: flex;
   align-items: center;

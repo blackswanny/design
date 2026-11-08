@@ -21,7 +21,11 @@
   /* One red across the site: bright enough on black, white text stays
      readable on it. */
   --red: #e03a2a;
-  --gutter: 60px;
+  /* Content stops growing at 1600px: on wider screens the extra space
+     goes into the side margins, so pages stay centred and easy to read
+     on big monitors while backgrounds still run edge to edge. */
+  --frame: max(0px, calc((100vw - 1600px) / 2));
+  --gutter: calc(60px + var(--frame));
   --hero-scale: 1;
   --carousel-scale: 1;
   /* Shared size of the hero, Selected Work and Let's talk headings: 90px at
@@ -109,7 +113,7 @@
   justify-content: space-between;
   gap: 32px;
   padding: calc(24px * (1 - var(--p)) + 10px * var(--p))
-    calc(var(--gutter) * (1 - var(--p)) + 20px * var(--p)) 0;
+    calc(var(--gutter) * (1 - var(--p)) + (20px + var(--frame)) * var(--p)) 0;
   pointer-events: none;
 }
 .header > * {

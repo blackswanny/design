@@ -13,7 +13,11 @@
   /* Layout unit: 1px at a 1440px-wide window, so the description, the gap
      and the project scale together on smaller screens. Above 1440px only
      the project grows; text, margins and the gap keep their 1440px size. */
-  --u: calc(100vw / 1440);
+  --u: calc(var(--vw) / 1440);
+  /* On very wide screens the case stops growing at 1680px and sits in
+     the centre; the background still fills the window. */
+  --vw: min(100vw, 1680px);
+  --frame: max(0px, calc((100vw - 1680px) / 2));
   --muted: #a8a8a8;
   --red: #e03a2a;
   min-height: 100svh;
@@ -74,7 +78,7 @@
   position: fixed;
   top: 56px;
   /* Right edge lines up with the project. */
-  right: min(60px, calc(60 * var(--u)));
+  right: calc(var(--frame) + min(60px, calc(60 * var(--u))));
   z-index: 10;
   display: grid;
   place-items: center;
@@ -99,10 +103,12 @@
 }
 .case {
   display: grid;
+  max-width: 1680px;
+  margin-inline: auto;
   /* Above 1440px the gap to the project grows gently (17% of the extra
      width) instead of staying fixed or scaling fully. */
   grid-template-columns:
-    min(calc(548 * var(--u)), calc(548px + (100vw - 1440px) * 0.17))
+    min(calc(548 * var(--u)), calc(548px + (var(--vw) - 1440px) * 0.17))
     minmax(0, 1fr);
 }
 .sidebar {

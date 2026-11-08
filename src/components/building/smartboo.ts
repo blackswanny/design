@@ -40,12 +40,12 @@ export const smartboo = {
     },
     {
       title: "Design",
-      text: "The concept, 18 screens and a clickable prototype in Figma, with colors, spacing and type set up as Figma Variables.",
+      text: "The concept, 18 screens and a clickable prototype in Figma, plus a design system in Figma Variables with Boo's indigo.",
       status: "done",
     },
     {
       title: "First build",
-      text: "The first version runs in React: Today, Schedule, pet folders, Share and Boo's sheet, with sample pets. Built with Claude Code.",
+      text: "The first version runs on the iPhone simulator: Today, Schedule, pet folders, Share and Boo's sheet, with sample pets. React and Capacitor, built with Claude Code.",
       status: "now",
     },
     {

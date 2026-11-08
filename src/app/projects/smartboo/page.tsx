@@ -1,5 +1,6 @@
 import ArrowIcon from "@/components/arrowIcon";
 import { smartboo } from "@/components/building/smartboo";
+import SmartBooLogo from "@/components/building/smartbooLogo";
 import site from "@/components/home/dark/darkPortfolio.module.css";
 import { portfolioDisplay, portfolioSans } from "@/components/home/dark/fonts";
 import SiteFooter from "@/components/home/dark/siteFooter";
@@ -25,12 +26,18 @@ const facts = [
 ];
 
 const stats = [
-  { value: "2,900", label: "App Store reviews read and tagged" },
   {
+    kicker: "Reviews",
+    value: "2,900",
+    label: "App Store reviews read and tagged",
+  },
+  {
+    kicker: "Apps",
     value: "~40",
     label: "pet apps compared, from vet portals to reptile trackers",
   },
   {
+    kicker: "Moments",
     value: "4",
     label:
       "moments that open the app: a new paper, a request, a reminder, a worry",
@@ -91,8 +98,8 @@ function TokensVisual() {
         <span className={styles.tokenWhere}>Figma Variables</span>
         <code>accent/primary</code>
         <span className={styles.tokenSwatches}>
-          <i style={{ background: "#2A55C4" }} />
-          <i style={{ background: "#7A9CF5" }} />
+          <i style={{ background: "#4F62CC" }} />
+          <i style={{ background: "#8F98F5" }} />
           <small>Light · Dark</small>
         </span>
       </div>
@@ -104,7 +111,10 @@ function TokensVisual() {
       <span className={styles.tokenArrow}>↓</span>
       <div className={styles.tokenStep}>
         <span className={styles.tokenWhere}>The app</span>
-        <span className={styles.tokenButton}>Looks right</span>
+        <span className={styles.tokenApp}>
+          <span className={styles.tokenButton}>Looks right</span>
+          <small>5.3 : 1 · passes AA</small>
+        </span>
       </div>
     </div>
   );
@@ -184,6 +194,15 @@ const decisions: Decision[] = [
   },
 ];
 
+const buildFacts = [
+  {
+    value: "iOS",
+    label: "React app wrapped with Capacitor, run on iPhone 17 Pro",
+  },
+  { value: "54", label: "color pairs checked for contrast, all pass WCAG AA" },
+  { value: "1 PR", label: "per change: a branch, a review, then main" },
+];
+
 const metrics = [
   {
     value: "60%",
@@ -225,8 +244,7 @@ export default function SmartBooPage() {
               Case study in progress · Clickable prototype
             </p>
             <h1 id="smartboo-title" className={styles.title}>
-              <span className={styles.smart}>smart</span>
-              <span className={styles.boo}>boo</span>
+              <SmartBooLogo tone="blue" />
             </h1>
             <p className={styles.tagline}>
               Everything about your pets in one place.{" "}
@@ -277,6 +295,7 @@ export default function SmartBooPage() {
             <ul className={styles.stats}>
               {stats.map((stat) => (
                 <li key={stat.label}>
+                  <em className={styles.statKicker}>{stat.kicker}</em>
                   <strong>{stat.value}</strong>
                   <span>{stat.label}</span>
                 </li>
@@ -307,7 +326,7 @@ export default function SmartBooPage() {
         <section className={styles.decisions} aria-labelledby="decisions-title">
           <div className={styles.flowHead}>
             <h2 id="decisions-title" className={styles.sectionTitle}>
-              Six decisions <em>that shaped it.</em>
+              Six decisions <em>behind it.</em>
             </h2>
             <p className={styles.body}>
               Every part of the app started as a choice between two options.
@@ -318,21 +337,30 @@ export default function SmartBooPage() {
             {decisions.map((d, i) => (
               <li key={d.title} className={styles.decision}>
                 <div className={styles.decisionText}>
-                  <span className={styles.index}>
-                    Decision {String(i + 1).padStart(2, "0")}
+                  <span className={styles.decisionNumber} aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3>{d.title}</h3>
+                  <h3>
+                    <span className={styles.visuallyHidden}>
+                      Decision {i + 1}:{" "}
+                    </span>
+                    {d.title}
+                  </h3>
+                  <p className={styles.why}>{d.why}</p>
                   <dl className={styles.choice}>
                     <div data-kind="considered">
-                      <dt>Considered</dt>
+                      <dt>
+                        <span aria-hidden="true">✕</span> Considered
+                      </dt>
                       <dd>{d.considered}</dd>
                     </div>
                     <div data-kind="chose">
-                      <dt>Chose</dt>
+                      <dt>
+                        <span aria-hidden="true">✓</span> Chose
+                      </dt>
                       <dd>{d.chose}</dd>
                     </div>
                   </dl>
-                  <p className={styles.why}>{d.why}</p>
                 </div>
                 <div className={styles.decisionVisual} data-crop={d.crop}>
                   {d.visual}
@@ -340,6 +368,45 @@ export default function SmartBooPage() {
               </li>
             ))}
           </ol>
+        </section>
+
+        {/* Design engineering: the same screen in Figma and in the build. */}
+        <section className={styles.device} aria-labelledby="device-title">
+          <div className={styles.deviceText}>
+            <h2 id="device-title" className={styles.sectionTitle}>
+              From Figma <em>to a real iPhone.</em>
+            </h2>
+            <p className={styles.body}>
+              I design and build SmartBoo myself, with Claude Code as my pair.
+              The first version already runs as an iOS app on the simulator. Its
+              screens still wear the early teal; the next pass moves them onto
+              the new Figma tokens.
+            </p>
+            <ul className={styles.deviceFacts}>
+              {buildFacts.map((fact) => (
+                <li key={fact.value}>
+                  <strong>{fact.value}</strong>
+                  <span>{fact.label}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className={styles.deviceStage}>
+            <figure>
+              <ScreenShot
+                src={img("today")}
+                alt="Today in Figma: an overdue rabies card for Rocky, Boo's card and the tab bar"
+              />
+              <figcaption>Figma · Today</figcaption>
+            </figure>
+            <figure>
+              <ScreenShot
+                src={img("build-today")}
+                alt="Today in the running app on the iPhone simulator: Tell Boo what happened, Next up and Coming up"
+              />
+              <figcaption>iPhone simulator · first build</figcaption>
+            </figure>
+          </div>
         </section>
 
         {/* The path: how the project moves from research to a demo. */}
@@ -350,6 +417,7 @@ export default function SmartBooPage() {
           <ol className={styles.path}>
             {smartboo.log.map((step) => (
               <li key={step.title} data-status={step.status}>
+                <span className={styles.pathDot} aria-hidden="true" />
                 <span className={styles.pathStatus}>
                   {step.status === "done"
                     ? "Done"
