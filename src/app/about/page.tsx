@@ -7,13 +7,18 @@ import SiteFooter from "@/components/home/dark/siteFooter";
 import SiteHeader from "@/components/home/dark/siteHeader";
 
 import styles from "./about.module.css";
+import { pageOpenGraph } from "../pageOpenGraph";
 
 import type { Metadata } from "next";
 
+const title = "About me — Hanna Gomozova";
+const description =
+  "About Hanna Gomozova, a product designer focused on early-stage products and intuitive user experiences.";
+
 export const metadata: Metadata = {
-  title: "About me — Hanna Gomozova",
-  description:
-    "About Hanna Gomozova, a product designer focused on early-stage products and intuitive user experiences.",
+  title,
+  description,
+  openGraph: pageOpenGraph("/about", title, description),
 };
 
 const iconProps = {
@@ -67,12 +72,20 @@ const strengths = [
 // first.
 const journey = [
   {
+    dates: "2026 – Present",
+    role: "Product Designer → Design Engineer",
+    company: "SmartBoo",
+    place: "Personal project",
+    text: "Designing and building my own app: an AI assistant that files vet papers and voice notes into each pet’s records. A survey with ~50 owners, 5 interviews and ~2,900 App Store reviews turned the idea from a daily voice diary into paper-first capture. Now learning design engineering by building the iOS prototype with Claude Code.",
+    tags: ["0 → 1", "AI Product", "UX Research", "iOS"],
+  },
+  {
     dates: "2024 – Present",
     role: "Product Designer",
     company: "Independent",
     place: "Bay Area, CA",
-    text: "Product design and UX support for SET.DO (AI-powered calendar and task planning) and Unit Post (messaging and outreach), plus responsive websites for independent projects. Designed and built hanna.vision with Next.js and AI-assisted development.",
-    tags: ["Consulting", "UX Research", "Web & Mobile", "Design Engineering"],
+    text: "Product design and UX support for Unit Post (messaging and outreach) and SET.DO (AI-powered calendar and task planning), plus responsive websites for independent projects. Designed and built hanna.vision with Next.js and AI-assisted development.",
+    tags: ["Consulting", "UX Research", "Web & Mobile", "Websites"],
   },
   {
     dates: "2021 – 2024",

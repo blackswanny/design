@@ -35,7 +35,7 @@ export const smartboo = {
   log: [
     {
       title: "Research",
-      text: "Owner interviews, an ongoing survey and about 2,900 App Store reviews of nearly 40 pet apps.",
+      text: "5 owner interviews (more in progress), a survey with about 50 responses so far and about 2,900 App Store reviews of nearly 40 pet apps.",
       status: "done",
     },
     {

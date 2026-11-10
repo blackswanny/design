@@ -6,16 +6,22 @@ import { portfolioDisplay, portfolioSans } from "@/components/home/dark/fonts";
 import SiteFooter from "@/components/home/dark/siteFooter";
 import SiteHeader from "@/components/home/dark/siteHeader";
 
+
 import { ScreenShot } from "./phones";
 import styles from "./smartboo.module.css";
+import { pageOpenGraph } from "../../pageOpenGraph";
 
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
+const title = "SmartBoo — pet records with an AI assistant | Hanna Gomozova";
+const description =
+  "How SmartBoo took shape: the research, the decisions behind the design and a clickable prototype. Product design by Hanna Gomozova, built with Claude Code.";
+
 export const metadata: Metadata = {
-  title: "SmartBoo — pet records with an AI assistant | Hanna Gomozova",
-  description:
-    "How SmartBoo took shape: the research, the decisions behind the design and a clickable prototype. Product design by Hanna Gomozova, built with Claude Code.",
+  title,
+  description,
+  openGraph: pageOpenGraph("/projects/smartboo", title, description),
 };
 
 const facts = [
@@ -27,20 +33,19 @@ const facts = [
 
 const stats = [
   {
+    kicker: "Survey",
+    value: "~50",
+    label: "pet owners answered the survey so far",
+  },
+  {
+    kicker: "Interviews",
+    value: "5",
+    label: "owner interviews, with more in progress",
+  },
+  {
     kicker: "Reviews",
     value: "2,900",
-    label: "App Store reviews read and tagged",
-  },
-  {
-    kicker: "Apps",
-    value: "~40",
-    label: "pet apps compared, from vet portals to reptile trackers",
-  },
-  {
-    kicker: "Moments",
-    value: "4",
-    label:
-      "moments that open the app: a new paper, a request, a reminder, a worry",
+    label: "App Store reviews of ~40 pet apps, read and tagged",
   },
 ];
 

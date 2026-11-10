@@ -116,7 +116,8 @@ export default function NowBuilding() {
             </div>
           </div>
           <p className={styles.caption}>
-            Research first: an owner survey and reviews of 40 pet apps
+            Research first: ~50 survey responses, 5 owner interviews and
+            reviews of 40 pet apps
           </p>
         </Link>
 
@@ -147,7 +148,7 @@ export default function NowBuilding() {
             </div>
           </div>
           <p className={styles.caption}>
-            Built with Claude Code: design engineering with AI
+            Learning design engineering: building it with Claude Code
           </p>
         </Link>
       </div>

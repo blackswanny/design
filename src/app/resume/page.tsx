@@ -5,13 +5,18 @@ import SiteHeader from "@/components/home/dark/siteHeader";
 
 import styles from "./resume.module.css";
 import about from "../about/about.module.css";
+import { pageOpenGraph } from "../pageOpenGraph";
 
 import type { Metadata } from "next";
 
+const title = "Resume — Hanna Gomozova";
+const description =
+  "Resume of Hanna Gomozova, a product designer with 5+ years of experience across web and mobile products.";
+
 export const metadata: Metadata = {
-  title: "Resume — Hanna Gomozova",
-  description:
-    "Resume of Hanna Gomozova, a product designer and design engineer with 5+ years of experience across web and mobile products.",
+  title,
+  description,
+  openGraph: pageOpenGraph("/resume", title, description),
 };
 
 // The web version of public/Hanna-Gomozova-Product-Designer.pdf; keep the
@@ -60,14 +65,16 @@ const skills = [
 
 const experience = [
   {
-    role: "Product Designer & Design Engineer",
+    role: "Product Designer → Design Engineer",
     company: "SmartBoo (personal project)",
     place: "Bay Area, CA",
     dates: "2026 – Present",
     points: [
-      "Designing and building SmartBoo, a voice-first AI care log for homes with more than one pet, with Claude Code.",
-      "Ran an owner survey and analyzed ~2,900 App Store reviews across ~40 pet apps to define the MVP.",
-      "Mapped the core loop and edge cases (ambiguous pets, duplicate logs, offline capture) into product requirements.",
+      "Own SmartBoo end to end, from research and product strategy to UX, UI, and the design system: an AI assistant that files vet papers and voice notes into each pet’s records.",
+      "Led mixed-methods research to define the MVP: an owner survey (~50 responses), 5 owner interviews (ongoing), and ~2,900 App Store reviews across ~40 competing pet apps.",
+      "Pivoted the concept from a daily voice diary to paper-first capture after research showed most owners touch pet records only a few times a year.",
+      "Defined trust rules for the AI: it asks instead of guessing between pets, saves low-stakes logs with Undo, and sends meds, vaccines, and symptoms through a review card.",
+      "Learning design engineering by building the iOS prototype with Claude Code from Figma Variables tokens; set an activation goal of 60% of new users saving a first record in session one. TestFlight demo on December 2.",
     ],
   },
   {
@@ -76,7 +83,7 @@ const experience = [
     place: "Bay Area, CA",
     dates: "2024 – Present",
     points: [
-      "Provide product design and UX support for SET.DO, an AI-powered calendar and task-planning app, and Unit Post, a messaging and outreach platform.",
+      "Provide product design and UX support for Unit Post, a messaging and outreach platform, and SET.DO, an AI-powered calendar and task-planning app.",
       "Design responsive websites and digital experiences across a variety of independent projects.",
       "Designed and built hanna.vision, a responsive portfolio website using Next.js and AI-assisted development.",
     ],
@@ -144,7 +151,7 @@ export default function ResumePage() {
         <article className={styles.sheet}>
           <header className={styles.sheetHeader}>
             <h2 className={styles.name}>Hanna Gomozova</h2>
-            <p className={styles.roles}>Product Designer & Design Engineer</p>
+            <p className={styles.roles}>Product Designer</p>
             <p className={styles.location}>Bay Area, CA</p>
             <ul className={styles.links}>
               {links.map((link) => (
@@ -166,13 +173,13 @@ export default function ResumePage() {
           <section className={styles.block}>
             <h3 className={styles.blockTitle}>Summary</h3>
             <p className={styles.summary}>
-              Product Designer and Design Engineer with 5+ years of experience
-              taking web and mobile products from 0 to 1. As the sole designer
-              at WorkReactor, owned research, UX, UI, and the design system for
-              a live SaaS platform through several product pivots. Now designing
-              and building an AI voice-first app with Claude Code, turning
-              research and fuzzy ideas into clear flows, edge cases, and shipped
-              UI.
+              Product Designer with 5+ years of experience taking web and
+              mobile products from 0 to 1. As the sole designer at WorkReactor,
+              owned research, UX, UI, and the design system for a live SaaS
+              platform through several product pivots. Now focused on SmartBoo,
+              my own AI app, from owner research to clear decisions, flows, and
+              edge cases, while learning design engineering by building its iOS
+              prototype with Claude Code.
             </p>
           </section>
 
