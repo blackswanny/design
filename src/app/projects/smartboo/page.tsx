@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 const facts = [
   { label: "Role", value: "Design and build" },
-  { label: "Timeline", value: "Nov 2026 – now" },
+  { label: "Timeline", value: "Aug 2026 – now" },
   { label: "Tools", value: "Figma, Claude Code, React" },
   { label: "Status", value: "iOS demo Dec 2" },
 ];
