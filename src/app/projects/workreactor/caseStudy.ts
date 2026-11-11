@@ -22,7 +22,7 @@ export const workreactorCase: CaseStudy = {
     },
     {
       title: "What I did",
-      text: "Sole designer on the live product from 2021. In 2024, after 32 interviews with founders, engineers, and investors, I led a full redesign. The company closed before it shipped.",
+      text: "Sole designer on the live product from 2021 to 2024, through four concept pivots, 32 interviews with founders, engineers, and investors, and A/B tests on sign-up and sign-in. After the company closed, I redesigned it end to end on my own to show what the product was meant to be.",
     },
     {
       title: "Key decisions",

@@ -83,7 +83,8 @@ const experience = [
     place: "Bay Area, CA",
     dates: "2024 – Present",
     points: [
-      "Provide product design and UX support for Unit Post, a messaging and outreach platform, and SET.DO, an AI-powered calendar and task-planning app.",
+      "Leading a full redesign of SET.DO, an AI-powered calendar and task-planning app, as its incoming owner.",
+      "Advise Unit Post, a messaging and outreach platform, on UX and UI details.",
       "Design responsive websites and digital experiences across a variety of independent projects.",
       "Designed and built hanna.vision, a responsive portfolio website using Next.js and AI-assisted development.",
     ],
@@ -94,12 +95,12 @@ const experience = [
     place: "San Francisco, CA",
     dates: "2021 – 2024",
     points: [
-      "Sole designer on a SaaS platform combining professional networking, startup collaboration, and project management, owning research, UX, UI, and developer handoff.",
-      "Led user research and continuous iteration on a live product with early users, adapting the experience through several shifts in product direction.",
-      "Designed 100+ high-fidelity screens, from user flows and prototypes for profiles, networking, projects, tasks, and milestones to production-ready UI.",
-      "Built and maintained the design system: reusable components, UI patterns, and visual standards shared with engineering.",
-      "Partnered with the founder and engineers on product decisions, feature planning, and design reviews.",
-      "Led a 2024 redesign based on 32 interviews with founders, engineers, and investors; the company closed before launch.",
+      "Sole designer for three years on a live platform for startup teams, owning research, UX, UI, the design system, and developer handoff.",
+      "Redesigned core flows through four concept pivots with the CEO and engineers: social network → network + team workspace → network only → a profile-as-a-website “startup card”.",
+      "Interviewed 32 founders, engineers, and investors to shape product direction and feature priorities.",
+      "Ran lightweight A/B tests with small user groups to pick the clearest flows, with a focus on sign-up and sign-in.",
+      "Designed 100+ production-ready screens and built the design system (reusable components, UI patterns, visual standards) shared with engineering.",
+      "After the company wound down, completed a self-initiated end-to-end redesign showing the product’s intended vision, grounded in that research.",
     ],
   },
   {

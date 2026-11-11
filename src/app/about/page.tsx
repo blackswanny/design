@@ -84,7 +84,7 @@ const journey = [
     role: "Product Designer",
     company: "Independent",
     place: "Bay Area, CA",
-    text: "Product design and UX support for Unit Post (messaging and outreach) and SET.DO (AI-powered calendar and task planning), plus responsive websites for independent projects. Designed and built hanna.vision with Next.js and AI-assisted development.",
+    text: "Leading a full redesign of SET.DO (AI-powered calendar and task planning) as its incoming owner, and advising Unit Post (messaging and outreach) on UX and UI details. Designed and built hanna.vision with Next.js and AI-assisted development.",
     tags: ["Consulting", "UX Research", "Web & Mobile", "Websites"],
   },
   {
@@ -92,7 +92,7 @@ const journey = [
     role: "Product Designer",
     company: "WorkReactor",
     place: "San Francisco, CA",
-    text: "Sole designer. Owned research, UX, UI, and the design system for a live SaaS platform combining professional networking, startup collaboration, and project management. Iterated with early users through several product pivots, working closely with the founder and engineers.",
+    text: "Sole designer for three years. Owned research, UX, UI, and the design system for a live platform for startup teams, through four concept pivots with the CEO and engineers. Interviewed 32 founders, engineers, and investors and ran A/B tests on sign-up and sign-in.",
     tags: ["Product Design", "UX Research", "Design Systems", "0 → 1"],
   },
   {
