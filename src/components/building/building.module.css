@@ -341,7 +341,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--red);
+  background: #22a559;
 }
 @media (prefers-reduced-motion: no-preference) {
   .liveDot::after {
@@ -349,7 +349,7 @@
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background: var(--red);
+    background: #22a559;
     animation: pulse 2s ease-out infinite;
   }
 }
