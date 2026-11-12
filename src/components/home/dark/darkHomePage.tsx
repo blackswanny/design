@@ -127,6 +127,8 @@ export default function DarkHomePage() {
         </h1>
       </section>
 
+      <NowBuilding />
+
       <section
         id="projects"
         className={styles.projects}
@@ -206,8 +208,6 @@ export default function DarkHomePage() {
           })}
         </div>
       </section>
-
-      <NowBuilding />
 
       <SiteFooter panel />
     </main>

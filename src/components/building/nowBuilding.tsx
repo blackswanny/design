@@ -44,13 +44,13 @@ export default function NowBuilding() {
         id="building-title"
         className={`${site.sectionHeading} ${styles.heading}`}
       >
-        <span>I design products for others,</span>{" "}
+        <span>Beyond client work,</span>{" "}
         <span>
-          and <em>build my own</em> too.
+          I’m building <em>my own</em> app.
         </span>
       </h2>
       <p className={styles.lead}>
-        Right now: <SmartBooLogo tone="white" className={styles.leadLogo} />, an
+        Right now: <SmartBooLogo tone="black" className={styles.leadLogo} />, an
         iOS app that keeps everything about your pets in one place. Hand its AI
         assistant a vet paper, and it files it and reminds you what’s due.
       </p>

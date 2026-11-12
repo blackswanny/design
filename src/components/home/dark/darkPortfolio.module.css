@@ -373,16 +373,21 @@
   white-space: nowrap;
   border: 0;
 }
+/* Selected Work sits on the dark page under the white SmartBoo panel and
+   runs on to the footer. */
 .projects {
-  --text: #121212;
   position: relative;
-  z-index: 1;
-  --muted: #6b6b6b;
-  padding: 72px var(--gutter) 90px;
-  border-radius: 50px;
-  background: #fff;
+  z-index: 0;
+  /* The hero's colour. It tucks 50px under the white panel's rounded
+     corners above and the footer sheet's corners below. */
+  margin-top: -50px;
+  padding: calc(120px + 50px) var(--gutter) calc(180px + 50px);
+  background: var(--canvas);
   color: var(--text);
   scroll-margin-top: 88px;
+}
+.projects + .contactPanel {
+  margin-top: -50px;
 }
 .sectionIntro {
   display: flex;
@@ -395,9 +400,9 @@
   flex: 1 1 0;
   min-width: 40px;
   height: 1px;
-  background: #d4d4d4;
+  background: var(--border, #353535);
 }
-/* Same scale and faces as the hero slogan, in dark ink on the white panel. */
+/* Same scale and faces as the hero slogan. */
 .sectionHeading {
   font-size: var(--heading-size);
   font-weight: 600;
@@ -416,9 +421,113 @@
   line-height: 1.3;
 }
 .projectGrid {
+  --col-gap: 32px;
+  --row-gap: 64px;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 64px 32px;
+  gap: var(--row-gap) var(--col-gap);
+  counter-reset: work;
+}
+/* Wide screens: an index list. Each project is one row between hairlines:
+   number, a small cover, then name, line and tags, and a red arrow button
+   at the far end. Everything is visible at once; nothing pops in. */
+@media (min-width: 1001px) {
+  /* Same air under the heading as above it (120px from the white panel). */
+  .projects .sectionIntro {
+    margin-bottom: 120px;
+  }
+  .projectGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+  .projectCard {
+    display: grid;
+    grid-template-columns:
+      56px clamp(260px, 26vw, 420px) minmax(0, 1fr)
+      auto;
+    grid-template-rows: 1fr auto auto auto 1fr;
+    column-gap: clamp(32px, 4vw, 64px);
+    padding: clamp(32px, 3.2vw, 48px) 0;
+    border-bottom: 1px solid rgb(255 255 255 / 0.1);
+    counter-increment: work;
+  }
+  /* Lines only between projects, not above the first or under the last. */
+  .projectCard:first-child {
+    padding-top: 0;
+  }
+  .projectCard:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  .projectCard::before {
+    content: counter(work, decimal-leading-zero);
+    grid-column: 1;
+    grid-row: 1 / -1;
+    align-self: start;
+    color: var(--muted);
+    font-size: 15px;
+    font-variant-numeric: tabular-nums;
+  }
+  .projectCard .projectStage {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    border-radius: 18px;
+  }
+  .projectCard .projectStage img {
+    transition: transform 0.5s ease;
+  }
+  .projectCard:hover .projectStage img {
+    transform: scale(1.03);
+  }
+  /* Name and arrow become cells of the row. */
+  .projectCard .projectTitle {
+    display: contents;
+  }
+  .projectCard .projectName {
+    grid-column: 3;
+    grid-row: 2;
+    padding-left: 0;
+    font-size: clamp(40px, 3.6vw, 56px);
+  }
+  .site .projectCard .projectSubtitle {
+    grid-column: 3;
+    grid-row: 3;
+    max-width: 460px;
+    margin-top: 12px;
+    padding-left: 0;
+    font-size: 18px;
+  }
+  .projectCard .projectTags {
+    grid-column: 3;
+    grid-row: 4;
+    margin-top: 20px;
+  }
+  .projectCard .projectOpen {
+    grid-column: 4;
+    grid-row: 1 / -1;
+    align-self: center;
+    width: clamp(72px, 6vw, 92px);
+    height: clamp(72px, 6vw, 92px);
+    margin: 0;
+    border-radius: 24px;
+    background: var(--red);
+    color: #fff;
+    font-size: 30px;
+    transition:
+      background-color 0.25s ease,
+      color 0.25s ease,
+      transform 0.25s ease;
+  }
+  .projectCard .projectOpen span,
+  .projectTitle[data-caps="true"] .projectOpen span {
+    transform: none;
+  }
+  .projectCard:hover .projectOpen,
+  .projectCard .projectOpen:hover {
+    background: #fff;
+    color: #121212;
+    transform: rotate(45deg);
+  }
 }
 .projectCard {
   /* Name and subtitle start where the tag text does, not the tag outline. */
@@ -433,6 +542,15 @@
   overflow: hidden;
   border-radius: 24px;
   background: var(--canvas);
+}
+/* A faint light hairline around each cover, drawn above the image. */
+.projectStage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12);
+  pointer-events: none;
 }
 .projectStage img {
   position: absolute;
@@ -498,8 +616,8 @@
 .projectTags li {
   padding: 7px var(--tag-inset);
   border-radius: 999px;
-  background: #f1f1f1;
-  color: #2b2b2b;
+  background: #252525;
+  color: #d6d6d6;
   font-size: 14px;
   line-height: 1.2;
 }
@@ -727,7 +845,8 @@
     margin-top: 28px;
   }
   .projectGrid {
-    gap: 44px 24px;
+    --col-gap: 24px;
+    --row-gap: 44px;
   }
   .projectName {
     font-size: 28px;
@@ -848,8 +967,8 @@
     line-height: 1.1;
   }
   .projects {
-    padding: 44px 20px 52px;
-    border-radius: 30px;
+    margin-top: -30px;
+    padding: calc(80px + 30px) 20px calc(120px + 50px);
   }
   .sectionIntro {
     display: block;

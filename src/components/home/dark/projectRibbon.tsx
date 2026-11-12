@@ -43,6 +43,8 @@ export default function ProjectRibbon() {
     const renderer = createRibbonRenderer(canvas, (ready) => {
       if (!active) return;
       if (ready && !introStart) introStart = performance.now();
+      // Measure again now that the page has settled.
+      if (ready) updateBounds();
       hero.dataset.lens = ready ? "true" : "false";
       hero.dataset.mediaAtlas = ready ? "ready" : "fallback";
     });
@@ -77,12 +79,18 @@ export default function ProjectRibbon() {
 
     const updateBounds = () => {
       if (!active) return;
+      // Layout sizes, not the on-screen rect: the pinned hero is scaled
+      // while the next section covers it.
+      const width = hero.clientWidth;
+      const height = hero.clientHeight;
+      if (!width || !height) return;
       const heroBounds = hero.getBoundingClientRect();
       const row = viewport.getBoundingClientRect();
+      const scale = heroBounds.height / height || 1;
       renderer?.resize(
-        heroBounds.width,
-        heroBounds.height,
-        row.top - heroBounds.top + row.height / 2,
+        width,
+        height,
+        (row.top - heroBounds.top + row.height / 2) / scale,
       );
     };
 
@@ -328,6 +336,7 @@ export default function ProjectRibbon() {
     const sizing = new ResizeObserver(updateBounds);
     sizing.observe(hero);
     sizing.observe(viewport);
+    sizing.observe(canvas);
     const intersection = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
       if (visible) startFrames();

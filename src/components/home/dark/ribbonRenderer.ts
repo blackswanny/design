@@ -247,6 +247,21 @@ export function createRibbonRenderer(
 
     const draw = (frame: RibbonFrame) => {
       if (disposed || !textureReady || gl.isContextLost()) return false;
+      // Always match the size the canvas is shown at. If the first
+      // measurement came before layout settled (a cold first visit), a
+      // stale buffer would be stretched over the hero as a blown-up image.
+      const shownWidth = canvas.clientWidth;
+      const shownHeight = canvas.clientHeight;
+      if (!shownWidth || !shownHeight) return false;
+      if (
+        shownWidth !== bounds.width ||
+        shownHeight !== bounds.height ||
+        canvas.width !== Math.round(shownWidth * bounds.ratio) ||
+        canvas.height !== Math.round(shownHeight * bounds.ratio)
+      ) {
+        const rowShare = bounds.height > 1 ? bounds.rowY / bounds.height : 0.5;
+        resize(shownWidth, shownHeight, rowShare * shownHeight);
+      }
       gl.uniform2f(uniforms.resolution, bounds.width, bounds.height);
       gl.uniform1f(uniforms.pixelRatio, bounds.ratio);
       gl.uniform1f(uniforms.rowY, bounds.rowY);
